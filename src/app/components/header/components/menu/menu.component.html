@@ -1,0 +1,39 @@
+<ul nz-menu [nzMode]="isDrawer ? 'inline' :'horizontal'"
+  class="min-[768px]:flex max-[767px]:block header-menu items-center">
+  <ng-container *ngIf="menuItems">
+    <li nz-submenu [nzTitle]="menuTitle">
+      <ul>
+        <li *ngFor="let menuItem of menuItems" nz-menu-item [routerLink]="menuItem.routerLink"
+          [queryParams]="menuItem.queryParams" [ngClass]="{isHeader: menuItem.isHeader, normal: !menuItem.isHeader}"
+          class="font-roboto-medium min-[768px]:text-lg max-[767px]:text-sm sub-menu">
+          <span>{{ menuItem.label | translate }}</span>
+
+          <nz-divider class="max-[767px]:hidden"></nz-divider>
+        </li>
+
+      </ul>
+    </li>
+  </ng-container>
+  <li nz-menu-item class="text-primary font-roboto-medium text-lg" routerLink="../about-us">
+    {{
+    "aboutUs" | translate
+    }}
+  </li>
+  <li nz-menu-item class="text-primary font-roboto-medium text-lg" routerLink="../blog">
+    {{
+    "blog" | translate
+    }}
+  </li>
+  <li nz-menu-item class="text-primary font-roboto-medium text-lg" routerLink="../contacts">
+    {{
+    "contact.contact" | translate
+    }}
+  </li>
+</ul>
+
+<ng-template #menuTitle>
+  <div class="flex flex-row items-center gap-1 w-full justify-between">
+    <span class="text-primary font-roboto-medium text-lg">{{ "products" | translate }}</span>
+    <svg-down></svg-down>
+  </div>
+</ng-template>

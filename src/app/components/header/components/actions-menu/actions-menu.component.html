@@ -1,0 +1,18 @@
+<div class="flex flex-row items-center min-[576px]:gap-5 max-[575px]:gap-2.5">
+  <app-language></app-language>
+  <app-cart class="min-[576px]:scale-100 max-[575px]:scale-75"></app-cart>
+  <div class="cursor-pointer min-[576px]:scale-100 max-[575px]:scale-75">
+    <svg-user></svg-user>
+  </div>
+  <span (click)="openDrawerMenu()"
+    class="min-[768px]:hidden max-[767px]:flex min-[576px]:text-2xl max-[575px]:text-lg text-primary" nz-icon
+    nzType="menu" nzTheme="outline"></span>
+</div>
+
+
+<!-- DRAWER MENU -->
+<nz-drawer [nzClosable]="false" [nzVisible]="visibleDrawerMenu" nzPlacement="left" (nzOnClose)="closeDrawerMenu()">
+  <ng-container *nzDrawerContent>
+    <app-menu [isDrawer]="true"></app-menu>
+  </ng-container>
+</nz-drawer>

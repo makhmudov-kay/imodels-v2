@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?et9b44');
-  src:  url('fonts/icomoon.eot?et9b44#iefix') format('embedded-opentype'),
+  src: url('fonts/icomoon.eot?et9b44');
+  src: url('fonts/icomoon.eot?et9b44#iefix') format('embedded-opentype'),
     url('fonts/icomoon.ttf?et9b44') format('truetype'),
     url('fonts/icomoon.woff?et9b44') format('woff'),
     url('fonts/icomoon.svg?et9b44#icomoon') format('svg');
@@ -10,7 +10,8 @@
   font-display: block;
 }
 
-[class^="icon-"], [class*=" icon-"] {
+[class^="icon-"],
+[class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;
   speak: never;
@@ -28,54 +29,71 @@
 .icon-eye-slash:before {
   content: "\e910";
 }
+
 .icon-banner-slider:before {
   content: "\e900";
 }
+
 .icon-banner-slider1:before {
   content: "\e901";
 }
+
 .icon-call:before {
   content: "\e902";
 }
+
 .icon-call-calling:before {
   content: "\e903";
 }
+
 .icon-chevron-down:before {
   content: "\e904";
+  color: #38b6c2;
 }
+
 .icon-imodels-logo:before {
   content: "\e905";
   color: #38b6c2;
 }
+
 .icon-insta:before {
   content: "\e906";
   color: #38b6c2;
 }
+
 .icon-location:before {
   content: "\e907";
 }
+
 .icon-lock:before {
   content: "\e908";
 }
+
 .icon-mail-04:before {
   content: "\e909";
 }
+
 .icon-search-normal:before {
   content: "\e90a";
 }
+
 .icon-shopping-cart:before {
   content: "\e90b";
 }
+
 .icon-tg:before {
   content: "\e90c";
   color: #38b6c2;
 }
+
 .icon-trash:before {
   content: "\e90d";
 }
+
 .icon-user:before {
   content: "\e90e";
 }
+
 .icon-you-tube:before {
   content: "\e90f";
   color: #38b6c2;

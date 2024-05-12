@@ -1,0 +1,28 @@
+<div (window:resize)="onResize($event)">
+  <div *ngIf="!isMobileSize; else mobile" class="flex flex-row gap-1 items-center cursor-pointer" nz-popover
+    nzPopoverPlacement="bottom" [(nzPopoverVisible)]="visibleCartPopover"
+    (nzPopoverVisibleChange)="toggleCartPopup($event)" nzPopoverTrigger="click" nzPopoverPlacement="bottomRight"
+    [nzPopoverContent]="contentTemplate">
+    <svg-cart></svg-cart>
+  </div>
+
+  <ng-template #mobile>
+    <div class="flex flex-row gap-1 items-center cursor-pointer" (click)="toggleCartPopup(true)">
+      <svg-cart></svg-cart>
+    </div>
+  </ng-template>
+
+  <!-- POPOVER CONTENT -->
+  <ng-template #contentTemplate>
+    <div class="w-[29rem]">
+      <app-cart-content></app-cart-content>
+    </div>
+  </ng-template>
+
+  <!-- DRAWER CART -->
+  <nz-drawer [nzClosable]="false" [nzVisible]="visibleCartDrawer" nzPlacement="right" (nzOnClose)="closeCartDrawer()">
+    <ng-container *nzDrawerContent>
+      <app-cart-content></app-cart-content>
+    </ng-container>
+  </nz-drawer>
+</div>

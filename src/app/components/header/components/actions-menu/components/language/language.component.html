@@ -1,0 +1,28 @@
+<div class="flex flex-row  min-[576px]:gap-1 max-[575px]:gap-0 items-center cursor-pointer" nz-popover
+  nzPopoverPlacement="bottom" [(nzPopoverVisible)]="visibleLangPopover"
+  (nzPopoverVisibleChange)="toggleLangPopup($event)" nzPopoverTrigger="click" [nzPopoverContent]="contentTemplate">
+  <div class="size-5 min-[576px]:block max-[575px]:hidden">
+    <svg-en-flag *ngIf="currentLanguage === 'en'"></svg-en-flag>
+    <svg-ru-flag *ngIf="currentLanguage === 'ru'"></svg-ru-flag>
+    <svg-uzb-flag *ngIf="currentLanguage === 'uz'"></svg-uzb-flag>
+  </div>
+  <span class="min-[576px]:text-lg max-[575px]:text-sm  font-roboto-medium text-primary">{{
+    LANGUAGE[currentLanguage] }}</span>
+  <span class="min-[576px]:scale-100 max-[575px]:scale-75">
+    <svg-down></svg-down>
+  </span>
+</div>
+
+<ng-template #contentTemplate>
+  <div>
+    <nz-select [ngModel]="currentLanguage" (ngModelChange)="onChangeLanguage($event)" class="w-32" [nzSize]="'large'">
+      <nz-option *ngFor="let language of LANGUAGE | keyvalue" [nzValue]="language.key"
+        [nzLabel]="language.value"></nz-option>
+    </nz-select>
+    <nz-divider class="my-2.5"></nz-divider>
+    <nz-select [ngModel]="currentCurrency" (ngModelChange)="onChangeCurrency($event)" class="w-32" [nzSize]="'large'">
+      <nz-option *ngFor="let currency of CURRENCY | keyvalue" [nzValue]="currency.key"
+        [nzLabel]="currency.value.name"></nz-option>
+    </nz-select>
+  </div>
+</ng-template>

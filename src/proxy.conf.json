@@ -1,0 +1,10 @@
+{
+  "/api-imodel": {
+    "target": "https://imodels.uz",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api-imodel": "/backend/"
+    }
+  }
+}
