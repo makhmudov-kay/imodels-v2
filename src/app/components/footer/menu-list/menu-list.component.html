@@ -1,0 +1,6 @@
+<ul>
+  <li *ngFor="let menuItem of list" nz-menu-item [routerLink]="menuItem.routerLink" [queryParams]="menuItem.queryParams"
+    class="font-roboto-regular min-[768px]:text-base max-[767px]:text-sm mb-2 cursor-pointer hover:text-primary transition-colors">
+    <span>{{ menuItem.label | translate }}</span>
+  </li>
+</ul>

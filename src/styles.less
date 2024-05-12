@@ -34,18 +34,25 @@
     src: url(./assets/fonts/fonts/Roboto-Black.ttf) format('woff2');
 }
 
+html,
+body {
+    height: 100%;
+}
+
 .ant-menu-sub {
     .scroll();
 }
 
 .ant-menu-item {
-    white-space: initial;
-    height: auto !important;
-    line-height: normal;
+    @media (max-width: 767px) {
+        white-space: initial;
+        height: auto !important;
+        line-height: normal;
 
-    &.sub-menu {
-        line-height: 24px !important;
-        margin-bottom: 20px !important;
+        .ant-menu-item.sub-menu {
+            line-height: 24px !important;
+            margin-bottom: 20px !important;
+        }
     }
 }
 

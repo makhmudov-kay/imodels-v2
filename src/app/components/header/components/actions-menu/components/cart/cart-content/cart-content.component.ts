@@ -7,7 +7,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 @Component({
   selector: 'app-cart-content',
   templateUrl: './cart-content.component.html',
-  styleUrls: ['./cart-content.component.css'],
+  styleUrls: ['./cart-content.component.less'],
   standalone: true,
   imports: [CartItemComponent, SvgRightComponent, NgFor, NzButtonModule]
 })

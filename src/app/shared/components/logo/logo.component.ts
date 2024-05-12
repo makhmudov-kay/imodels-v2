@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { SvgLogoComponent } from '../../svg/svg-logo/svg-logo.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-logo',
@@ -8,11 +9,15 @@ import { SvgLogoComponent } from '../../svg/svg-logo/svg-logo.component';
   standalone: true,
   imports: [SvgLogoComponent]
 })
-export class LogoComponent implements OnInit {
+export class LogoComponent {
+  /**
+   */
+  private router = inject(Router)
 
-  constructor() { }
-
-  ngOnInit() {
+  /**
+   * 
+   */
+  navigateToHome() {
+    this.router.navigate(['']);
   }
-
 }

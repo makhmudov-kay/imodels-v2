@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { authGuard } from './modules/pages/auth/services/auth.guard';
+import { OrdersComponent } from './modules/pages/cabinet/pages/orders/orders.component';
+import { ProfileComponent } from './modules/pages/cabinet/pages/profile/profile.component';
 
 export const routes: Routes = [
     {
@@ -40,7 +43,23 @@ export const routes: Routes = [
     },
     {
         path: 'cabinet',
-        loadComponent: () => import('./modules/pages/cart/cart.component').then(m => m.CartComponent),
+        loadComponent: () => import('./modules/pages/cabinet/cabinet.component').then(m => m.CabinetComponent),
+        canActivate: [authGuard],
+        children: [
+            {
+                path: '',
+                pathMatch: 'full',
+                redirectTo: 'orders'
+            },
+            {
+                path: 'orders',
+                component: OrdersComponent
+            },
+            {
+                path: 'profile',
+                component: ProfileComponent
+            },
+        ]
     },
 ]
 
