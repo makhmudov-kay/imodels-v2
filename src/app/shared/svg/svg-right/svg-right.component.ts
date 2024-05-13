@@ -1,8 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'svg-right',
   templateUrl: './svg-right.component.html',
-  standalone: true
+  standalone: true,
 })
-export class SvgRightComponent { }
+export class SvgRightComponent {
+  @Input()
+  color = '#fff';
+}

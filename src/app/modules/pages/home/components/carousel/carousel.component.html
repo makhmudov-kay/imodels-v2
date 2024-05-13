@@ -1,12 +1,46 @@
-<nz-carousel [nzEffect]="effect">
-  <div nz-carousel-content *ngFor="let index of array">
-    <div class="container mx-auto">
-      <div class="flex flex-row justify-between">
-        <div>
-          <h2 class="text-[55px] leading-tight">JARROHLAR UCHUN MUHANDISLAR TOMONIDAN YARATILGAN</h2>
+<div class="h-[600px] relative">
+  <button class="absolute left-16 top-1/2 z-20" (click)="pre()">
+    <svg-circle-arrow></svg-circle-arrow>
+  </button>
+  <nz-carousel [nzEffect]="effect" #carousel nzAutoPlay class="relative">
+    <div nz-carousel-content *ngFor="let slide of banner">
+      <div class="container mx-auto h-full md:px-0 px-1.5">
+        <div
+          class="flex lg:flex-row flex-col justify-center lg:justify-between h-full relative"
+        >
+          <div
+            class="self-center md:text-left max-w-3xl flex flex-col justify-start z-10"
+          >
+            <h2
+              class="text-[35px] md:text-[55px] leading-tight font-roboto-black text-white mb-4"
+            >
+              {{ slide.title | translate }}
+            </h2>
+            <p class="mb-10 text-xl text-white font-roboto-medium">
+              {{ slide.text | translate }}
+            </p>
+            <span>
+              <button
+                nz-button
+                nzType="default"
+                nzShape="round"
+                nzSize="large"
+                class="text-base font-roboto-bold flex flex-row text-primary gap-1 md:mx-0 mx-auto"
+                [routerLink]="slide.link"
+              >
+                {{ "readMore" | translate }}
+                <svg-right [color]="'#38B6C2'"></svg-right>
+              </button>
+            </span>
+          </div>
+          <div class="self-end carousel-img absolute lg:static bottom-0 left-0">
+            <img [src]="slide.backgroundImage" alt="slide" />
+          </div>
         </div>
-        <div><img src="./assets/image/slide-1.png" alt="slide"></div>
       </div>
     </div>
-  </div>
-</nz-carousel>
+  </nz-carousel>
+  <button class="absolute right-16 top-1/2 rotate-180 z-20" (click)="next()">
+    <svg-circle-arrow></svg-circle-arrow>
+  </button>
+</div>

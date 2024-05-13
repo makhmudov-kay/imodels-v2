@@ -1,14 +1,35 @@
 [nz-carousel-content] {
-    text-align: center;
-    height: 600px;
-    line-height: 160px;
-    background: #38B6C2;
-    color: #fff;
-    overflow: hidden;
+  text-align: center;
+  height: 600px;
+  background: #38b6c2;
+  color: #fff;
+  overflow: hidden;
+
+  @media (max-width: 767px) {
+    height: 500px;
+  }
 }
 
-h3 {
-    color: #fff;
-    margin-bottom: 0;
-    user-select: none;
+.carousel-img {
+  max-width: 786px;
+  width: 100%;
+  height: 550px;
+  object-fit: cover;
+
+  @media (max-width: 1280px) {
+    height: 410px;
+  }
+
+  @media (max-width: 767px) {
+    height: 400px;
+  }
+
+  @media (max-width: 575px) {
+    height: 300px;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
 }
