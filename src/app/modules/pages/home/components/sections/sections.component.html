@@ -1,0 +1,12 @@
+<div class="container md:py-[100px] py-[50px] mx-auto md:px-0 px-1.5">
+  <h3
+    class="md:text-2xl text-lg md:text-left text-center text-grey font-roboto-bold uppercase md:mb-10 mb-5"
+  >
+    {{ "ourProducts" | translate }}
+  </h3>
+  <div class="grid lg:grid-cols-2 grid-cols-1 sm:gap-[30px] gap-3">
+    <div *ngFor="let card of productsBlockInfo">
+      <app-section-card [card]="card"></app-section-card>
+    </div>
+  </div>
+</div>

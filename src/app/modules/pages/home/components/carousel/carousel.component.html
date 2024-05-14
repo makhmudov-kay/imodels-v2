@@ -1,5 +1,5 @@
 <div class="h-[600px] relative">
-  <button class="absolute left-16 top-1/2 z-20" (click)="pre()">
+  <button class="absolute left-16 top-1/2 z-20 hidden md:block" (click)="pre()">
     <svg-circle-arrow></svg-circle-arrow>
   </button>
   <nz-carousel [nzEffect]="effect" #carousel nzAutoPlay class="relative">
@@ -40,7 +40,10 @@
       </div>
     </div>
   </nz-carousel>
-  <button class="absolute right-16 top-1/2 rotate-180 z-20" (click)="next()">
+  <button
+    class="absolute right-16 top-1/2 rotate-180 z-20 hidden md:block"
+    (click)="next()"
+  >
     <svg-circle-arrow></svg-circle-arrow>
   </button>
 </div>

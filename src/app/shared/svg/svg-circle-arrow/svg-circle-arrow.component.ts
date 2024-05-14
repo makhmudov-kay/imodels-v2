@@ -1,8 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'svg-circle-arrow',
-  templateUrl: './svg-circle-arrow.component.svg',
+  templateUrl: './svg-circle-arrow.component.html',
   standalone: true,
 })
-export class SvgCircleArrowComponent {}
+export class SvgCircleArrowComponent {
+  @Input()
+  color = 'white';
+}

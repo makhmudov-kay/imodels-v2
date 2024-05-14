@@ -1,3 +1,29 @@
-<p>
-  contacts works!
-</p>
+<div>
+  <app-contact-banner>
+    <h3
+      class="text-white uppercase text-[55px] font-roboto-black text-center lg:text-left"
+    >
+      {{ "contact.contact" | translate }}
+    </h3>
+  </app-contact-banner>
+  <app-contacts-info></app-contacts-info>
+
+  <div class="md:mt-[120px] mt-[60px]">
+    <iframe
+      class="w-full"
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2998.9675243137226!2d69.21685599999999!3d41.266042999999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8a72a8c20d11%3A0x84f7f7603d8c2afc!2sENDO-SYSTEMS!5e0!3m2!1sru!2s!4v1701665427803!5m2!1sru!2s"
+      width="600"
+      height="450"
+      style="border: 0"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
+  </div>
+
+  <div
+    class="container flex flex-col items-center mx-auto md:px-0 px-1.5 md:py-[100px] py-[50px]"
+  >
+    <app-contact-form [isContactsPage]="true"></app-contact-form>
+  </div>
+</div>

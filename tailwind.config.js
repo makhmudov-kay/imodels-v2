@@ -22,6 +22,8 @@ module.exports = {
     colors: {
       primary: "#38B6C2",
       white: "#ffffff",
+      grey: "#B3B3B3",
+      orange: " #FFAB57",
     },
     fontFamily: {
       "roboto-thin": ["Roboto-Thin", "sans-serif"],
@@ -30,6 +32,9 @@ module.exports = {
       "roboto-medium": ["Roboto-Medium", "sans-serif"],
       "roboto-bold": ["Roboto-Bold", "sans-serif"],
       "roboto-black": ["Roboto-Black", "sans-serif"],
+    },
+    boxShadow: {
+      card: "0px 0px 30px 0px rgba(0, 0, 0, 0.05);",
     },
   },
   plugins: [],

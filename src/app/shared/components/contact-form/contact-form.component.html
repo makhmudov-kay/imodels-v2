@@ -1,0 +1,79 @@
+<h3
+  [ngClass]="{
+    'md:text-left': !isContactsPage,
+    'text-white': !isContactsPage,
+    'text-primary': isContactsPage,
+    'title-form': isContactsPage,
+    'text-center': isContactsPage,
+  }"
+  class="uppercase md:text-[45px] text-2xl text-center font-roboto-black text-white md:leading-[50px] leading-[110%] mb-[46px]"
+>
+  {{ "contact.title" | translate }}
+</h3>
+
+<form
+  nz-form
+  [nzLayout]="'inline'"
+  [formGroup]="form"
+  (ngSubmit)="submitForm()"
+  class="grid md:grid-cols-2 grid-cols-1 max-w-[745px] gap-x-[30px] md:gap-y-[40px] gap-y-[20px]"
+  [ngClass]="{ bannerForm: !isContactsPage }"
+>
+  <nz-form-item class="w-full">
+    <nz-form-control nzErrorTip="Please input your username!">
+      <nz-input-group [nzPrefix]="prefixUser" nzSize="large">
+        <input
+          formControlName="name"
+          nz-input
+          [placeholder]="'inputYourName' | translate"
+        />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item class="w-full">
+    <nz-form-control nzErrorTip="Please input your phone!">
+      <nz-input-group [nzPrefix]="prefixPhone" nzSize="large">
+        <input
+          formControlName="phone"
+          nz-input
+          [placeholder]="'inputYourPhone' | translate"
+        />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item class="md:col-span-2 w-full">
+    <nz-form-control nzErrorTip="Please input your username!">
+      <textarea
+        rows="4"
+        formControlName="message"
+        nz-input
+        [placeholder]="'yourMessage' | translate"
+      ></textarea>
+    </nz-form-control>
+  </nz-form-item>
+
+  <div class="sm:mx-0 mx-auto">
+    <button
+      [ngClass]="{
+        'bg-white': !isContactsPage,
+        'bg-primary': isContactsPage,
+        'text-white': isContactsPage
+      }"
+      class="py-[12px] px-[30px] bg-white text-orange rounded-[100px] cursor-pointer hover:bg-primary hover:text-white transition active:bg-[#00D1C3]"
+    >
+      {{ "send" | translate }}
+    </button>
+  </div>
+</form>
+
+<ng-template #prefixUser>
+  <svg-user
+    [width]="20"
+    [height]="20"
+    [color]="isContactsPage ? '#CDCDCD' : '#fff'"
+  ></svg-user>
+</ng-template>
+
+<ng-template #prefixPhone>
+  <svg-phone [color]="isContactsPage ? '#CDCDCD' : '#fff'"></svg-phone>
+</ng-template>

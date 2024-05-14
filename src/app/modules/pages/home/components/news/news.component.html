@@ -1,0 +1,73 @@
+<div class="relative">
+  <button
+    *ngIf="!swiper?.swiperRef?.isBeginning"
+    (click)="pre()"
+    class="absolute top-[50%] z-10 left-16 lg:block hidden"
+  >
+    <svg-circle-arrow [color]="'#38B6C2'"></svg-circle-arrow>
+  </button>
+  <div class="container mx-auto md:px-0 px-1.5 md:py-[100px] py-[50px]">
+    <h3
+      class="md:text-2xl text-lg md:text-left text-center text-grey font-roboto-bold uppercase md:mb-5 mb-3"
+    >
+      {{ "news" | translate }}
+    </h3>
+    <h4
+      class="lg:text-[45px] md:text-left text-center text-[32px] text-primary uppercase font-roboto-black leading-[49px] mb-10"
+    >
+      {{ "wGoin" | translate }}
+    </h4>
+
+    <swiper
+      [breakpoints]="{
+        '360': {
+          slidesPerView: 1,
+          spaceBetween: 10
+        },
+        '410': {
+          slidesPerView: 1.5,
+          spaceBetween: 10
+        },
+        '576': {
+          slidesPerView: 1.8,
+          spaceBetween: 10
+        },
+        '767': {
+          slidesPerView: 2.1,
+          spaceBetween: 10
+        },
+        '991': {
+          slidesPerView: 2.5,
+          spaceBetween: 20
+        },
+        '1170': {
+          slidesPerView: 3.5,
+          spaceBetween: 10
+        },
+        '1200': {
+          slidesPerView: 3.6,
+          spaceBetween: 10
+        },
+        '1300': {
+          slidesPerView: 3.9,
+          spaceBetween: 20
+        }
+      }"
+      #swiper
+      [slidesPerView]="1"
+      [spaceBetween]="10"
+    >
+      <ng-template swiperSlide *ngFor="let blog of [].constructor(10)">
+        <app-blog-card></app-blog-card>
+      </ng-template>
+    </swiper>
+  </div>
+
+  <button
+    *ngIf="!swiper?.swiperRef?.isEnd"
+    (click)="next()"
+    class="rotate-180 absolute top-[50%] z-10 right-16 lg:block hidden"
+  >
+    <svg-circle-arrow [color]="'#38B6C2'"></svg-circle-arrow>
+  </button>
+</div>

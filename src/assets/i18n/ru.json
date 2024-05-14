@@ -4,7 +4,7 @@
   "whoAreWe": "Кто мы?",
   "phone": "Телефон",
   "yourMessage": "Ваше сообщение",
-  "send": "Отправлять",
+  "send": "Отправить",
   "mask.(00) 000-00-00": "Заполните номер телефона полностью",
   "categories": "Категории",
   "allProducts": "Все товары",
@@ -576,5 +576,6 @@
   "iModelsanalytic": "iModels - Аналитика",
   "iModelsadvanceTrainingStation": "iModels - Обучающая станция",
   "iModelsadvancePortable": "iModels - Портативный",
-  "iModelsproduct": "iModels - Продукт"
+  "iModelsproduct": "iModels - Продукт",
+  "addressTitle": "Адрес" 
 }

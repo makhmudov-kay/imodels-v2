@@ -1,0 +1,71 @@
+<div class="container mx-auto md:px-0 px-1.5 md:py-[100px] py-[50px]">
+  <div class="flex md:flex-row gap-10 flex-col">
+    <div class="flex-1">
+      <h4
+        class="text-[45px] text-primary font-roboto-bold uppercase md:mb-10 mb-5 md:text-left text-center"
+      >
+        {{ "companyInfo" | translate }}
+      </h4>
+
+      <ul class="flex flex-col gap-[30px]">
+        <li class="flex flex-row gap-4" *ngFor="let info of company">
+          <div>
+            <div [ngSwitch]="info.type">
+              <div *ngSwitchCase="1"><svg-location></svg-location></div>
+              <div *ngSwitchCase="2"><svg-mail></svg-mail></div>
+              <div *ngSwitchCase="3"><svg-call></svg-call></div>
+            </div>
+          </div>
+          <div>
+            <span class="font-roboto-medium text-2xl text-primary">{{
+              info.title | translate
+            }}</span>
+            <div class="font-roboto-regular text-xl">
+              <div [ngSwitch]="info.type">
+                <div *ngSwitchCase="1">
+                  {{ "city" | translate }} <br />
+                  {{ "district" | translate }} {{ "address" | translate }}
+                </div>
+                <div *ngSwitchDefault>
+                  {{ info.text | translate }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="flex-1">
+      <h4
+        class="text-[45px] text-primary font-roboto-bold uppercase md:mb-10 mb-5 md:text-left text-center"
+      >
+        {{ "sales" | translate }}
+      </h4>
+
+      <ul class="flex flex-col gap-[30px] justify-start">
+        <li
+          class="flex flex-row gap-4"
+          *ngFor="let info of company; let i = index"
+        >
+          <ng-container *ngIf="i > 0">
+            <div>
+              <div [ngSwitch]="info.type">
+                <div *ngSwitchCase="2"><svg-mail></svg-mail></div>
+                <div *ngSwitchCase="3"><svg-call></svg-call></div>
+              </div>
+            </div>
+            <div>
+              <span class="font-roboto-medium text-2xl text-primary">{{
+                info.title | translate
+              }}</span>
+              <div class="font-roboto-regular text-xl">
+                {{ info.text | translate }}
+              </div>
+            </div>
+          </ng-container>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

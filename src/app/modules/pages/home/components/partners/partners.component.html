@@ -1,0 +1,58 @@
+<div class="container mx-auto md:px-0 px-1.5 md:py-[100px] py-[50px] relative">
+  <h3
+    class="md:text-2xl text-lg text-center text-grey font-roboto-bold uppercase md:mb-5 mb-3"
+  >
+    {{ "partners" | translate }}
+  </h3>
+  <h4
+    class="lg:text-[45px] text-[32px] text-primary uppercase font-roboto-black leading-[49px] mb-10 text-center"
+  >
+    {{ "partnersText" | translate }}
+  </h4>
+
+  <swiper
+    [breakpoints]="{
+      '360': {
+        slidesPerView: 1,
+        spaceBetween: 5
+      },
+      '576': {
+        slidesPerView: 2,
+        spaceBetween: 5
+      },
+      '768': {
+        slidesPerView: 2.5,
+        spaceBetween: 5
+      },
+      '991': {
+        slidesPerView: 3,
+        spaceBetween: 20
+      },
+      '1170': {
+        slidesPerView: 4,
+        spaceBetween: 20
+      },
+      '1300': {
+        slidesPerView: 5,
+        spaceBetween: 100
+      }
+    }"
+    #swiper
+    [slidesPerView]="1"
+    [spaceBetween]="100"
+    class="mb-10"
+  >
+    <ng-template swiperSlide *ngFor="let partner of data">
+      <img [src]="partner.img" alt="logo" />
+    </ng-template>
+  </swiper>
+
+  <div class="flex flex-row justify-center gap-6 items-center">
+    <button (click)="pre()">
+      <svg-circle-arrow [color]="'#38B6C2'"></svg-circle-arrow>
+    </button>
+    <button (click)="next()" class="rotate-180">
+      <svg-circle-arrow [color]="'#38B6C2'"></svg-circle-arrow>
+    </button>
+  </div>
+</div>
