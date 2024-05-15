@@ -5,7 +5,11 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url(./app/utils/_functions.less);
+@orange: #ffab57;
+@turquoise: #38b6c2;
+@grey: #b3b3b3;
+
+@import url(./app/utils/styles/_functions.less);
 
 @font-face {
   font-family: "Roboto-Thin";
@@ -85,4 +89,22 @@ body {
 
 .cart-item-list {
   .scroll();
+}
+
+.ant-input-affix-wrapper-status-error:not(
+    .ant-input-affix-wrapper-disabled
+  ):not(.ant-input-affix-wrapper-borderless).ant-input-affix-wrapper,
+.ant-input-affix-wrapper-status-error:not(
+    .ant-input-affix-wrapper-disabled
+  ):not(.ant-input-affix-wrapper-borderless).ant-input-affix-wrapper:hover {
+  background: transparent;
+}
+
+.ant-input-status-error:not(.ant-input-disabled):not(
+    .ant-input-borderless
+  ).ant-input,
+.ant-input-status-error:not(.ant-input-disabled):not(
+    .ant-input-borderless
+  ).ant-input:hover {
+  background: transparent;
 }

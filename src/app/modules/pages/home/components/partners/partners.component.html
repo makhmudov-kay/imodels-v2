@@ -1,14 +1,9 @@
 <div class="container mx-auto md:px-0 px-1.5 md:py-[100px] py-[50px] relative">
-  <h3
-    class="md:text-2xl text-lg text-center text-grey font-roboto-bold uppercase md:mb-5 mb-3"
-  >
-    {{ "partners" | translate }}
-  </h3>
-  <h4
-    class="lg:text-[45px] text-[32px] text-primary uppercase font-roboto-black leading-[49px] mb-10 text-center"
-  >
-    {{ "partnersText" | translate }}
-  </h4>
+  <app-section-title
+    [section]="'partners'"
+    [title]="'partnersText'"
+    [center]="true"
+  ></app-section-title>
 
   <swiper
     [breakpoints]="{

@@ -1,0 +1,14 @@
+<label
+  class="px-6 py-4 border border-grey rounded-[10px] cursor-pointer flex flex-row items-center"
+>
+  <input
+    class="absolute appearance-none top-0 left-0"
+    type="radio"
+    (change)="selected.emit(id)"
+    [value]="id"
+    name="category"
+  />
+  <span class="text-base uppercase font-roboto-bold text-grey leading-[125%] flex flex-row items-center">{{
+    "resume.category"
+  }}</span>
+</label>

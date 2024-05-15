@@ -1,22 +1,12 @@
 <div class="relative">
   <button
-    *ngIf="!swiper?.swiperRef?.isBeginning"
     (click)="pre()"
     class="absolute top-[50%] z-10 left-16 lg:block hidden"
   >
     <svg-circle-arrow [color]="'#38B6C2'"></svg-circle-arrow>
   </button>
   <div class="container mx-auto md:px-0 px-1.5 md:py-[100px] py-[50px]">
-    <h3
-      class="md:text-2xl text-lg md:text-left text-center text-grey font-roboto-bold uppercase md:mb-5 mb-3"
-    >
-      {{ "news" | translate }}
-    </h3>
-    <h4
-      class="lg:text-[45px] md:text-left text-center text-[32px] text-primary uppercase font-roboto-black leading-[49px] mb-10"
-    >
-      {{ "wGoin" | translate }}
-    </h4>
+    <app-section-title [section]="'news'" [title]="'wGoin'"></app-section-title>
 
     <swiper
       [breakpoints]="{
@@ -64,7 +54,6 @@
   </div>
 
   <button
-    *ngIf="!swiper?.swiperRef?.isEnd"
     (click)="next()"
     class="rotate-180 absolute top-[50%] z-10 right-16 lg:block hidden"
   >

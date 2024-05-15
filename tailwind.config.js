@@ -23,7 +23,7 @@ module.exports = {
       primary: "#38B6C2",
       white: "#ffffff",
       grey: "#B3B3B3",
-      orange: " #FFAB57",
+      orange: "#FFAB57",
     },
     fontFamily: {
       "roboto-thin": ["Roboto-Thin", "sans-serif"],

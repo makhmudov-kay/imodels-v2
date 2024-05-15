@@ -15,12 +15,12 @@
   nz-form
   [nzLayout]="'inline'"
   [formGroup]="form"
-  (ngSubmit)="submitForm()"
-  class="grid md:grid-cols-2 grid-cols-1 max-w-[745px] gap-x-[30px] md:gap-y-[40px] gap-y-[20px]"
+  (ngSubmit)="send()"
+  class="grid md:grid-cols-2 grid-cols-1 max-w-[745px] gap-x-[30px] gap-y-[20px]"
   [ngClass]="{ bannerForm: !isContactsPage }"
 >
   <nz-form-item class="w-full">
-    <nz-form-control nzErrorTip="Please input your username!">
+    <nz-form-control [nzErrorTip]="'requiredField' | translate">
       <nz-input-group [nzPrefix]="prefixUser" nzSize="large">
         <input
           formControlName="name"
@@ -31,10 +31,13 @@
     </nz-form-control>
   </nz-form-item>
   <nz-form-item class="w-full">
-    <nz-form-control nzErrorTip="Please input your phone!">
+    <nz-form-control [nzErrorTip]="'mask.(00) 000-00-00' | translate">
       <nz-input-group [nzPrefix]="prefixPhone" nzSize="large">
         <input
           formControlName="phone"
+          [mask]="PHONE_MASK"
+          [prefix]="PHONE_PREFIX"
+          [showMaskTyped]="true"
           nz-input
           [placeholder]="'inputYourPhone' | translate"
         />
@@ -42,7 +45,7 @@
     </nz-form-control>
   </nz-form-item>
   <nz-form-item class="md:col-span-2 w-full">
-    <nz-form-control nzErrorTip="Please input your username!">
+    <nz-form-control [nzErrorTip]="'requiredField' | translate">
       <textarea
         rows="4"
         formControlName="message"
@@ -54,12 +57,16 @@
 
   <div class="sm:mx-0 mx-auto">
     <button
+      nz-button
+      [nzLoading]="isLoading"
+      [disabled]="isLoading"
+      nzSize="large"
       [ngClass]="{
         'bg-white': !isContactsPage,
         'bg-primary': isContactsPage,
         'text-white': isContactsPage
       }"
-      class="py-[12px] px-[30px] bg-white text-orange rounded-[100px] cursor-pointer hover:bg-primary hover:text-white transition active:bg-[#00D1C3]"
+      class="flex flex-row items-center py-[12px] px-[30px] bg-white text-orange rounded-[100px] cursor-pointer hover:bg-primary hover:text-white transition active:bg-[#00D1C3] leading-[125%]"
     >
       {{ "send" | translate }}
     </button>

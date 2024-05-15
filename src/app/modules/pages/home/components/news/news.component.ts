@@ -4,6 +4,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { NgFor, NgIf } from '@angular/common';
 import { SwiperComponent, SwiperModule } from 'swiper/angular';
 import { SvgCircleArrowComponent } from 'src/app/shared/svg/svg-circle-arrow/svg-circle-arrow.component';
+import { SectionTitleComponent } from 'src/app/shared/components/section-title/section-title.component';
 
 @Component({
   selector: 'app-news',
@@ -16,7 +17,8 @@ import { SvgCircleArrowComponent } from 'src/app/shared/svg/svg-circle-arrow/svg
     NgFor,
     SwiperModule,
     SvgCircleArrowComponent,
-    NgIf
+    NgIf,
+    SectionTitleComponent,
   ],
 })
 export class NewsComponent {

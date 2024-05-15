@@ -9,6 +9,11 @@ import { SvgRightComponent } from 'src/app/shared/svg/svg-right/svg-right.compon
   templateUrl: './about-section.component.html',
   styleUrls: ['./about-section.component.css'],
   standalone: true,
-  imports: [TranslateModule, RouterLink, SvgRightComponent, SvgMedPlusComponent],
+  imports: [
+    TranslateModule,
+    RouterLink,
+    SvgRightComponent,
+    SvgMedPlusComponent,
+  ],
 })
 export class AboutSectionComponent {}

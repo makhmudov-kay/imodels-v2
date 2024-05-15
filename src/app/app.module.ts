@@ -12,12 +12,12 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { NgxsModule } from '@ngxs/store';
 import { DataState } from './shared/store/data/data.state';
-import { environment } from 'src/environments/environment.prod';
 import { provideEnvironmentNgxMask } from 'ngx-mask';
 import { HeaderInterceptor } from './core/interceptors/header.interceptor';
 import { HandleErrorInterceptor } from './core/interceptors/handle.error.interceptor';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { environment } from 'src/environments/environment';
 
 registerLocaleData(ru);
 export function createTranslateLoader(http: HttpClient) {
