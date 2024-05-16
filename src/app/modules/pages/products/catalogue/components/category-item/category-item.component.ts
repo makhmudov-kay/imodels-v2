@@ -1,15 +1,65 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnInit,
+  inject,
+} from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Category } from '../category-list/models/category.model';
+import { MyTranslatePipe } from 'src/app/shared/pipes/my-translate.pipe';
+import { AsyncPipe } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
+import { NzInputModule } from 'ng-zorro-antd/input';
 
 @Component({
   selector: 'app-category-item',
   templateUrl: './category-item.component.html',
   styleUrls: ['./category-item.component.less'],
   standalone: true,
+  imports: [MyTranslatePipe, AsyncPipe, TranslateModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CategoryItemComponent {
+export class CategoryItemComponent implements OnInit {
+  /**
+   *
+   */
+  @Input()
+  category!: Category;
+
+  /**
+   *
+   */
   @Input()
   id!: number;
 
-  @Output()
-  selected = new EventEmitter();
+  /**
+   *
+   */
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
+  private $cd = inject(ChangeDetectorRef);
+
+  /**
+   *
+   */
+  categoryId!: number;
+
+  ngOnInit(): void {
+    this.route.queryParams.subscribe((p) => {
+      this.categoryId = +p['category_id'];
+      this.$cd.markForCheck();
+    });
+  }
+
+  /**
+   *
+   * @param categoryId
+   */
+  selectCategory(categoryId: number) {
+    this.categoryId = categoryId;
+    this.router.navigate([], { queryParams: { category_id: categoryId } });
+    this.$cd.markForCheck();
+  }
 }

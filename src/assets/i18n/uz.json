@@ -1,4 +1,5 @@
 {
+  "search": "QIDIRISH",
   "requiredField": "Majburiy maydon",
   "name": "Ismingiz",
   "whoAreWe": "Biz kimmiz?",
@@ -577,5 +578,5 @@
   "iModelsadvanceTrainingStation": "iModels - O'quv stansiya",
   "iModelsadvancePortable": "iModels - Portativ",
   "iModelsproduct": "iModels - Mahsulot",
-  "addressTitle": "Manzil" 
+  "addressTitle": "Manzil"
 }

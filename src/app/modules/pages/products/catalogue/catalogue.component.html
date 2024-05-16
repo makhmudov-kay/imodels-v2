@@ -4,5 +4,29 @@
     [title]="'allProducts'"
   ></app-section-title>
 
-  <app-category-list></app-category-list>
+  <app-category-list
+    (resetInput)="getAllProducts()"
+    (search)="search($event)"
+  ></app-category-list>
+
+  <ng-container *ngIf="product$ | async as products; else empty">
+    <ng-container
+      *ngIf="products.results && products.results.length > 1000; else emptyList"
+    >
+      <div class="pt-10 grid grid-cols-4 gap-7">
+        <app-product-card
+          *ngFor="let product of products.results"
+        ></app-product-card>
+      </div>
+    </ng-container>
+
+    <ng-template #emptyList>
+      <div class="flex flex-row justify-center pt-10">
+        <nz-result nzStatus="404" [nzTitle]="'emptyList' | translate">
+        </nz-result>
+      </div>
+    </ng-template>
+    
+  </ng-container>
+  <ng-template #empty> empty</ng-template>
 </div>

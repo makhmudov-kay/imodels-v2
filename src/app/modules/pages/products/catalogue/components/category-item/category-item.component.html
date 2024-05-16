@@ -1,14 +1,18 @@
-<label
-  class="px-6 py-4 border border-grey rounded-[10px] cursor-pointer flex flex-row items-center"
->
+<label>
   <input
     class="absolute appearance-none top-0 left-0"
     type="radio"
-    (change)="selected.emit(id)"
+    (change)="selectCategory(id)"
     [value]="id"
+    [checked]="categoryId === id"
     name="category"
   />
-  <span class="text-base uppercase font-roboto-bold text-grey leading-[125%] flex flex-row items-center">{{
-    "resume.category"
-  }}</span>
+  <span
+    class="text-base uppercase font-roboto-bold leading-[125%] px-6 py-4 border border-grey rounded-[10px] cursor-pointer text-grey flex flex-row items-center hover:bg-orange hover:text-white hover:border-orange transition"
+    >{{
+      id === 0
+        ? ("allCategories" | translate)
+        : (category.name | myTranslate | async)
+    }}</span
+  >
 </label>
