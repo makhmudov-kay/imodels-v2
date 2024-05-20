@@ -11,7 +11,6 @@ import { Category } from '../category-list/models/category.model';
 import { MyTranslatePipe } from 'src/app/shared/pipes/my-translate.pipe';
 import { AsyncPipe } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
-import { NzInputModule } from 'ng-zorro-antd/input';
 
 @Component({
   selector: 'app-category-item',
@@ -59,7 +58,9 @@ export class CategoryItemComponent implements OnInit {
    */
   selectCategory(categoryId: number) {
     this.categoryId = categoryId;
-    this.router.navigate([], { queryParams: { category_id: categoryId } });
+    this.router.navigate([], {
+      queryParams: { page: 1, category_id: categoryId },
+    });
     this.$cd.markForCheck();
   }
 }

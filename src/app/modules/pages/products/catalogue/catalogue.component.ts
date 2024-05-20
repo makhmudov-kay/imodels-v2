@@ -1,16 +1,23 @@
-import { Component, OnInit, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  inject,
+} from '@angular/core';
 import { SectionTitleComponent } from 'src/app/shared/components/section-title/section-title.component';
 import { CategoryListComponent } from './components/category-list/category-list.component';
 import { ProductCardComponent } from '../product-card/product-card.component';
-import { AsyncPipe, NgFor, NgIf } from '@angular/common';
+import { AsyncPipe, NgFor, NgIf, SlicePipe } from '@angular/common';
 import { ProductService } from './services/product.service';
 import { Observable, debounceTime, takeUntil } from 'rxjs';
 import { Grid } from 'src/app/shared/models/grid.model';
 import { Product } from './models/product.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgDestroy } from 'src/app/core/services/ng-destroy.service';
 import { NzResultModule } from 'ng-zorro-antd/result';
 import { TranslateModule } from '@ngx-translate/core';
+import { SkeletonCardComponent } from 'src/app/shared/components/skeleton-card/skeleton-card.component';
+import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 
 @Component({
   selector: 'app-catalogue',
@@ -26,17 +33,31 @@ import { TranslateModule } from '@ngx-translate/core';
     AsyncPipe,
     NzResultModule,
     TranslateModule,
+    SkeletonCardComponent,
+    NzPaginationModule,
+    SlicePipe,
   ],
   providers: [NgDestroy],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CatalogueComponent implements OnInit {
+  /**
+   *
+   */
   $product = inject(ProductService);
   private route = inject(ActivatedRoute);
   private $destroy = inject(NgDestroy);
+  private router = inject(Router);
 
+  /**
+   *
+   */
   product$!: Observable<Grid<Product>>;
   discountProduct$!: Observable<Product[]>;
 
+  /**
+   *
+   */
   public get pageIndex(): number {
     return this.$product.pageIndex;
   }
@@ -47,18 +68,25 @@ export class CatalogueComponent implements OnInit {
   /**
    *
    */
+  readonly PAGE_SIZE = 12;
+  categoryId!: number;
+
+  /**
+   *
+   */
   ngOnInit(): void {
     this.getAllProducts();
     this.getDiscountProducts();
     this.route.queryParams
       .pipe(takeUntil(this.$destroy))
       .subscribe((params) => {
-        const categoryId = Number(params['category_id']);
-        if (categoryId === 0) {
+        this.categoryId = Number(params['category_id']);
+        this.pageIndex = Number(params['page']);
+        if (this.categoryId === 0) {
           this.getAllProducts();
           return;
         }
-        this.filterDataByCategory(categoryId);
+        this.filterDataByCategory(this.categoryId);
       });
   }
 
@@ -82,6 +110,9 @@ export class CatalogueComponent implements OnInit {
    */
   handlePageIndexChange(pageIndex: number) {
     this.pageIndex = pageIndex;
+    this.router.navigate([], {
+      queryParams: { page: pageIndex, category_id: this.categoryId },
+    });
     this.getAllProducts();
   }
 

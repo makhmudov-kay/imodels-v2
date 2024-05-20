@@ -3,19 +3,25 @@
     {{ "categories" | translate }}
   </h3>
 
-  <div
-    class="flex flex-row flex-wrap gap-4"
-    *ngIf="category$ | async as categories"
-  >
-    <app-category-item [id]="0"></app-category-item>
-    <app-category-item
-      *ngFor="let category of categories"
-      [category]="category"
-      [id]="category.id"
-    ></app-category-item>
+  <div class="flex flex-row flex-wrap gap-4">
+    <ng-container *ngIf="category$ | async as categories; else loading">
+      <app-category-item [id]="0"></app-category-item>
+      <app-category-item
+        *ngFor="let category of categories"
+        [category]="category"
+        [id]="category.id"
+      ></app-category-item>
+    </ng-container>
   </div>
+  <ng-template #loading>
+    <app-skeleton-cat
+      class="h-[54px]"
+      *ngFor="let category of [].constructor(12)"
+    ></app-skeleton-cat>
+  </ng-template>
 
-  <div class="pt-10">
+  <!-- SEARCH BLOCK -->
+  <div class="pt-10 max-w-[240px] w-full">
     <nz-input-group [nzSuffix]="suffixIconSearch" nzSize="large" class="m">
       <input
         type="text"

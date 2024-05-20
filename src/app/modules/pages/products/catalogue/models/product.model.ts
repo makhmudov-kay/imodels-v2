@@ -3,7 +3,7 @@ import { LanguageModel } from 'src/app/shared/models/language.model';
 import { Price } from 'src/app/shared/models/price.model';
 
 export interface Product extends Id {
-  category: number;
+  category: number[];
   title: LanguageModel;
   image: string;
   price: Price;

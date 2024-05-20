@@ -4,29 +4,66 @@
     [title]="'allProducts'"
   ></app-section-title>
 
+  <!-- CATEGORY LIST -->
   <app-category-list
     (resetInput)="getAllProducts()"
     (search)="search($event)"
   ></app-category-list>
 
+  <!-- PRODUCTS -->
   <ng-container *ngIf="product$ | async as products; else empty">
     <ng-container
-      *ngIf="products.results && products.results.length > 1000; else emptyList"
+      *ngIf="products.results && products.results.length; else emptyList"
     >
-      <div class="pt-10 grid grid-cols-4 gap-7">
+      <div class="pt-10 grid grid-cols-3 gap-7 xl:grid-cols-4">
         <app-product-card
           *ngFor="let product of products.results"
+          [product]="product"
         ></app-product-card>
       </div>
     </ng-container>
-
+    <!-- PRODUCTS NOT FOUND -->
     <ng-template #emptyList>
       <div class="flex flex-row justify-center pt-10">
         <nz-result nzStatus="404" [nzTitle]="'emptyList' | translate">
         </nz-result>
       </div>
     </ng-template>
-    
+
+    <!-- PAGINATION -->
+    <div class="mt-7 text-center">
+      <nz-pagination
+        [nzPageIndex]="pageIndex"
+        [nzTotal]="products.count"
+        [nzPageSize]="PAGE_SIZE"
+        (nzPageIndexChange)="handlePageIndexChange($event)"
+      ></nz-pagination>
+    </div>
   </ng-container>
-  <ng-template #empty> empty</ng-template>
+
+  <!-- LOADING REQUEST -->
+  <ng-template #empty>
+    <div class="pt-10 grid grid-cols-4 gap-7">
+      <app-skeleton-card
+        *ngFor="let product of [].constructor(10)"
+      ></app-skeleton-card>
+    </div>
+  </ng-template>
+
+  <!-- DISCOUNT PRODUCTS -->
+  <div class="pt-20" *ngIf="discountProduct$ | async as discountProducts">
+    <app-section-title
+      [section]="'products'"
+      [title]="'discounts'"
+    ></app-section-title>
+
+    <ng-container *ngIf="discountProducts.length">
+      <div class="pt-10 grid grid-cols-4 gap-7">
+        <app-product-card
+          *ngFor="let discount of discountProducts | slice : 0 : 4"
+          [product]="discount"
+        ></app-product-card>
+      </div>
+    </ng-container>
+  </div>
 </div>

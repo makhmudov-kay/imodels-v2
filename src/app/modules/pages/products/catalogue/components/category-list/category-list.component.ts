@@ -7,6 +7,7 @@ import { CategoryService } from './services/category.service';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { SvgSearchComponent } from 'src/app/shared/svg/svg-search/svg-search.component';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { SkeletonCatComponent } from './skeleton-cat/skeleton-cat.component';
 
 @Component({
   selector: 'app-category-list',
@@ -24,6 +25,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
     SvgSearchComponent,
     FormsModule,
     NzIconModule,
+    SkeletonCatComponent,
   ],
 })
 export class CategoryListComponent {

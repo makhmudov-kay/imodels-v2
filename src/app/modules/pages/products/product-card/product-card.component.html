@@ -1,11 +1,17 @@
 <div
-  class="p-7 border border-[#E6E6E6] rounded-[20px] flex flex-col gap-5 cursor-pointer hover:shadow-product transition"
+  class="p-7 border border-[#E6E6E6] rounded-[20px] flex flex-col gap-5 cursor-pointer hover:shadow-product transition items-stretch h-[461px] relative"
 >
+  <div
+    *ngIf="product.discount"
+    class="absolute top-[10%] right-[10%] z-10 bg-primary rounded-full text-white font-roboto-medium w-12 h-12 flex flex-row items-center justify-center"
+  >
+    -{{ product.discount | number : "1.0-0" }} %
+  </div>
   <div class="h-[295px] w-full">
     <img
       class="h-full w-full object-cover"
       nz-image
-      nzSrc="error"
+      [nzSrc]="product.image"
       [nzFallback]="fallback"
       alt="card-img"
     />
@@ -15,8 +21,23 @@
     <h3
       class="line-clamp-2 mb-4 text-xl text-center text-primary font-roboto-medium leading-6"
     >
-      Laparoscopic TrainerAdvance ver. Expert
+      {{ product.title | myTranslate | async }}
     </h3>
-    <span class="text-2xl text-orange font-roboto-bold leading-6">2 279 $</span>
+    <div class="flex flex-col items-center">
+      <span
+        [ngClass]="{
+          'text-sm': product.discount && product.new_price,
+          'line-through': product.discount && product.new_price
+        }"
+        class="text-2xl text-orange font-roboto-bold leading-6"
+        >{{ product.price | myCurrency | async }}</span
+      >
+
+      <span
+        class="text-2xl text-primary font-roboto-bold leading-6 ml-3"
+        *ngIf="product.discount && product.new_price"
+        >{{ product.new_price | myCurrency | async }}</span
+      >
+    </div>
   </div>
 </div>
