@@ -2,7 +2,7 @@
   <input
     class="absolute appearance-none top-0 left-0"
     type="radio"
-    (change)="selectCategory(id)"
+    (change)="handleSelectCategory.emit(id)"
     [value]="id"
     [checked]="categoryId === id"
     name="category"
@@ -13,6 +13,7 @@
       id === 0
         ? ("allProducts" | translate)
         : (category.name | myTranslate | async)
-    }}</span
+    }}
+    {{ id !== 0 ? "(" + category.count + ")" : "" }}</span
   >
 </label>

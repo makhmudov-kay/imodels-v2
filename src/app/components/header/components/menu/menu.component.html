@@ -9,6 +9,7 @@
         <li
           *ngFor="let menuItem of menuItems"
           nz-menu-item
+          nzMatchRouter
           [routerLink]="menuItem.routerLink"
           [queryParams]="menuItem.queryParams"
           [ngClass]="{

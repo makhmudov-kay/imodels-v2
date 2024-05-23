@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { NgStyle } from '@angular/common';
+import { Component, Input } from '@angular/core';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 
 @Component({
@@ -6,6 +7,9 @@ import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
   templateUrl: './skeleton-cat.component.html',
   styleUrls: ['./skeleton-cat.component.less'],
   standalone: true,
-  imports: [NzSkeletonModule],
+  imports: [NzSkeletonModule, NgStyle],
 })
-export class SkeletonCatComponent {}
+export class SkeletonCatComponent {
+  @Input()
+  width: string = '200px';
+}

@@ -1,4 +1,4 @@
-<div class="container pt-10 pb-[100px] mx-auto md:px-0 px-1.5">
+<div class="container pt-10 lg:pb-[100px] pb-10 mx-auto md:px-0 px-1.5">
   <app-section-title
     [section]="'products'"
     [title]="'allProducts'"
@@ -15,7 +15,9 @@
     <ng-container
       *ngIf="products.results && products.results.length; else emptyList"
     >
-      <div class="pt-10 grid grid-cols-3 gap-7 xl:grid-cols-4">
+      <div
+        class="pt-10 grid grid-cols-1 gap-7 xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2"
+      >
         <app-product-card
           *ngFor="let product of products.results"
           [product]="product"
@@ -43,7 +45,9 @@
 
   <!-- LOADING REQUEST -->
   <ng-template #empty>
-    <div class="pt-10 grid grid-cols-4 gap-7">
+    <div
+      class="pt-10 grid grid-cols-1 gap-7 xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2"
+    >
       <app-skeleton-card
         *ngFor="let product of [].constructor(10)"
       ></app-skeleton-card>
@@ -58,7 +62,9 @@
     ></app-section-title>
 
     <ng-container *ngIf="discountProducts.length">
-      <div class="pt-10 grid grid-cols-4 gap-7">
+      <div
+        class="pt-10 grid grid-cols-1 gap-7 xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2"
+      >
         <app-product-card
           *ngFor="let discount of discountProducts | slice : 0 : 4"
           [product]="discount"

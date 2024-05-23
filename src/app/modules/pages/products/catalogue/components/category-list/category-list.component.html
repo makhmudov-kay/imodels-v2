@@ -1,27 +1,64 @@
 <div class="flex flex-col">
-  <h3 class="text-3xl text-orange uppercase font-roboto-black mb-5">
+  <h3
+    class="text-3xl text-orange uppercase font-roboto-black lg:mb-5 mb-2 text-center md:text-start"
+  >
     {{ "categories" | translate }}
   </h3>
 
-  <div class="flex flex-row flex-wrap gap-4">
-    <ng-container *ngIf="category$ | async as categories; else loading">
-      <app-category-item [id]="0"></app-category-item>
+  <ng-container *ngIf="category$ | async as categories; else loading">
+    <div class="flex-row flex-wrap gap-4 lg:flex hidden">
+      <app-category-item
+        [id]="0"
+        [categoryId]="categoryId"
+        (handleSelectCategory)="selectCategory($event)"
+      ></app-category-item>
       <app-category-item
         *ngFor="let category of categories"
         [category]="category"
+        [categoryId]="categoryId"
         [id]="category.id"
+        (handleSelectCategory)="selectCategory($event)"
       ></app-category-item>
-    </ng-container>
-  </div>
+    </div>
+
+    <div class="lg:hidden block">
+      <nz-select
+        class="w-full font-roboto-medium"
+        [ngModel]="categoryId"
+        (ngModelChange)="selectCategory($event)"
+      >
+        <nz-option
+          [nzValue]="0"
+          [nzLabel]="'allProducts' | translate"
+        ></nz-option>
+        <nz-option
+          *ngFor="let category of categories"
+          [nzValue]="category.id"
+          [nzLabel]="
+            (category.name | myTranslate | async) + ' (' + category.count + ')'
+          "
+        ></nz-option>
+      </nz-select>
+    </div>
+  </ng-container>
+
   <ng-template #loading>
-    <app-skeleton-cat
-      class="h-[54px]"
-      *ngFor="let category of [].constructor(12)"
-    ></app-skeleton-cat>
+    <div class="flex-row flex-wrap gap-4 lg:flex hidden">
+      <app-skeleton-cat
+        class="h-[54px]"
+        *ngFor="let category of [].constructor(12)"
+      ></app-skeleton-cat>
+    </div>
+    <div class="lg:hidden block">
+      <app-skeleton-cat
+        class="h-[54px] w-full"
+        [width]="'100%'"
+      ></app-skeleton-cat>
+    </div>
   </ng-template>
 
   <!-- SEARCH BLOCK -->
-  <div class="pt-10 max-w-[240px] w-full">
+  <div class="lg:pt-10 pt-5 lg:max-w-[240px] max-w-full w-full">
     <nz-input-group [nzSuffix]="suffixIconSearch" nzSize="large" class="m">
       <input
         type="text"

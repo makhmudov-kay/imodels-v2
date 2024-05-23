@@ -1,5 +1,6 @@
 <div
-  class="p-7 border border-[#E6E6E6] rounded-[20px] flex flex-col gap-5 cursor-pointer hover:shadow-product transition items-stretch h-[461px] relative"
+  class="p-7 border border-[#E6E6E6] rounded-[20px] mx-auto flex flex-col max-w-[320px] w-full sm:max-w-full sm:w-full gap-5 cursor-pointer hover:shadow-product transition items-stretch h-fit sm:h-[461px] relative"
+  (click)="navigateToProduct(product.id)"
 >
   <div
     *ngIf="product.discount"
@@ -7,10 +8,11 @@
   >
     -{{ product.discount | number : "1.0-0" }} %
   </div>
-  <div class="h-[295px] w-full">
+  <div class="sm:h-[295px] w-full h-[260px]">
     <img
       class="h-full w-full object-cover"
       nz-image
+      [nzDisablePreview]="true"
       [nzSrc]="product.image"
       [nzFallback]="fallback"
       alt="card-img"

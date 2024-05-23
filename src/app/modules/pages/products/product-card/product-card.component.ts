@@ -1,9 +1,10 @@
 import { AsyncPipe, DecimalPipe, NgClass, NgIf } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { NzImageModule } from 'ng-zorro-antd/image';
 import { Product } from '../catalogue/models/product.model';
 import { MyCurrencyPipe } from 'src/app/shared/pipes/my-currency.pipe';
 import { MyTranslatePipe } from 'src/app/shared/pipes/my-translate.pipe';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-card',
@@ -37,4 +38,17 @@ export class ProductCardComponent {
    *
    */
   fallback = './assets/image/not-found.png';
+
+  /**
+   *
+   */
+  private router = inject(Router);
+
+  /**
+   *
+   * @param id
+   */
+  navigateToProduct(id: number) {
+    this.router.navigate(['../products', id]);
+  }
 }

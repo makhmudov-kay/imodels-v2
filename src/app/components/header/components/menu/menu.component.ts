@@ -48,19 +48,19 @@ export class MenuComponent {
     {
       label: 'advance',
       routerLink: '../products/list',
-      queryParams: { category_id: '2' },
+      queryParams: { page: 1, category_id: '2' },
       isHeader: false,
     },
     {
       label: 'aspire',
       routerLink: '../products/list',
-      queryParams: { category_id: '9' },
+      queryParams: { page: 1, category_id: '9' },
       isHeader: false,
     },
     {
       label: 'adept',
       routerLink: '../products/list',
-      queryParams: { category_id: '7' },
+      queryParams: { page: 1, category_id: '7' },
       isHeader: false,
     },
     {
@@ -102,37 +102,37 @@ export class MenuComponent {
     {
       label: 'other',
       routerLink: '../products/list',
-      queryParams: { category_id: '3' },
+      queryParams: { page: 1, category_id: '3' },
       isHeader: true,
     },
     {
       label: 'urology',
       routerLink: '../products/list',
-      queryParams: { category_id: '10' },
+      queryParams: { page: 1, category_id: '10' },
       isHeader: false,
     },
     {
       label: 'laparoscopic',
       routerLink: '../products/list',
-      queryParams: { category_id: '5' },
+      queryParams: { page: 1, category_id: '5' },
       isHeader: false,
     },
     {
       label: 'training',
       routerLink: '../products/list',
-      queryParams: { category_id: '6' },
+      queryParams: { page: 1, category_id: '6' },
       isHeader: false,
     },
     {
       label: 'examSets',
       routerLink: '../products/list',
-      queryParams: { category_id: '13' },
+      queryParams: { page: 1, category_id: '13' },
       isHeader: false,
     },
     {
       label: 'accesories',
       routerLink: '../products/list',
-      queryParams: { category_id: '4' },
+      queryParams: { page: 1, category_id: '4' },
       isHeader: false,
     },
   ];

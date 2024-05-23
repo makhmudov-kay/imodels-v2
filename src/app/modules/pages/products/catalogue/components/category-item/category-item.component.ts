@@ -1,12 +1,10 @@
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
+  EventEmitter,
   Input,
-  OnInit,
-  inject,
+  Output,
 } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Category } from '../category-list/models/category.model';
 import { MyTranslatePipe } from 'src/app/shared/pipes/my-translate.pipe';
 import { AsyncPipe } from '@angular/common';
@@ -20,7 +18,7 @@ import { TranslateModule } from '@ngx-translate/core';
   imports: [MyTranslatePipe, AsyncPipe, TranslateModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CategoryItemComponent implements OnInit {
+export class CategoryItemComponent {
   /**
    *
    */
@@ -36,31 +34,12 @@ export class CategoryItemComponent implements OnInit {
   /**
    *
    */
-  private router = inject(Router);
-  private route = inject(ActivatedRoute);
-  private $cd = inject(ChangeDetectorRef);
-
-  /**
-   *
-   */
+  @Input()
   categoryId!: number;
 
-  ngOnInit(): void {
-    this.route.queryParams.subscribe((p) => {
-      this.categoryId = +p['category_id'];
-      this.$cd.markForCheck();
-    });
-  }
-
   /**
    *
-   * @param categoryId
    */
-  selectCategory(categoryId: number) {
-    this.categoryId = categoryId;
-    this.router.navigate([], {
-      queryParams: { page: 1, category_id: categoryId },
-    });
-    this.$cd.markForCheck();
-  }
+  @Output()
+  handleSelectCategory = new EventEmitter<number>();
 }
