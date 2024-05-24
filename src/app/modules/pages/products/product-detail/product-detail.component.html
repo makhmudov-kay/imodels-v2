@@ -1,6 +1,60 @@
-<div class="container mx-auto md:px-0 px-1.5 pt-16">
+<!-- <div class="container mx-auto md:px-0 px-1.5 pt-16">
   <div class="grid grid-cols-5">
     <div class="col-span-2">1</div>
     <div>2</div>
+  </div>
+</div> -->
+
+
+<!-- app.component.html -->
+<div class="container mx-auto p-4">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <!-- Left Section -->
+    <div>
+      <h2 class="text-lg font-bold">LAPAROSCOPIC TRAINER ADVANCE VER. EXPERT</h2>
+      <p class="text-sm text-gray-500">PROFESSIONAL</p>
+      <div class="mt-4">
+        <img src="assets/image.png" alt="Laparoscopic Trainer" class="w-full">
+      </div>
+    </div>
+    <!-- Right Section -->
+    <div>
+      <h3 class="text-lg font-bold">LAPAROSCOPIC TRAINER ASPIRE VER. ESSENTIAL</h3>
+      <p class="text-sm text-gray-500">PRODUCT IN STOCK. SHIPMENT WITHIN 24 HOURS AFTER PAYMENT.</p>
+      <p class="mt-4 text-sm">
+        Laparo Aspire is a laparoscopic trainer designed especially for INDIVIDUAL CUSTOMERS (students of medicine,
+        residents, and surgeons) who want to continually improve their skills and stay in shape between surgeries.
+        Each set includes the Laparo Training Program - a comprehensive program of exercises which guide a trainee
+        through the development of all the manual skills necessary to develop technique with laparoscopic instruments.
+        With this set you will complete your first “Basic Skills” course.
+      </p>
+      <ul class="list-disc list-inside mt-4 text-sm">
+        <li>LAPARO Aspire - Trainer with the built-in HD 0° camera and LED lighting</li>
+        <li>2 training-purpose laparoscopic instruments
+          <ul class="list-disc list-inside ml-4">
+            <li>dissector</li>
+            <li>grasper</li>
+          </ul>
+        </li>
+        <li>2 training modules = 14 unique exercises!
+          <ul class="list-disc list-inside ml-4">
+            <li>training module - Dexterity</li>
+            <li>training module - Tension</li>
+          </ul>
+        </li>
+        <li>FREE access to LAPARO Academy - our online platform with unique tasks and tutorials!</li>
+        <li>User manual</li>
+      </ul>
+      <div class="mt-4">
+        <nz-input-number [(ngModel)]="quantity" [nzMin]="1" [nzMax]="10"></nz-input-number>
+        <span class="ml-2 text-xl font-bold">5 683 000 so'm</span>
+      </div>
+      <div class="mt-4 text-right">
+        <span class="text-xl font-bold">Umumiy xarajat: {{ 5683000 * quantity }} so'm</span>
+      </div>
+      <div class="mt-4 text-right">
+        <button nz-button nzType="primary">Savatchaga</button>
+      </div>
+    </div>
   </div>
 </div>
