@@ -24,11 +24,7 @@ import { NgIf } from '@angular/common';
 })
 export class ProductDetailInfoComponent implements OnInit {
   /**
-   */
-  singleProduct!: ProductItem;
-
-  /**
-   */
+  */
   private _product!: ProductDetail;
   public get product(): ProductDetail {
     return this._product;
@@ -68,6 +64,7 @@ export class ProductDetailInfoComponent implements OnInit {
 
   /**
    */
+  singleProduct!: ProductItem;
   totalPrice!: Price;
   list: any = [];
   isConfiguratorAdded = false;
