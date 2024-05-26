@@ -1,0 +1,34 @@
+<div>
+  <h3 class="text-2xl uppercase text-primary font-roboto-medium mb-6">LAPAROSCOPIC TRAINER ASPIRE VER. ESSENTIAL</h3>
+
+  <div class="mb-16">Content</div>
+
+  <app-product-detail-item></app-product-detail-item>
+
+  <nz-divider></nz-divider>
+
+  <div class="flex flex-col items-end gap-7">
+    <div class="text-2xl font-roboto-bold">Umumiy xarajat:  <span class="text-[32px]">5 683 000 so’m</span></div>
+
+
+    <div class="">
+      <button class="px-[40px] py-[15px] bg-primary text-white rounded-[100px] text-base font-roboto-bold
+      hover:bg-[#33CCCC] active:bg-[#009999] focus:outline-none active:ring active:ring-[#5CCCCC] transition-all
+       flex flex-row items-center gap-2" *ngIf="product.items; else singleBtn"
+        [disabled]="this.needToAddcart.length === 0 || !isConfiguratorAdded" (click)="addToCart()">
+        {{ "addToCart" | translate }} <svg-cart [color]="'#fff'"></svg-cart>
+      </button>
+      <ng-template #singleBtn>
+        <button class="px-[40px] py-[15px] bg-primary text-white rounded-[100px] text-base font-roboto-bold
+      hover:bg-[#33CCCC] active:bg-[#009999] focus:outline-none active:ring active:ring-[#5CCCCC] transition-all
+       flex flex-row items-center gap-2" [disabled]="this.needToAddcart.length === 0" (click)="addToCart()">
+          {{ "addToCart" | translate }} <svg-cart [color]="'#fff'"></svg-cart>
+        </button>
+      </ng-template>
+    </div>
+
+    <!-- <button class="px-[40px] py-[15px] bg-primary text-white rounded-[100px] text-base font-roboto-bold
+      hover:bg-[#33CCCC] active:bg-[#009999] focus:outline-none active:ring active:ring-[#5CCCCC] transition-all
+       flex flex-row items-center gap-2">Savatchaga <svg-cart [color]="'#fff'"></svg-cart></button> -->
+  </div>
+</div>

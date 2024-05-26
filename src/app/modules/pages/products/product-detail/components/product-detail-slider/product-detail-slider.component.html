@@ -1,0 +1,32 @@
+<div class="w-full">
+  <h3 class="text-3xl font-roboto-bold uppercase pb-[30px]">{{title | myTranslate | async}}</h3>
+
+  <div class="grid grid-cols-5 items-center h-[525px] gap-[30px]">
+
+    <div class="h-full flex flex-col justify-between">
+      <button (click)="pre()"
+        class="py-4 cursor-pointer flex flex-row justify-center"><svg-top-for-slide></svg-top-for-slide></button>
+      <div class="h-[390px] flex flex-col items-center">
+        <swiper (swiper)="thumbsSwiper = $event" [freeMode]="true" [watchSlidesProgress]="true" [spaceBetween]="20"
+          [slidesPerView]="3" [direction]="'vertical'" class="h-full" #swiper>
+          <ng-template swiperSlide *ngFor="let slide of slides">
+            <div class="w-full h-full"><img class="w-full h-full object-cover" [src]="slide.image" />
+            </div>
+          </ng-template>
+        </swiper>
+      </div>
+      <button (click)="next()"
+        class="py-4 rotate-180 cursor-pointer flex flex-row justify-center"><svg-top-for-slide></svg-top-for-slide></button>
+    </div>
+    <div class="col-span-4 h-full">
+      <swiper [spaceBetween]="10" [thumbs]="{ swiper: thumbsSwiper }" class="h-full" #swiperSlide>
+        <ng-template swiperSlide *ngFor="let slide of slides">
+          <div class="h-full w-full">
+            <img class="w-full h-full object-cover" [src]="slide.image" alt="" />
+          </div>
+        </ng-template>
+      </swiper>
+
+    </div>
+  </div>
+</div>
