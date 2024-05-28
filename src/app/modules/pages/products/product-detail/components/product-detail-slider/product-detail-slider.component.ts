@@ -6,6 +6,7 @@ import SwiperCore, { FreeMode, Navigation, Thumbs } from 'swiper';
 import { ImageItem } from '../../models/product-detail.model';
 import { LanguageModel } from 'src/app/shared/models/language.model';
 import { MyTranslatePipe } from 'src/app/shared/pipes/my-translate.pipe';
+import { SvgRightComponent } from 'src/app/shared/svg/svg-right/svg-right.component';
 
 SwiperCore.use([FreeMode, Navigation, Thumbs]);
 @Component({
@@ -13,7 +14,7 @@ SwiperCore.use([FreeMode, Navigation, Thumbs]);
   templateUrl: './product-detail-slider.component.html',
   styleUrls: ['./product-detail-slider.component.css'],
   standalone: true,
-  imports: [SwiperModule, NgFor, SvgTopForSlideComponent, MyTranslatePipe, AsyncPipe]
+  imports: [SwiperModule, NgFor, SvgTopForSlideComponent, MyTranslatePipe, AsyncPipe, SvgRightComponent]
 })
 export class ProductDetailSliderComponent {
   /**

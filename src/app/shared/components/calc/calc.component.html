@@ -1,9 +1,10 @@
 <div class="border border-[#CDCDCD] rounded-[100px] overflow-hidden flex flex-row items-center">
-  <button class="pl-[18px] py-[14px] text-base">
+  <button class="pl-[18px] py-[14px] text-base disabled:cursor-not-allowed" (click)="decrease()"
+    [disabled]="count && count < 2 && mainItem">
     <svg-minus></svg-minus>
   </button>
-  <span class="px-[16px] text-[20px] font-roboto-bold leading-7">10</span>
-  <button class="pr-[18px] py-[14px] text-base">
+  <span class="px-[16px] text-[20px] font-roboto-bold leading-7">{{count}}</span>
+  <button class="pr-[18px] py-[14px] text-base" (click)="increase()">
     <svg-plus></svg-plus>
   </button>
 </div>

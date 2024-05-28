@@ -1,43 +1,38 @@
-<div (window:resize)="onResize($event)">
-  <div
-    *ngIf="!isMobileSize; else mobile"
-    class="flex flex-row gap-1 items-center cursor-pointer"
-    nz-popover
-    nzPopoverPlacement="bottom"
-    [(nzPopoverVisible)]="visibleCartPopover"
-    (nzPopoverVisibleChange)="toggleCartPopup($event)"
-    nzPopoverTrigger="click"
-    nzPopoverPlacement="bottomRight"
-    [nzPopoverContent]="contentTemplate"
-  >
-    <svg-cart></svg-cart>
-  </div>
+<div (window:resize)="onResize($event)" class="flex flex-row items-center">
+
+  <ng-container *ngIf="!isMobileSize; else mobile">
+    <nz-badge [nzCount]="totalCount">
+      <div class="flex flex-row gap-1 items-center cursor-pointer" nz-popover nzPopoverPlacement="bottom"
+        [(nzPopoverVisible)]="visibleCartPopover" (nzPopoverVisibleChange)="toggleCartPopup($event)"
+        nzPopoverTrigger="click" nzPopoverPlacement="bottomRight" [nzPopoverContent]="contentTemplate">
+        <svg-cart></svg-cart>
+      </div>
+    </nz-badge>
+  </ng-container>
+
 
   <ng-template #mobile>
-    <div
-      class="flex flex-row gap-1 items-center cursor-pointer"
-      (click)="toggleCartPopup(true)"
-    >
-      <svg-cart></svg-cart>
-    </div>
+    <nz-badge [nzCount]="totalCount">
+      <div class="flex flex-row gap-1 items-center cursor-pointer" (click)="toggleCartPopup(true)">
+        <svg-cart></svg-cart>
+      </div>
+    </nz-badge>
   </ng-template>
-
-  <!-- POPOVER CONTENT -->
-  <ng-template #contentTemplate>
-    <div class="w-[29rem]">
-      <app-cart-content></app-cart-content>
-    </div>
-  </ng-template>
-
-  <!-- DRAWER CART -->
-  <nz-drawer
-    [nzClosable]="false"
-    [nzVisible]="visibleCartDrawer"
-    nzPlacement="right"
-    (nzOnClose)="closeCartDrawer()"
-  >
-    <ng-container *nzDrawerContent>
-      <app-cart-content (close)="closeCartDrawer()"></app-cart-content>
-    </ng-container>
-  </nz-drawer>
 </div>
+
+<!-- POPOVER CONTENT -->
+<ng-template #contentTemplate>
+  <div class="w-[29rem]" *ngIf="cartItems && cartItems.length; else empty">
+    <app-cart-content [cartItems]="cartItems" [totalPrice]="totalPrice"
+      (deleteProduct)="deleteProduct($event)"></app-cart-content>
+  </div>
+</ng-template>
+
+<!-- DRAWER CART -->
+<nz-drawer [nzClosable]="false" [nzVisible]="visibleCartDrawer" nzPlacement="right" (nzOnClose)="closeCartDrawer()">
+  <ng-container *nzDrawerContent>
+    <app-cart-content (close)="closeCartDrawer()"></app-cart-content>
+  </ng-container>
+</nz-drawer>
+
+<ng-template #empty></ng-template>

@@ -46,9 +46,11 @@ body {
   height: 100%;
 }
 
-.ant-menu-sub {
+.ant-menu-sub,
+.scroll {
   .scroll();
 }
+
 
 .ant-menu-item {
   @media (max-width: 767px) {
@@ -79,6 +81,11 @@ body {
   }
 }
 
+.ant-collapse-header {
+  display: flex;
+  align-items: center !important;
+}
+
 .ant-select-selector {
   height: 56px !important;
   border-radius: 10px !important;
@@ -91,21 +98,13 @@ body {
   .scroll();
 }
 
-.ant-input-affix-wrapper-status-error:not(
-    .ant-input-affix-wrapper-disabled
-  ):not(.ant-input-affix-wrapper-borderless).ant-input-affix-wrapper,
-.ant-input-affix-wrapper-status-error:not(
-    .ant-input-affix-wrapper-disabled
-  ):not(.ant-input-affix-wrapper-borderless).ant-input-affix-wrapper:hover {
+.ant-input-affix-wrapper-status-error:not(.ant-input-affix-wrapper-disabled):not(.ant-input-affix-wrapper-borderless).ant-input-affix-wrapper,
+.ant-input-affix-wrapper-status-error:not(.ant-input-affix-wrapper-disabled):not(.ant-input-affix-wrapper-borderless).ant-input-affix-wrapper:hover {
   background: transparent;
 }
 
-.ant-input-status-error:not(.ant-input-disabled):not(
-    .ant-input-borderless
-  ).ant-input,
-.ant-input-status-error:not(.ant-input-disabled):not(
-    .ant-input-borderless
-  ).ant-input:hover {
+.ant-input-status-error:not(.ant-input-disabled):not(.ant-input-borderless).ant-input,
+.ant-input-status-error:not(.ant-input-disabled):not(.ant-input-borderless).ant-input:hover {
   background: transparent;
 }
 

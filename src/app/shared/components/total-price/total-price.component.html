@@ -1,0 +1,6 @@
+<div class="md:text-2xl sm:text-xl text-base font-roboto-bold">
+    {{ "totalPrice" | translate }}: 
+    <span class="md:text-[32px] sm:text-[24px] text-[18px]">
+        {{ totalPrice | myCurrency | async }}
+    </span>
+</div>
