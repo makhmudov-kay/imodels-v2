@@ -1,19 +1,53 @@
 <div class="flex flex-row justify-between items-center mb-6">
-  <h4 class="text-2xl text-primary font-roboto-bold">Savatcha</h4>
-  <span (click)="close.emit()" nz-icon nzType="close" nzTheme="outline" class="text-primary"></span>
+  <h4 class="text-2xl text-primary font-roboto-bold">
+    {{ "basket" | translate }}
+  </h4>
+  <span
+    (click)="close.emit()"
+    nz-icon
+    nzType="close"
+    nzTheme="outline"
+    class="text-primary cursor-pointer"
+  ></span>
 </div>
 
-<div class="cart-content flex gap-2 flex-col md:h-[17rem] overflow-auto cart-item-list pr-2 mb-7">
-  <app-cart-item *ngFor="let item of cartItems"></app-cart-item>
+<div
+  class="cart-content flex gap-2 flex-col md:h-[17rem] overflow-auto cart-item-list pr-2 mb-7"
+  *ngIf="cartItems.length > 0; else empty"
+>
+  <app-cart-item
+    *ngFor="let item of cartItems"
+    [item]="item"
+    (deleteProduct)="deleteProduct.emit($event)"
+  ></app-cart-item>
 </div>
 
 <div class="flex items-center justify-between mb-[1.063rem]">
-  <h5 class="text-xl font-roboto-regular">Jami:</h5>
-  <span class="text-xl font-roboto-bold">2 660 000 so’m</span>
+  <h5 class="text-xl font-roboto-regular">{{ "total" | translate }}:</h5>
+  <span class="text-xl font-roboto-bold">{{
+    totalPrice | myCurrency | async
+  }}</span>
 </div>
 
 <div class="flex items-center justify-center">
-  <button nz-button nzType="primary" nzShape="round" nzSize="large" class="flex flex-row items-center justify-center">
-    <span>Savatga kirish</span> <svg-right></svg-right>
+  <button
+    nz-button
+    nzType="primary"
+    nzShape="round"
+    nzSize="large"
+    class="flex flex-row items-center justify-center"
+    routerLink="../cart"
+    (click)="close.emit()"
+  >
+    <span>{{ "viewBasket" | translate }}</span> <svg-right></svg-right>
   </button>
 </div>
+
+<ng-template #empty>
+  <div class="flex flex-col items-center py-5">
+    <svg-cart></svg-cart>
+    <span class="text-xl font-roboto-regular">{{
+      "emptyBasket" | translate
+    }}</span>
+  </div>
+</ng-template>

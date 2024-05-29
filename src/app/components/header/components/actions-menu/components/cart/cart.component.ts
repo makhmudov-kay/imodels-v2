@@ -1,4 +1,11 @@
-import { ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, inject } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  HostListener,
+  OnInit,
+  inject,
+} from '@angular/core';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { SvgCartComponent } from 'src/app/shared/svg/svg-cart/svg-cart.component';
 import { CartItemComponent } from './cart-item/cart-item.component';
@@ -20,14 +27,27 @@ import { NzBadgeModule } from 'ng-zorro-antd/badge';
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.less'],
   standalone: true,
-  imports: [NzPopoverModule, SvgCartComponent, CartItemComponent, NgFor, AsyncPipe, MyCurrencyPipe, NzButtonModule, SvgRightComponent, NzDrawerModule, CartContentComponent, NgIf, NzBadgeModule]
+  imports: [
+    NzPopoverModule,
+    SvgCartComponent,
+    CartItemComponent,
+    NgFor,
+    AsyncPipe,
+    MyCurrencyPipe,
+    NzButtonModule,
+    SvgRightComponent,
+    NzDrawerModule,
+    CartContentComponent,
+    NgIf,
+    NzBadgeModule,
+  ],
 })
 export class CartComponent implements OnInit {
   /**
    */
-  visibleCartPopover = false
-  visibleCartDrawer = false
-  isMobileSize = false
+  visibleCartPopover = false;
+  visibleCartDrawer = false;
+  isMobileSize = false;
   cartItems!: any[];
   totalCount!: number;
   totalPrice!: Price;
@@ -40,8 +60,8 @@ export class CartComponent implements OnInit {
 
   /**
    */
-  private $store = inject(Store)
-  private $cd = inject(ChangeDetectorRef)
+  private $store = inject(Store);
+  private $cd = inject(ChangeDetectorRef);
 
   /**
    *
@@ -53,7 +73,7 @@ export class CartComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.checkMobileSize()
+    this.checkMobileSize();
 
     this.cart$.subscribe((data) => {
       this.cartItems = data;
@@ -77,34 +97,35 @@ export class CartComponent implements OnInit {
   }
 
   /**
-   * 
-   * @param state 
-   * @returns 
+   *
+   * @param state
+   * @returns
    */
   toggleCartPopup(state: boolean) {
     if (this.isMobileSize) {
-      this.visibleCartDrawer = state
-      return
+      this.visibleCartDrawer = state;
+      return;
     }
-    this.visibleCartPopover = state
+    this.visibleCartPopover = state;
   }
 
   /**
-   * 
+   *
    */
   closeCartDrawer() {
-    this.visibleCartDrawer = false
+    this.visibleCartDrawer = false;
+    this.visibleCartPopover = false;
   }
   /**
-   * 
+   *
    */
   private checkMobileSize() {
     this.isMobileSize = window.innerWidth < 767;
   }
 
   /**
-   * 
-   * @param e 
+   *
+   * @param e
    */
   @HostListener('window:resize')
   onResize(e: any) {

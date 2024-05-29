@@ -1,6 +1,6 @@
-import { Id } from './id.model';
-import { LanguageModel } from './language.model';
-import { Price } from './price.model';
+import { Id } from '../../../../shared/models/id.model';
+import { LanguageModel } from '../../../../shared/models/language.model';
+import { Price } from '../../../../shared/models/price.model';
 
 export interface OrderRequest {
   configurator: number | null;

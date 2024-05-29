@@ -1,3 +1,23 @@
-<p>
-  cart works!
-</p>
+<div class="container mx-auto md:px-0 px-1.5 md:py-[50px] py-[20px]">
+  <h3 class="text-[32px] uppercase font-roboto-bold text-primary mb-10">
+    {{ "basket" | translate }} ({{ cartItems.length }})
+  </h3>
+
+  <div class="flex lg:flex-row flex-col gap-[30px]">
+    <div class="flex-grow">
+      <app-cart-list
+        [cartItems]="cartItems"
+        (decreaseProduct)="decreaseProduct($event)"
+        (increaseProduct)="increaseProduct($event)"
+        (deleteProductHandler)="deleteProduct($event)"
+      ></app-cart-list>
+    </div>
+    <div class="lg:w-[378px]">
+      <app-cart-total
+        (sendOrder)="sendOrder()"
+        [isLoading]="isLoading"
+        [totalPrice]="totalPrice"
+      ></app-cart-total>
+    </div>
+  </div>
+</div>
