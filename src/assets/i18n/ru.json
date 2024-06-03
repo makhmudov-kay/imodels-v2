@@ -138,7 +138,7 @@
   "fillTheField": "Заполните поле",
   "forgotPassword": "Забыли пароль?",
   "passwordRestSuccess": "Вы успешно изменили пароль от вашего аккаунта, теперь вы можете войти в личный кабинет используя новый пароль.",
-  "resetPasswordText": "Parolni unutdingizmi? Iltimos, hisobingizga bog'langan telefon raqamingizni ko'rsating. Tasdiqlash kodini olganingizdan so'ng, siz yangi parolni o'rnatishingiz mumkin.",
+  "resetPasswordText": "Забыли пароль? Пожалуйста, укажите номер телефона, связанный с вашей учетной записью. После получения кода подтверждения Вы можете установить новый пароль.",
   "enterSecureCode": "Введите проверочный код из SMS",
   "resetPasswordBtn": "Восстановить пароль",
   "resendCode": "Отправить код снова",
@@ -578,5 +578,6 @@
   "iModelsadvanceTrainingStation": "iModels - Обучающая станция",
   "iModelsadvancePortable": "iModels - Портативный",
   "iModelsproduct": "iModels - Продукт",
-  "addressTitle": "Адрес"
+  "addressTitle": "Адрес",
+  "back": "Назад"
 }

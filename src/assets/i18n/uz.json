@@ -138,7 +138,7 @@
   "fillTheField": "Maydonni to'ldiring",
   "forgotPassword": "Parolni unutdingizmi?",
   "passwordRestSuccess": "Siz hisobingizdan parolni muvaffaqiyatli o'zgartirdingiz, endi siz yangi parol yordamida shaxsiy hisobingizga kirishingiz mumkin.",
-  "resetPasswordText": "Забыли пароль? Пожалуйста укажите свой номер телефона который был привязан к аккаунту. Получив код подтверждения вы сможете установить новый пароль.",
+  "resetPasswordText": "Parolni unutdingizmi? Iltimos, hisobingizga bog'langan telefon raqamingizni ko'rsating. Tasdiqlash kodini olganingizdan so'ng, siz yangi parolni o'rnatishingiz mumkin.",
   "enterSecureCode": "SMS-dan tasdiqlash kodini kiriting",
   "resetPasswordBtn": "Parolni tiklash",
   "resendCode": "Kodni yana yuboring",
@@ -578,5 +578,6 @@
   "iModelsadvanceTrainingStation": "iModels - O'quv stansiya",
   "iModelsadvancePortable": "iModels - Portativ",
   "iModelsproduct": "iModels - Mahsulot",
-  "addressTitle": "Manzil"
+  "addressTitle": "Manzil",
+  "back": "Orqaga"
 }

@@ -11,6 +11,7 @@ import { catchError, Observable, throwError, retry } from 'rxjs';
 import { DOCUMENT } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/modules/pages/auth/services/auth.service';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 export interface ErrorModel {
   errors: { [key: string]: string[] };
@@ -23,9 +24,8 @@ export class HandleErrorInterceptor implements HttpInterceptor {
    *
    */
   constructor(
-    @Inject(DOCUMENT) private document: Document,
     private $auth: AuthService,
-    private router: Router
+    private router: Router,
   ) { }
 
   /**
@@ -48,7 +48,6 @@ export class HandleErrorInterceptor implements HttpInterceptor {
         }
 
         const errorCustom = this.getServerErrors(error);
-
         return throwError(() => errorCustom);
       })
     );
@@ -98,5 +97,16 @@ export class HandleErrorInterceptor implements HttpInterceptor {
 
     // return ErrorHelper.createUnknownError(error);
     return { unknownError: JSON.stringify(error) };
+  }
+
+  getErrorMessage(errors: any[]) {
+    let message = ``;
+    errors.forEach((error) => {
+      error.message.forEach((m: any) => {
+        message += `- ${m.detail}<br>`;
+      });
+    });
+
+    return message;
   }
 }

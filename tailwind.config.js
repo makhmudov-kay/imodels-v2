@@ -24,6 +24,7 @@ module.exports = {
       white: "#ffffff",
       grey: "#B3B3B3",
       orange: "#FFAB57",
+      error: "#ff6347",
     },
     fontFamily: {
       "roboto-thin": ["Roboto-Thin", "sans-serif"],
