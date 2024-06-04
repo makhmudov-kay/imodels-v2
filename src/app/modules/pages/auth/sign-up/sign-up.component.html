@@ -1,30 +1,52 @@
-<div class="container mx-auto md:px-0 px-1.5 md:py-[50px] py-[20px] h-full flex flex-row items-center justify-center">
+<div
+  class="container mx-auto md:px-0 px-1.5 md:py-[50px] py-[20px] h-full flex flex-row items-center justify-center"
+>
   <div class="max-w-[400px] w-full form flex flex-col justify-center">
-
-    <h2 class="text-center uppercase text-xl md:text-[45px] font-roboto-bold text-primary mb-0 md:mb-10">
-      {{'login' | translate}}
+    <h2
+      class="text-center uppercase text-xl md:text-[45px] font-roboto-bold text-primary mb-0 md:mb-10"
+    >
+      {{ "login" | translate }}
     </h2>
 
     <form nz-form [formGroup]="form" (ngSubmit)="login()">
-
       <div [ngSwitch]="errorType" class="mb-5">
-        <div *ngSwitchCase="1"><nz-alert nzType="error" [nzMessage]="'invalidLogin' | translate" nzShowIcon></nz-alert>
+        <div *ngSwitchCase="1">
+          <nz-alert
+            nzType="error"
+            [nzMessage]="'invalidLogin' | translate"
+            nzShowIcon
+          ></nz-alert>
         </div>
       </div>
 
       <nz-form-item>
         <nz-form-control [nzErrorTip]="'fillTheField' | translate">
           <nz-input-group [nzPrefix]="prefixPhone" nzSize="large">
-            <input type="text" nz-input formControlName="phone" [mask]="'00 000 00 00'" [prefix]="PHONE_PREFIX"
-              [showMaskTyped]="true" [placeholder]="'inputYourPhone' | translate" />
+            <input
+              type="text"
+              nz-input
+              formControlName="phone"
+              [mask]="'00 000 00 00'"
+              [prefix]="PHONE_PREFIX"
+              [showMaskTyped]="true"
+              [placeholder]="'inputYourPhone' | translate"
+            />
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
         <nz-form-control [nzErrorTip]="'minLengthPassword' | translate">
-          <nz-input-group [nzPrefix]="prefixLock" [nzSuffix]="suffixEye" nzSize="large">
-            <input [type]="passwordVisible ? 'text' : 'password'" nz-input formControlName="password"
-              [placeholder]="'password' | translate" />
+          <nz-input-group
+            [nzPrefix]="prefixLock"
+            [nzSuffix]="suffixEye"
+            nzSize="large"
+          >
+            <input
+              [type]="passwordVisible ? 'text' : 'password'"
+              nz-input
+              formControlName="password"
+              [placeholder]="'password' | translate"
+            />
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
@@ -47,18 +69,29 @@
         </span>
       </ng-template>
 
-      <button [nzLoading]="isLoading" nz-button nzShape="round" nzBlock nzSize="large" [nzType]="'primary'">{{'login' |
-        translate}}
+      <button
+        [nzLoading]="isLoading"
+        nz-button
+        nzShape="round"
+        nzBlock
+        nzSize="large"
+        [nzType]="'primary'"
+      >
+        {{ "login" | translate }}
       </button>
 
-
       <div nz-row class="mt-7 flex flex-row justify-between gap-2">
-        <a class="text-base text-primary font-roboto-medium" routerLink="../sign-in">{{'registration' | translate}}</a>
-        <a class="text-base text-grey font-roboto-medium" routerLink="../forgot-password">{{'forgotPassword' |
-          translate}}</a>
+        <a
+          class="text-base text-primary font-roboto-medium"
+          routerLink="../sign-in"
+          >{{ "registration" | translate }}</a
+        >
+        <a
+          class="text-base text-grey font-roboto-medium"
+          routerLink="../forgot-password"
+          >{{ "forgotPassword" | translate }}</a
+        >
       </div>
-
-
     </form>
   </div>
 </div>

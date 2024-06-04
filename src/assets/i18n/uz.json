@@ -579,5 +579,9 @@
   "iModelsadvancePortable": "iModels - Portativ",
   "iModelsproduct": "iModels - Mahsulot",
   "addressTitle": "Manzil",
-  "back": "Orqaga"
+  "back": "Orqaga",
+  "confirmPassword": "Parolni tasdiqlang",
+  "incosistentPassword": "Parollar mos kelmayapti",
+  "save": "Saqlash",
+  "notification": "Bildirishma"
 }

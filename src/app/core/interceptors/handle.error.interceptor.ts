@@ -7,16 +7,10 @@ import {
   HttpErrorResponse,
   HttpStatusCode,
 } from '@angular/common/http';
-import { catchError, Observable, throwError, retry } from 'rxjs';
-import { DOCUMENT } from '@angular/common';
+import { catchError, Observable, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/modules/pages/auth/services/auth.service';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
-
-export interface ErrorModel {
-  errors: { [key: string]: string[] };
-  message: string;
-}
 
 @Injectable()
 export class HandleErrorInterceptor implements HttpInterceptor {
@@ -26,7 +20,8 @@ export class HandleErrorInterceptor implements HttpInterceptor {
   constructor(
     private $auth: AuthService,
     private router: Router,
-  ) { }
+    private $notification: NzNotificationService
+  ) {}
 
   /**
    *
@@ -39,7 +34,6 @@ export class HandleErrorInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
-      // retry(1),
       catchError((error: HttpErrorResponse) => {
         if (error.status === HttpStatusCode.Unauthorized) {
           this.$auth.logout();
@@ -48,6 +42,7 @@ export class HandleErrorInterceptor implements HttpInterceptor {
         }
 
         const errorCustom = this.getServerErrors(error);
+        this.$notification.error('Error(s)', errorCustom);
         return throwError(() => errorCustom);
       })
     );
@@ -82,31 +77,15 @@ export class HandleErrorInterceptor implements HttpInterceptor {
    * @returns
    */
   private getErrorFromServer(error: HttpErrorResponse) {
-    const errors = (error.error as ErrorModel).errors;
-    if (errors) {
-      const firstError = errors[Object.keys(errors)[0]];
-      if (firstError) {
-        if (firstError[0] != undefined) {
-          return error.error as ErrorModel;
-        }
-      }
+    const errors = error.error.error;
+    const firstError = error.error[Object.keys(error.error)[0]][0];
 
-      // return ErrorHelper.createUnknownError(error.error.error);
-      return { unknownError: JSON.stringify(errors) };
+    if (firstError) {
+      return firstError;
     }
-
-    // return ErrorHelper.createUnknownError(error);
+    if (errors) {
+      return error.error.error;
+    }
     return { unknownError: JSON.stringify(error) };
-  }
-
-  getErrorMessage(errors: any[]) {
-    let message = ``;
-    errors.forEach((error) => {
-      error.message.forEach((m: any) => {
-        message += `- ${m.detail}<br>`;
-      });
-    });
-
-    return message;
   }
 }

@@ -579,5 +579,9 @@
   "iModelsadvancePortable": "iModels - Портативный",
   "iModelsproduct": "iModels - Продукт",
   "addressTitle": "Адрес",
-  "back": "Назад"
+  "back": "Назад",
+  "confirmPassword": "Подтвердите пароль",
+  "incosistentPassword": "Пароли не совпадают",
+  "save": "Сохранить",
+  "notification": "Уведомление"
 }

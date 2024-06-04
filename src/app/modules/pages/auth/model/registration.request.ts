@@ -1,7 +1,6 @@
 export interface Registration {
-  phone: string;
-  password: string;
-  first_name: string;
-  last_name: string;
+  phone: string | null;
+  password: string | null;
+  first_name: string | null;
+  last_name: string | null;
 }
-

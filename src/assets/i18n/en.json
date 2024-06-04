@@ -579,5 +579,9 @@
   "iModelsadvancePortable": "iModels - Portable",
   "iModelsproduct": "iModels - Product",
   "addressTitle": "Address",
-  "back": "Back"
+  "back": "Back",
+  "confirmPassword": "Confirm password",
+  "incosistentPassword": "Passwords do not match",
+  "save": "Save",
+  "notification": "Notification"
 }
