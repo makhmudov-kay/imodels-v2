@@ -1,3 +1,22 @@
-<p>
-  orders works!
-</p>
+<div>
+  <h2 class="text-[32px] leading-9 text-primary font-roboto-bold mb-10">Mening buyurtmalarim</h2>
+
+  <div>
+    <nz-collapse>
+      <nz-collapse-panel *ngFor="let panel of panels" [nzHeader]="header" [nzActive]="panel.active"
+        [nzDisabled]="panel.disabled" [nzShowArrow]="false">
+        <p style="margin:0;">
+          A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome
+          guest in many households across the world.
+        </p>
+
+        <ng-template #header>
+          <div class="flex flex-col bg-white">
+            <div class="border-b border-grey px-5">1</div>
+            <div>2</div>
+          </div>
+        </ng-template>
+      </nz-collapse-panel>
+    </nz-collapse>
+  </div>
+</div>

@@ -208,7 +208,7 @@ export class SecureCodeComponent implements OnInit {
    * @param request
    */
   private confirmRegister(request: { secure_code: string; phone: string }) {
-    this.$auth.confirm(request).subscribe((e: any) => {
+    this.$auth.confirm(request).pipe(takeUntil(this.$destroy)).subscribe((e: any) => {
       if (e.detail === 'User activated') {
         this.form.reset();
         this.$notification.success(
