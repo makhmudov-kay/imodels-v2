@@ -5,7 +5,7 @@ import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
-  styleUrls: ['./orders.component.css'],
+  styleUrls: ['./orders.component.less'],
   standalone: true,
   imports: [NzCollapseModule, NgFor]
 })
