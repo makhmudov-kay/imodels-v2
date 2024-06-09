@@ -1,3 +1,14 @@
-<p>
-  profile works!
-</p>
+<div>
+  <h2 class="text-[32px] leading-9 text-primary font-roboto-bold mb-5">
+    {{'userInfo' | translate}}
+  </h2>
+
+  <div class="flex flex-col gap-2" *ngIf="userDetail$ | async as userDetail">
+    <p class="text-base leading-[18px] font-roboto-medium"><span class="text-primary">{{'firstName' |
+        translate}}:</span>{{ userDetail.first_name }}</p>
+    <p class="text-base leading-[18px] font-roboto-medium"><span class="text-primary">{{'lastName' |
+        translate}}:</span>{{ userDetail.last_name }}</p>
+    <p class="text-base leading-[18px] font-roboto-medium"><span class="text-primary">{{'phone' |
+        translate}}:</span>+{{ userDetail.phone }}</p>
+  </div>
+</div>

@@ -1,13 +1,14 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../../auth/services/auth.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-cabinet-menu',
   templateUrl: './cabinet-menu.component.html',
   styleUrls: ['./cabinet-menu.component.css'],
   standalone: true,
-  imports: [RouterLink, RouterLinkActive]
+  imports: [RouterLink, RouterLinkActive, TranslateModule]
 })
 export class CabinetMenuComponent implements OnInit {
   private $auth = inject(AuthService)

@@ -1,17 +1,17 @@
-<div class="bg-white shadow-product p-[30px] rounded-2xl">
+<div class="bg-white shadow-product p-[30px] rounded-2xl min-w-[280px]">
   <ul class="flex flex-col gap-6">
     <li
       class="text-xl leading-[22px] text-grey font-roboto-medium cursor-pointer select-none hover:text-primary transition"
       routerLink="./orders" routerLinkActive="active">
-      Buyurtmalar</li>
+      {{'order' | translate}}</li>
     <li
       class="text-xl leading-[22px] text-grey font-roboto-medium cursor-pointer select-none hover:text-primary transition"
       routerLink="./profile" routerLinkActive="active">
-      Sizning ma’lumotlaringiz
+      {{'accountDetail' | translate}}
     </li>
     <li
       class="text-xl leading-[22px] text-grey font-roboto-medium cursor-pointer select-none hover:text-primary transition"
       (click)="logout()">
-      Chiqish</li>
+      {{'logout' | translate}}</li>
   </ul>
 </div>
