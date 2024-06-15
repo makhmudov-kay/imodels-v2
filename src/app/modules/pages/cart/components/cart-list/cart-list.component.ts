@@ -15,6 +15,7 @@ import { MyTranslatePipe } from 'src/app/shared/pipes/my-translate.pipe';
 import { RouterLink } from '@angular/router';
 import { SvgTrashComponent } from 'src/app/shared/svg/svg-trash/svg-trash.component';
 import { NzImageModule } from 'ng-zorro-antd/image';
+import { NzResultModule } from 'ng-zorro-antd/result';
 
 @Component({
   selector: 'app-cart-list',
@@ -32,6 +33,7 @@ import { NzImageModule } from 'ng-zorro-antd/image';
     RouterLink,
     SvgTrashComponent,
     NzImageModule,
+    NzResultModule
   ],
 })
 export class CartListComponent {
@@ -74,8 +76,6 @@ export class CartListComponent {
    */
   private checkMobileSize() {
     this.isMobileSize = window.innerWidth < 991;
-    console.log(this.isMobileSize);
-    
     this.cd.markForCheck();
   }
 

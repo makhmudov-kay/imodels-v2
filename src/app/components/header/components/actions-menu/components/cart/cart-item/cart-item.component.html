@@ -1,10 +1,7 @@
 <div class="flex gap-3 items-center hover:bg-[#f1f5f9] transition">
-  <img
-    class="size-[3.75rem] object-cover"
-    [src]="item.image"
-    azHandleImgError
-    alt="item"
-  />
+  <div class="size-[60px] flex-initial">
+    <img class="size-full object-cover" [src]="item.image" azHandleImgError alt="item" />
+  </div>
   <div class="flex gap-3 grow">
     <div class="flex flex-col gap-1 grow">
       <h5 class="text-xl text-primary font-roboto-bold select-none">
@@ -12,19 +9,17 @@
       </h5>
       <p class="text-base text-primary font-roboto-regular select-none">
         {{
-          item.count +
-            " X " +
-            (item.discount > 0
-              ? (item.new_price | myCurrency | async)
-              : (item.price | myCurrency | async)) +
-            " = " +
-            (item.totalPrice | myCurrency | async)
+        item.count +
+        " X " +
+        (item.discount > 0
+        ? (item.new_price | myCurrency | async)
+        : (item.price | myCurrency | async)) +
+        " = " +
+        (item.totalPrice | myCurrency | async)
         }}
       </p>
     </div>
-    <span class="p-1"
-      ><span class="cursor-pointer" (click)="deleteProduct.emit(item.id)"
-        ><svg-trash></svg-trash></span
-    ></span>
+    <span class="p-1"><span class="cursor-pointer"
+        (click)="deleteProduct.emit(item.id)"><svg-trash></svg-trash></span></span>
   </div>
 </div>

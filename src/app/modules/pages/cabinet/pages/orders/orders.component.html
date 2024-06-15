@@ -3,59 +3,72 @@
     {{'myOrders' | translate}}
   </h2>
 
-  <ng-container *ngIf="order$ | async as orderList; else empty">
-    <div class="mb-4" *ngFor="let order of orderList; let i = index">
-      <nz-collapse nzGhost>
-        <nz-collapse-panel [nzHeader]="header" [nzShowArrow]="false" (nzActiveChange)="onActiveChange($event,i)">
+  <ng-container *ngIf="order$ | async as orderList; else skeleton">
+    <ng-container *ngIf="orderList.length; else empty">
+      <div class="mb-4" *ngFor="let order of orderList ; let i = index">
+        <nz-collapse nzGhost>
+          <nz-collapse-panel [nzHeader]="header" [nzShowArrow]="false" (nzActiveChange)="onActiveChange($event,i)">
 
-          <div [ngClass]="{'pb-5': !last, 'pt-5': !first, 'border-b': !last}"
-            class="flex flex-row justify-between items-center w-full select-none   border-[#E6E6E6]"
-            *ngFor="let product of order.order_products; let last = last; let first = first">
-            <div class="flex flex-row items-center gap-3">
-              <div class="w-[72px] h-[72px] overflow-hidden"><img class="w-full h-full object-cover"
-                  [src]="product.image" alt="img"></div>
-              <div class="flex flex-col gap-2">
-                <p (click)="navigateToProduct(product.id)"
-                  class="text-base leading-[18px] font-roboto-medium hover:text-primary cursor-pointer transition">
-                  {{product.title | myTranslate | async}}
-                </p>
-                <p class="text-base leading-[18px] font-roboto-medium"><span class="text-primary">{{'count' |
-                    translate}}:</span> {{product.quantity}}</p>
-                <p class="text-base leading-[18px] font-roboto-medium"><span class="text-primary">{{'price' |
-                    translate}}:</span> {{product.price | myCurrency | async}}</p>
+            <div [ngClass]="{'pb-5': !last, 'pt-5': !first, 'border-b': !last}"
+              class="flex flex-row justify-between items-center w-full select-none   border-[#E6E6E6]"
+              *ngFor="let product of order.order_products; let last = last; let first = first">
+              <div class="flex flex-row items-center gap-3">
+                <div class="w-[72px] h-[72px] overflow-hidden"><img class="w-full h-full object-cover"
+                    [src]="product.image" alt="img"></div>
+                <div class="flex flex-col gap-2">
+                  <p (click)="navigateToProduct(product.id)"
+                    class="text-base leading-[18px] font-roboto-medium hover:text-primary cursor-pointer transition">
+                    {{product.title | myTranslate | async}}
+                  </p>
+                  <p class="text-base leading-[18px] font-roboto-medium"><span class="text-primary">{{'count' |
+                      translate}}:</span> {{product.quantity}}</p>
+                  <p class="text-base leading-[18px] font-roboto-medium"><span class="text-primary">{{'price' |
+                      translate}}:</span> {{product.price | myCurrency | async}}</p>
+                </div>
               </div>
+              <button class="border-none outline-none bg-white cursor-pointer"><svg-trash></svg-trash></button>
             </div>
-            <button class="border-none outline-none bg-white cursor-pointer"><svg-trash></svg-trash></button>
-          </div>
 
-          <ng-template #header>
-            <div class="flex flex-col bg-white w-full select-none">
-              <div class="border-b border-[#E6E6E6] pb-5 pt-1 flex flex-row items-center justify-between">
-                <p class="mb-0 text-base leading-[18px] font-roboto-medium">
-                  {{'orderID' | translate}}: {{order.id}}
-                </p>
-                <p class="mb-0 text-base leading-[18px] font-roboto-medium">
-                  {{'dateOfOrder' | translate}}: {{order.created_at}}
-                </p>
+            <ng-template #header>
+              <div class="flex flex-col bg-white w-full select-none">
+                <div class="border-b border-[#E6E6E6] pb-5 pt-1 flex flex-row items-center justify-between">
+                  <p class="mb-0 text-base leading-[18px] font-roboto-medium">
+                    {{'orderID' | translate}}: {{order.id}}
+                  </p>
+                  <p class="mb-0 text-base leading-[18px] font-roboto-medium">
+                    {{'dateOfOrder' | translate}}: {{order.created_at}}
+                  </p>
+                </div>
+                <div class="pt-5 pb-1 flex flex-row items-center justify-between">
+                  <p class="mb-0 text-xl leading-[22px] font-roboto-medium">{{'products' | translate}}:
+                    {{order.order_products.length}}</p>
+                  <span [ngClass]="{'rotate-180': false}">
+                    <svg-down></svg-down>
+                  </span>
+                </div>
               </div>
-              <div class="pt-5 pb-1 flex flex-row items-center justify-between">
-                <p class="mb-0 text-xl leading-[22px] font-roboto-medium">{{'products' | translate}}:
-                  {{order.order_products.length}}</p>
-                <span [ngClass]="{'rotate-180': false}">
-                  <svg-down></svg-down>
-                </span>
-              </div>
-            </div>
-          </ng-template>
-        </nz-collapse-panel>
-      </nz-collapse>
-    </div>
+            </ng-template>
+          </nz-collapse-panel>
+        </nz-collapse>
+      </div>
+    </ng-container>
   </ng-container>
 
   <ng-template #empty>
     <div class="flex flex-row justify-center pt-10">
       <nz-result nzStatus="404" [nzTitle]="'emptyList' | translate">
       </nz-result>
+    </div>
+  </ng-template>
+
+  <ng-template #skeleton>
+    <div class="flex flex-col p-3 border rounded-[10px] border-[#e6e6e6] mb-4" *ngFor="let skelet of [].constructor(4)">
+      <div class="pb-5 border-b border-[#E6E6E6]">
+        <nz-skeleton-element class="w-full" nzType="input" [nzActive]="true" nzSize="large"></nz-skeleton-element>
+      </div>
+      <div class="pt-5">
+        <nz-skeleton-element class="w-full" nzType="input" [nzActive]="true" nzSize="large"></nz-skeleton-element>
+      </div>
     </div>
   </ng-template>
 </div>

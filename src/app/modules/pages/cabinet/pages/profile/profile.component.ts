@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, OnInit, inject } from '@angular/core';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { CabinetService } from '../../services/cabinet.service';
 import { UserDetail } from '../../../auth/model/user.model';
-import { Observable, map, tap } from 'rxjs';
+import { Observable, map, takeUntil, tap } from 'rxjs';
 import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NzModalModule } from 'ng-zorro-antd/modal';
@@ -12,13 +12,16 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { markAsDirty } from 'src/app/utils/utilits';
 import { NgDestroy } from 'src/app/core/services/ng-destroy.service';
+import { SecureCodeModalComponent } from './components/secure-code-modal/secure-code-modal.component';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
   standalone: true,
-  imports: [TranslateModule, NgIf, AsyncPipe, NzTypographyModule, NzModalModule, FormsModule, ReactiveFormsModule, NzInputModule, NzFormModule, NzButtonModule, NgFor, NgIf],
+  imports: [SecureCodeModalComponent, TranslateModule, NgIf, AsyncPipe, NzTypographyModule, NzModalModule, FormsModule, ReactiveFormsModule, NzInputModule, NzFormModule, NzButtonModule, NgFor, NgIf, NzSkeletonModule],
   providers: [NgDestroy],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -28,10 +31,10 @@ export class ProfileComponent implements OnInit {
    */
   $userDetail = inject(CabinetService);
   private $cd = inject(ChangeDetectorRef)
-
   private fb = inject(FormBuilder);
-  private elementRef = inject(ElementRef);
   private $destroy = inject(NgDestroy);
+  private $message = inject(NzMessageService);
+  private $translate = inject(TranslateService);
 
   /**
    *
@@ -40,13 +43,10 @@ export class ProfileComponent implements OnInit {
   first_name!: string;
   last_name!: string;
   phone!: string
-  isVisible = true
-
+  isVisible = false
   form!: UntypedFormGroup;
   confirmationCodeLength = 6;
-  timer = 60;
   isLoading = false;
-  type!: string;
 
   /**
    *
@@ -54,6 +54,13 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.getUserDetail();
     this.initForm()
+  }
+
+  /**
+   * 
+   */
+  private changeDataMessage() {
+    this.$message.success(this.$translate.instant('dataSuccessChanged'));
   }
 
   /**
@@ -103,7 +110,7 @@ export class ProfileComponent implements OnInit {
       case 3:
         this.phone = value
         const phone = { phone: value }
-        this.editProfile(phone)
+        this.editProfile(phone, 'phone')
         break
     }
   }
@@ -112,25 +119,17 @@ export class ProfileComponent implements OnInit {
    * 
    * @param request 
    */
-  editProfile(request: any) {
-    this.$userDetail.editSingleFields(request).subscribe((res) => {
-      console.log(res);
+  editProfile(request: any, type?: 'phone') {
+    this.$userDetail.editSingleFields(request).pipe(takeUntil(this.$destroy)).subscribe((res) => {
+      if (type === 'phone') {
+        this.isVisible = true
+        this.$cd.markForCheck()
+        return
+      }
+      this.changeDataMessage()
+      this.$cd.markForCheck()
     })
   }
-
-  /**
-   * 
-   */
-  handleCancel() {
-    this.isVisible = false
-    this.$cd.markForCheck()
-  }
-
-  handleOk() {
-    this.isVisible = false
-    this.$cd.markForCheck()
-  }
-
 
   /**
    *
@@ -146,58 +145,6 @@ export class ProfileComponent implements OnInit {
 
   /**
    *
-   * @param index
-   */
-  setFocus(index: number): void {
-
-    const control = this.form.controls[`activationCode${index}`];
-    if (control?.value) {
-      const elem = this.elementRef.nativeElement.querySelector(
-        `input[id=activationCode${index + 1}]`
-      );
-      console.log(this.elementRef.nativeElement);
-      if (elem) {
-        elem.focus();
-      }
-    }
-  }
-
-  /**
-   *
-   * @param index
-   */
-  backspace(index: number): void {
-    if (index > 0) {
-      console.log(index);
-      const inputClickedBackspase = this.elementRef.nativeElement.querySelector(
-        `input[id=activationCode${index}]`
-      );
-      if (!inputClickedBackspase?.value) {
-        const elemenForFocus = this.elementRef.nativeElement.querySelector(
-          `input[id=activationCode${index - 1}]`
-        );
-        if (elemenForFocus) {
-          elemenForFocus.focus();
-        }
-      }
-    }
-  }
-
-  /**
-   *
-   */
-  startTimer() {
-    let timerInterval = setInterval(() => {
-      --this.timer;
-      this.$cd.markForCheck();
-      if (this.timer === 0) {
-        clearInterval(timerInterval);
-      }
-    }, 1000);
-  }
-
-  /**
-   *
    * @returns
    */
   confirmSecureCode() {
@@ -209,24 +156,13 @@ export class ProfileComponent implements OnInit {
     const request = {
       secure_code: this.getActivationCode()
     };
-  }
 
-  /**
-   *
-   * @param request
-   */
-  private confirmResetPassword(request: {
-    secure_code: string;
-    phone: string;
-  }) {
-
-  }
-
-  /**
-   *
-   * @param request
-   */
-  private confirmRegister(request: { secure_code: string; phone: string }) {
-
+    this.$userDetail.confirmEditProfile(request).pipe(takeUntil(this.$destroy)).subscribe(() => {
+      this.isLoading = false;
+      this.isVisible = false
+      this.changeDataMessage();
+      this.getUserDetail()
+      this.$cd.markForCheck();
+    })
   }
 }

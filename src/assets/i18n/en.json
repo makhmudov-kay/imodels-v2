@@ -583,5 +583,7 @@
   "confirmPassword": "Confirm password",
   "incosistentPassword": "Passwords do not match",
   "save": "Save",
-  "notification": "Notification"
+  "notification": "Notification",
+  "dataSuccessChanged": "The data has been successfully changed",
+  "congratulations": "Congratulations!"
 }

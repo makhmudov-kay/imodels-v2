@@ -1,0 +1,15 @@
+<nz-modal [(nzVisible)]="isVisible" nzTitle="The first Modal" (nzOnCancel)="handleCancel()" [nzFooter]="null"
+  (nzOnOk)="handleOk()">
+  <ng-container *nzModalContent>
+
+    <span class="text-grey text-center text-base font-roboto-regular block mb-7">{{ "confirmLabel" | translate
+      }}</span>
+    <app-inputs-form [form]="form" [confirmationCodeLength]="confirmationCodeLength"></app-inputs-form>
+    <div class="max-w-[400px] w-full mx-auto">
+      <button nz-button [disabled]="form.invalid" nzType="primary" nzShape="round" nzBlock nzSize="large"
+        (click)="confirmSecureCode.emit()" [nzLoading]="isLoading">
+        {{ "confirmBtn" | translate }}
+      </button>
+    </div>
+  </ng-container>
+</nz-modal>

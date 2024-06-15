@@ -583,5 +583,7 @@
   "confirmPassword": "Parolni tasdiqlang",
   "incosistentPassword": "Parollar mos kelmayapti",
   "save": "Saqlash",
-  "notification": "Bildirishma"
+  "notification": "Bildirishma",
+  "dataSuccessChanged": "Ma'lumotlar muvaffaqiyatli o'zgartirildi",
+  "congratulations": "Tabriklaymiz!"
 }

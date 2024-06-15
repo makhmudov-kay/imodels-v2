@@ -583,5 +583,7 @@
   "confirmPassword": "Подтвердите пароль",
   "incosistentPassword": "Пароли не совпадают",
   "save": "Сохранить",
-  "notification": "Уведомление"
+  "notification": "Уведомление",
+  "dataSuccessChanged": "Данные успешно изменены",
+  "congratulations": "Поздравляем!"
 }

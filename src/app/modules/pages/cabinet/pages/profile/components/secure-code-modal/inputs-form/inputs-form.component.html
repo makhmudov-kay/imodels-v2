@@ -1,0 +1,15 @@
+<form nz-form class="max-w-[400px] w-full mx-auto" nzLayout="horizontal" [formGroup]="form">
+  <!-- SECURE CODE -->
+  <div class="w-full flex flex-row gap-3">
+    <nz-form-item *ngFor="
+              let item of [].constructor(confirmationCodeLength);
+              let index = index
+            ">
+      <nz-form-control>
+        <input maxlength="1" id="activationCode{{ index }}" formControlName="activationCode{{ index }}"
+          (ngModelChange)="setFocus(index)" (keydown.backspace)="backspace(index)" nz-input class="text-center"
+          type="text" />
+      </nz-form-control>
+    </nz-form-item>
+  </div>
+</form>

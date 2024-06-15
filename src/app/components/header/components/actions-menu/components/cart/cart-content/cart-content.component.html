@@ -2,43 +2,25 @@
   <h4 class="text-2xl text-primary font-roboto-bold">
     {{ "basket" | translate }}
   </h4>
-  <span
-    (click)="close.emit()"
-    nz-icon
-    nzType="close"
-    nzTheme="outline"
-    class="text-primary cursor-pointer"
-  ></span>
+  <span (click)="close.emit()" nz-icon nzType="close" nzTheme="outline" class="text-primary cursor-pointer"></span>
 </div>
 
-<div
-  class="cart-content flex gap-2 flex-col md:h-[17rem] overflow-auto cart-item-list pr-2 mb-7"
-  *ngIf="cartItems.length > 0; else empty"
->
-  <app-cart-item
-    *ngFor="let item of cartItems"
-    [item]="item"
-    (deleteProduct)="deleteProduct.emit($event)"
-  ></app-cart-item>
+<div class="cart-content flex gap-2 flex-col md:max-h-[17rem] md:h-max overflow-auto cart-item-list pr-2 mb-7"
+  *ngIf="cartItems.length > 0; else empty">
+  <app-cart-item *ngFor="let item of cartItems" [item]="item"
+    (deleteProduct)="deleteProduct.emit($event)"></app-cart-item>
 </div>
 
 <div class="flex items-center justify-between mb-[1.063rem]">
   <h5 class="text-xl font-roboto-regular">{{ "total" | translate }}:</h5>
   <span class="text-xl font-roboto-bold">{{
     totalPrice | myCurrency | async
-  }}</span>
+    }}</span>
 </div>
 
 <div class="flex items-center justify-center">
-  <button
-    nz-button
-    nzType="primary"
-    nzShape="round"
-    nzSize="large"
-    class="flex flex-row items-center justify-center"
-    routerLink="../cart"
-    (click)="close.emit()"
-  >
+  <button nz-button nzType="primary" nzShape="round" nzSize="large" class="flex flex-row items-center justify-center"
+    routerLink="../cart" (click)="close.emit()">
     <span>{{ "viewBasket" | translate }}</span> <svg-right></svg-right>
   </button>
 </div>
@@ -48,6 +30,6 @@
     <svg-cart></svg-cart>
     <span class="text-xl font-roboto-regular">{{
       "emptyBasket" | translate
-    }}</span>
+      }}</span>
   </div>
 </ng-template>

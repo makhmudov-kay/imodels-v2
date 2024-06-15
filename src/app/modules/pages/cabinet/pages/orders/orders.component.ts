@@ -12,13 +12,14 @@ import { NzImageModule } from 'ng-zorro-antd/image';
 import { MyTranslatePipe } from 'src/app/shared/pipes/my-translate.pipe';
 import { MyCurrencyPipe } from 'src/app/shared/pipes/my-currency.pipe';
 import { Router } from '@angular/router';
+import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.less'],
   standalone: true,
-  imports: [NzCollapseModule, NgFor, TranslateModule, SvgDownComponent, NgClass, SvgTrashComponent, NgIf, AsyncPipe, NzResultModule, MyTranslatePipe, MyCurrencyPipe],
+  imports: [NzCollapseModule, NgFor, TranslateModule, SvgDownComponent, NgClass, SvgTrashComponent, NgIf, AsyncPipe, NzResultModule, MyTranslatePipe, MyCurrencyPipe, NzSkeletonModule],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OrdersComponent implements OnInit {

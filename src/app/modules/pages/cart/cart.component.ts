@@ -149,7 +149,7 @@ export class CartComponent implements OnInit {
    */
   createNotification(): void {
     this.$notification.success(
-      'Notification',
+      this.$translate.instant('congratulations'),
       this.$translate.instant('wasCreated')
     );
   }

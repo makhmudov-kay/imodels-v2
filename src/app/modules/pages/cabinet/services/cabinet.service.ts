@@ -51,8 +51,8 @@ export class CabinetService {
    * @param secure_code 
    * @returns 
    */
-  confirmEditProfile(secure_code: string) {
-    return this.$base.post(`${this.url}confirm/`, { secure_code })
+  confirmEditProfile(request: any) {
+    return this.$base.post(`${this.url}confirm/`, request)
   }
 
   /**

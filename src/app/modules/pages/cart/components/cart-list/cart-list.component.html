@@ -1,123 +1,115 @@
 <div class="w-full" (window:resize)="onResize($event)">
-  <table class="w-full" *ngIf="!isMobileSize; else mobile">
-    <thead>
-      <tr class="border-b border-[#ECECEC]">
-        <th
-          class="text-left w-[450px] pb-6 text-xl text-primary font-roboto-bold"
-        >
-          {{ "product" | translate }}
-        </th>
-        <th class="text-left pb-6 text-xl text-primary font-roboto-bold">
-          {{ "price" | translate }}
-        </th>
-        <th class="text-left pb-6 text-xl text-primary font-roboto-bold">
-          {{ "quantity" | translate }}
-        </th>
-        <th class="text-left pb-6 text-xl text-primary font-roboto-bold">
-          {{ "total" | translate }}
-        </th>
-        <th class="text-left pb-6 text-xl text-primary font-roboto-bold">
-          &nbsp;
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let product of cartItems">
-        <td class="pt-6 flex flex-row items-center gap-2">
-          <div class="w-[60px] h-[60px] overflow-hidden">
-            <img
-              nz-image
-              class="w-full h-full object-cover"
-              [nzSrc]="product.image"
-              [nzFallback]="fallback"
-              alt="product image"
-            />
-          </div>
-          <span class="text-sm font-roboto-medium"
-            >{{ product.title | myTranslate | async }}
-            {{ product.title | myTranslate | async }}</span
-          >
-        </td>
-        <td class="pt-6">
-          1 x
-          {{
+  <ng-container *ngIf="cartItems?.length; else empty">
+    <table class="w-full" *ngIf="!isMobileSize; else mobile">
+      <thead>
+        <tr class="border-b border-[#ECECEC]">
+          <th class="text-left w-[450px] pb-6 text-xl text-primary font-roboto-bold">
+            {{ "product" | translate }}
+          </th>
+          <th class="text-left pb-6 text-xl text-primary font-roboto-bold">
+            {{ "price" | translate }}
+          </th>
+          <th class="text-left pb-6 text-xl text-primary font-roboto-bold">
+            {{ "quantity" | translate }}
+          </th>
+          <th class="text-left pb-6 text-xl text-primary font-roboto-bold">
+            {{ "total" | translate }}
+          </th>
+          <th class="text-left pb-6 text-xl text-primary font-roboto-bold">
+            &nbsp;
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of cartItems">
+          <td class="pt-6 flex flex-row items-center gap-2">
+            <div class="w-[60px] h-[60px] overflow-hidden">
+              <img nz-image class="w-full h-full object-cover" [nzSrc]="product.image" [nzFallback]="fallback"
+                alt="product image" />
+            </div>
+            <span class="text-sm font-roboto-medium">{{ product.title | myTranslate | async }}
+              {{ product.title | myTranslate | async }}</span>
+          </td>
+          <td class="pt-6">
+            1 x
+            {{
             product.discount > 0
+            ? (product.new_price | myCurrency | async)
+            : (product.price | myCurrency | async)
+            }}
+          </td>
+          <td class="pt-6">
+            <div class="w-max">
+              <app-calc (countChangeDecrease)="decrease(product.id)" (countChangeIncrease)="increase(product.id)"
+                [count]="product.count"></app-calc>
+            </div>
+          </td>
+          <td class="pt-6">
+            {{
+            product.totalPrice ? (product.totalPrice | myCurrency | async) : 0
+            }}
+          </td>
+          <td class="pt-6">
+            <button (click)="deleteProduct(product.id)">
+              <svg-trash></svg-trash>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <ng-template #mobile>
+      <div *ngFor="let product of cartItems">
+        <div class="border-b border-[#ECECEC] py-2 flex flex-col gap-2">
+          <div class="flex flex-row justify-between gap-2 items-center">
+            <h5 class="text-xl text-primary font-roboto-bold">
+              {{ "product" | translate }}
+            </h5>
+            <a routerLink="../products/{{ product.id }}/" class="text-sm font-roboto-medium text-end">{{ product.title |
+              myTranslate | async }}
+            </a>
+          </div>
+          <div class="flex flex-row justify-between gap-2 items-center">
+            <h5 class="text-xl text-primary font-roboto-bold">
+              {{ "price" | translate }}
+            </h5>
+            <p>
+              {{
+              product.discount > 0
               ? (product.new_price | myCurrency | async)
               : (product.price | myCurrency | async)
-          }}
-        </td>
-        <td class="pt-6">
-          <div class="w-max">
-            <app-calc
-              (countChangeDecrease)="decrease(product.id)"
-              (countChangeIncrease)="increase(product.id)"
-              [count]="product.count"
-            ></app-calc>
+              }}
+            </p>
           </div>
-        </td>
-        <td class="pt-6">
-          {{
-            product.totalPrice ? (product.totalPrice | myCurrency | async) : 0
-          }}
-        </td>
-        <td class="pt-6">
-          <button (click)="deleteProduct(product.id)">
-            <svg-trash></svg-trash>
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
-  <ng-template #mobile>
-    <div *ngFor="let product of cartItems">
-      <div class="border-b border-[#ECECEC] py-2 flex flex-col gap-2">
-        <div class="flex flex-row justify-between gap-2 items-center">
-          <h5 class="text-xl text-primary font-roboto-bold">
-            {{ "product" | translate }}
-          </h5>
-          <a
-            routerLink="../products/{{ product.id }}/"
-            class="text-sm font-roboto-medium text-end"
-            >{{ product.title | myTranslate | async }}
-          </a>
-        </div>
-        <div class="flex flex-row justify-between gap-2 items-center">
-          <h5 class="text-xl text-primary font-roboto-bold">
-            {{ "price" | translate }}
-          </h5>
-          <p>
-            {{
-              product.discount > 0
-                ? (product.new_price | myCurrency | async)
-                : (product.price | myCurrency | async)
-            }}
-          </p>
-        </div>
-        <div class="flex flex-row justify-between gap-2 items-center">
-          <h5 class="text-xl text-primary font-roboto-bold">
-            {{ "quantity" | translate }}
-          </h5>
-          <div>
-            <app-calc
-              (countChangeDecrease)="decrease(product.id)"
-              (countChangeIncrease)="increase(product.id)"
-              [count]="product.count"
-            ></app-calc>
+          <div class="flex flex-row justify-between gap-2 items-center">
+            <h5 class="text-xl text-primary font-roboto-bold">
+              {{ "quantity" | translate }}
+            </h5>
+            <div>
+              <app-calc (countChangeDecrease)="decrease(product.id)" (countChangeIncrease)="increase(product.id)"
+                [count]="product.count"></app-calc>
+            </div>
           </div>
-        </div>
-        <div class="flex flex-row justify-between gap-2 items-center">
-          <h5 class="text-xl text-primary font-roboto-bold">
-            {{ "total" | translate }}
-          </h5>
-          <p>{{ product.totalPrice | myCurrency | async }}</p>
-        </div>
-        <div class="flex flex-row gap-2 justify-end pt-3">
-          <button (click)="deleteProduct(product.id)">
-            <svg-trash></svg-trash>
-          </button>
+          <div class="flex flex-row justify-between gap-2 items-center">
+            <h5 class="text-xl text-primary font-roboto-bold">
+              {{ "total" | translate }}
+            </h5>
+            <p>{{ product.totalPrice | myCurrency | async }}</p>
+          </div>
+          <div class="flex flex-row gap-2 justify-end pt-3">
+            <button (click)="deleteProduct(product.id)">
+              <svg-trash></svg-trash>
+            </button>
+          </div>
         </div>
       </div>
+    </ng-template>
+  </ng-container>
+
+  <ng-template #empty>
+    <div class="flex flex-row justify-center pt-10">
+      <nz-result nzStatus="404" [nzTitle]="'emptyBasket' | translate">
+      </nz-result>
     </div>
   </ng-template>
 </div>

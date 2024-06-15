@@ -3,7 +3,7 @@
     {{'userInfo' | translate}}
   </h2>
 
-  <div class="flex flex-col gap-2" *ngIf="userDetail$ | async as userDetail">
+  <div class="flex flex-col gap-2" *ngIf="userDetail$ | async as userDetail; else skeleton">
     <div class="text-base leading-[18px] font-roboto-medium flex flex-row">
       <span class="text-primary pr-1">{{'firstName' | translate}}:</span>
       <p nz-typography nzEditable [(nzContent)]="first_name" (nzContentChange)="updateProfile(first_name, 1)"></p>
@@ -19,37 +19,20 @@
   </div>
 </div>
 
+<ng-template #skeleton>
+  <div class="text-base leading-[18px] font-roboto-medium flex flex-row">
+    <span class="text-primary pr-1">{{'firstName' | translate}}:</span>
+    <nz-skeleton-element nzType="input" [nzActive]="true" nzSize="small"></nz-skeleton-element>
+  </div>
+  <div class="text-base leading-[18px] font-roboto-medium flex flex-row">
+    <span class="text-primary pr-1">{{'lastName' | translate}}:</span>
+    <nz-skeleton-element nzType="input" [nzActive]="true" nzSize="small"></nz-skeleton-element>
+  </div>
+  <div class="text-base leading-[18px] font-roboto-medium flex flex-row">
+    <span class="text-primary pr-1">{{'phone' | translate}}:</span>
+    <nz-skeleton-element nzType="input" [nzActive]="true" nzSize="small"></nz-skeleton-element>
+  </div>
+</ng-template>
 
-<nz-modal [(nzVisible)]="isVisible" nzTitle="The first Modal" (nzOnCancel)="handleCancel()" [nzFooter]="null"
-  (nzOnOk)="handleOk()">
-  <ng-container *nzModalContent>
-
-    <span class="text-grey text-center text-base font-roboto-regular block mb-7">{{ "confirmLabel" | translate
-      }}</span>
-
-    <form nz-form class="max-w-[400px] w-full mx-auto" nzLayout="horizontal" [formGroup]="form">
-      <!-- SECURE CODE -->
-      <div class="w-full flex flex-row gap-3">
-        <nz-form-item *ngFor="
-              let item of [].constructor(confirmationCodeLength);
-              let index = index
-            ">
-          <nz-form-control>
-            <input maxlength="1" id="activationCode{{ index }}" formControlName="activationCode{{ index }}"
-              (ngModelChange)="setFocus(index)" (keydown.backspace)="backspace(index)" nz-input class="text-center"
-              type="text" />
-          </nz-form-control>
-        </nz-form-item>
-      </div>
-    </form>
-
-    <div class="max-w-[400px] w-full mx-auto">
-      <button nz-button [disabled]="form.invalid" nzType="primary" nzShape="round" nzBlock nzSize="large"
-        (click)="confirmSecureCode()" [nzLoading]="isLoading">
-        {{ "confirmBtn" | translate }}
-      </button>
-    </div>
-
-
-  </ng-container>
-</nz-modal>
+<app-secure-code-modal [form]="form" [confirmationCodeLength]="confirmationCodeLength" [(isVisible)]="isVisible"
+  (confirmSecureCode)="confirmSecureCode()"></app-secure-code-modal>

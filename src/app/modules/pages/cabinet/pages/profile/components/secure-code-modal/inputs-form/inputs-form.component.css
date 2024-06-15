@@ -1,0 +1,7 @@
+.ant-input {
+    height: 56px !important;
+    border-radius: 10px !important;
+    display: flex;
+    align-items: center;
+    padding: 0 16px !important;
+}
