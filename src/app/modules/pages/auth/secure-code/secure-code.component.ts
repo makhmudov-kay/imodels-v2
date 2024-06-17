@@ -167,6 +167,7 @@ export class SecureCodeComponent implements OnInit {
       secure_code: this.getActivationCode(),
       phone: this.phone,
     };
+    console.log(this.type);
 
     if (this.type == '1') {
       this.confirmRegister(request);
@@ -208,8 +209,8 @@ export class SecureCodeComponent implements OnInit {
    * @param request
    */
   private confirmRegister(request: { secure_code: string; phone: string }) {
-    this.$auth.confirm(request).pipe(takeUntil(this.$destroy)).subscribe((e: any) => {
-      if (e.detail === 'User activated') {
+    this.$auth.confirm(request).pipe(takeUntil(this.$destroy)).subscribe({
+      next: (e: any) => {
         this.form.reset();
         this.$notification.success(
           this.$translate.instant('notification'),
@@ -218,6 +219,8 @@ export class SecureCodeComponent implements OnInit {
         this.router.navigate(['../sign-up'], {
           relativeTo: this.route,
         });
+      }, error: (err) => {
+        console.error(err);
       }
     });
   }
