@@ -1,11 +1,7 @@
 <div class="container mx-auto md:px-0 px-1.5">
   <div class="flex sm:flex-row flex-col items-center">
     <div class="h-[500px] flex-1">
-      <img
-        class="h-full w-full object-cover"
-        src="./assets/image/about-section.jpg"
-        alt="about-section-image"
-      />
+      <img class="h-full w-full object-cover" [src]="img" alt="about-section-image" />
     </div>
 
     <div class="flex-1">
@@ -13,20 +9,15 @@
         <span class="absolute left-[40%] top-0 -z-10">
           <svg-med-plus></svg-med-plus>
         </span>
-        <h3
-          class="lg:text-[45px] text-[32px] text-primary uppercase font-roboto-black"
-        >
-          {{ "aboutUs" | translate }}
+        <h3 class="lg:text-[45px] text-[32px] text-primary uppercase font-roboto-black">
+          {{ title | translate }}
         </h3>
         <p class="lg:text-xl text-sm font-roboto-regular">
-          {{ "aboutUsText" | translate }}
+          {{ text | translate }}
         </p>
-        <a
-          class="text-base font-roboto-medium text-primary flex flex-row items-center gap-1"
-          routerLink="about-us"
-          >{{ "readMore" | translate }}
-          <svg-right [color]="'#38B6C2'"></svg-right
-        ></a>
+        <a class="text-base font-roboto-medium text-primary flex flex-row items-center gap-1" routerLink="about-us"
+          *ngIf="!isAboutPage">{{ "readMore" | translate }}
+          <svg-right [color]="'#38B6C2'"></svg-right></a>
         <span class="absolute right-[20%] bottom-0 -z-10">
           <svg-med-plus></svg-med-plus>
         </span>

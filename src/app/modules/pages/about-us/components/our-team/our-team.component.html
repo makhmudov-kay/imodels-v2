@@ -1,0 +1,26 @@
+<div class="container mx-auto md:px-0 px-1.5 md:py-[100px] py-[50px]">
+  <app-section-main-title>{{ 'meetOurTeam' | translate }}</app-section-main-title>
+
+
+  <div class="relative">
+    <div class="flex flex-row gap-4 items-center mb-3 absolute top-0 left-0">
+      <span class="block w-[100px] h-[2px] bg-[#D9D9D9]" *ngFor="let dot of [].constructor(3); let id = index"
+        [ngClass]="{active: id == activeSlide}"></span>
+    </div>
+    <swiper #swiper [slidesPerView]="1" [spaceBetween]="10">
+      <ng-template swiperSlide *ngFor="let team of ourTeam">
+        <div class="flex flex-row">
+          <div class="flex-1">
+            <div>
+              <h4 class="text-3xl font-roboto-bold uppercase mb-3 mt-6">{{team.title | translate}}</h4>
+              <p class="font-roboto-regular text-xl leading-[30px]">{{team.text | translate}}</p>
+            </div>
+          </div>
+          <div class="flex-1 overflow-hidden">
+            <img class="w-full h-full object-cover" [src]="team.img" alt="img">
+          </div>
+        </div>
+      </ng-template>
+    </swiper>
+  </div>
+</div>

@@ -9,20 +9,39 @@
 </div>
 
 <!-- TIMELINE -->
-<div class="container mx-auto md:px-0 px-1.5 md:py-[50px] py-[20px]">
+<div class="container mx-auto md:px-0 px-1.5 md:py-[50px] py-[20px]" (window:resize)="onResize($event)">
   <div class="max-w-[768px] w-full">
-    <h3 class="text-primary uppercase text-[45px] leading-[50px] font-roboto-bold mb-6">{{'history' | translate}}</h3>
-    <p class="text-xl font-roboto-regular leading-6">{{'historyDescription' | translate}}</p>
+    <h3 class="text-primary uppercase text-[45px] text-center lg:text-left leading-[50px] font-roboto-bold mb-6">
+      {{'history' | translate}}</h3>
+    <p class="text-sm lg:text-xl font-roboto-regular leading-4 lg:leading-6">{{'historyDescription' | translate}}</p>
   </div>
 
-  <div class="pt-10 pb-36">
-    <nz-timeline nzMode="alternate">
-      <nz-timeline-item><app-timeline-card></app-timeline-card></nz-timeline-item>
-      <nz-timeline-item><app-timeline-card></app-timeline-card></nz-timeline-item>
-      <nz-timeline-item><app-timeline-card></app-timeline-card></nz-timeline-item>
-      <nz-timeline-item><app-timeline-card></app-timeline-card></nz-timeline-item>
-      <nz-timeline-item><app-timeline-card></app-timeline-card></nz-timeline-item>
-      <nz-timeline-item><app-timeline-card></app-timeline-card></nz-timeline-item>
+  <div class="pt-10 lg:pb-36 pb-7">
+    <nz-timeline [nzMode]="isMobileSize ? 'left' :'alternate'">
+      <nz-timeline-item *ngFor="let item of stories">
+        <app-timeline-card [story]="item"></app-timeline-card>
+      </nz-timeline-item>
     </nz-timeline>
   </div>
 </div>
+
+<!-- MISSION -->
+<div class="container mx-auto md:px-0 px-1.5 md:mb-24 mb-8">
+  <div class="w-full">
+    <h3 class="text-primary uppercase text-[45px] text-center lg:text-left leading-[50px] font-roboto-bold mb-10">
+      {{'misVisVal' | translate}}</h3>
+
+    <div class="flex md:flex-row flex-col md:gap-6 gap-0 justify-between w-full">
+      <div *ngFor="let card of mission; let isLast = last" class="flex md:flex-row flex-col">
+        <app-mission-card [card]="card"></app-mission-card>
+        <nz-divider [nzType]="isMobileSize ? 'horizontal' : 'vertical'" *ngIf="!isLast"></nz-divider>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- OUR STORY -->
+<app-about-section [isAboutPage]="true" [title]="'ourStory'" [text]="'ourStoryText'"></app-about-section>
+
+<!-- OUR TEAM -->
+ <app-our-team></app-our-team>
