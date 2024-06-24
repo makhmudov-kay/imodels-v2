@@ -1,3 +1,45 @@
-<p>
-  individuals works!
-</p>
+<div class="bg-orange h-[500px] ">
+  <div class="container mx-auto md:px-0 px-1.5 flex flex-col justify-center items-center h-full relative">
+    <img class="absolute top-14 left-12" src="./assets/image/Union.png" alt="img">
+    <h2 class="text-white text-center text-[55px] font-roboto-black uppercase z-10">{{ 'individuals' | translate }}</h2>
+    <p class="text-center text-white text-[24px] font-roboto-regular z-10">{{ 'individualsBanner' | translate }}</p>
+
+    <img class="absolute bottom-0 right-0" src="./assets/image/ind-banner-img.png" alt="img">
+  </div>
+</div>
+
+<div class="container mx-auto md:px-0 px-1.5 mt-10">
+  <div class="flex flex-row flex-wrap gap-y-14 gap-x-20">
+    <div *ngFor="let adv of advantages; let i = index" class="flex flex-row flex-[30%] gap-3 items-center">
+      <div class="text-8xl font-roboto-bold text-orange">{{i + 1}}</div>
+      <div class="text-sm font-roboto-bold">{{adv | translate}}</div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container mx-auto md:px-0 px-1.5 pt-20">
+  <div class="flex flex-col gap-10">
+    <div *ngFor="let item of products; let i = index" [ngClass]="{'flex-row-reverse': i % 2 == 1}"
+      class="flex flex-row items-center justify-around gap-10">
+      <div class="flex-1">
+        <img [src]="item.img" alt="img">
+      </div>
+      <div class="flex-1">
+        <h3 class="text-center text-[42px] text-orange font-roboto-bold uppercase mb-3">{{item.title | translate}}</h3>
+        <p class="mb-0 text-sm font-roboto-medium text-justify">{{item.description | translate}}</p>
+        <button [routerLink]="item.link" class="pt-3 block mx-auto" nz-button nzType="primary"
+          nzSize="large">{{'readMore' | translate}}</button>
+      </div>
+      <div class="flex-1">
+        <h5 class="text-[16px] font-roboto-bold text-center mb-3" *ngIf="item.listTitle">{{item.listTitle | translate}}
+        </h5>
+        <ul class="flex flex-col gap-2">
+          <li *ngFor="let list of item.list" class="flex flex-row gap-2 items-center text-sm font-roboto-regular"> <span
+              class="block"><span class="block rounded-full w-[8px] h-[8px] bg-orange pt-1"></span></span>{{list |
+            translate}}"</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

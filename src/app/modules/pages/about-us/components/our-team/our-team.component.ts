@@ -1,9 +1,10 @@
 import { NgClass, NgFor } from '@angular/common';
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewChild, inject } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { SectionMainTitleComponent } from 'src/app/shared/components/section-title/section-title/section-title.component';
 import { SwiperComponent, SwiperModule, } from 'swiper/angular';
 import { TEAM_CARD } from './team-info';
+import Swiper from 'swiper';
 
 export interface Team {
   title: string;
@@ -16,23 +17,22 @@ export interface Team {
   templateUrl: './our-team.component.html',
   styleUrls: ['./our-team.component.css'],
   standalone: true,
-  imports: [SwiperModule, NgFor, TranslateModule, SectionMainTitleComponent, NgClass]
+  imports: [SwiperModule, NgFor, TranslateModule, SectionMainTitleComponent, NgClass],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class OurTeamComponent implements OnInit, AfterViewInit {
+export class OurTeamComponent implements AfterViewInit {
   ourTeam = TEAM_CARD
-
-  @ViewChild('swiper')
-  swiper!: SwiperComponent;
-
+  @ViewChild('swiper', { static: false }) swiper!: SwiperComponent;
   activeSlide = 0
 
-  constructor() { }
+  private cd = inject(ChangeDetectorRef)
 
-  ngOnInit() {
+  ngAfterViewInit() {
+    this.changeSlide();
   }
 
-  ngAfterViewInit(): void {
-    this.activeSlide = this.swiper.swiperRef.activeIndex
+  changeSlide() {
+    this.activeSlide = this.swiper.swiperRef.realIndex;
+    this.cd.markForCheck()
   }
-
 }
