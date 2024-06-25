@@ -1,3 +1,54 @@
-<p>
-  professionals works!
-</p>
+<div class="bg-primary h-[500px] mb-24">
+  <div
+    class="container mx-auto md:px-0 px-1.5 flex flex-col justify-center items-center md:items-start h-full relative">
+    <img class="absolute top-14 left-12" src="./assets/image/Union.png" alt="img">
+    <h2
+      class="text-white md:text-left text-center text-[30px] md:text-[40px] lg:text-[55px] font-roboto-black uppercase z-10">
+      {{ 'professionalsTitle' | translate }}</h2>
+    <p
+      class="text-center md:text-left max-w-[800px] w-full text-white text-sm lg:text-[24px] font-roboto-regular leading-[20px] lg:leading-[30px] z-10">
+      {{
+      'advantagesBanerDesc' | translate }}</p>
+
+    <img class="md:block hidden absolute bottom-0 right-0" src="./assets/image/pro-banner.png" alt="img">
+  </div>
+</div>
+
+
+<div class="lg:mb-20 md:mb-10 mb-5 container mx-auto md:px-0 px-1.5">
+  <app-section-main-title>{{ 'whatBenefit' | translate }}</app-section-main-title>
+</div>
+
+<div class="relative container mx-auto md:px-0 px-1.5">
+  <div class="hidden md:flex flex-row gap-4 items-center mb-3 absolute top-0 left-0">
+    <span class="block w-[100px] h-[2px] bg-[#D9D9D9]" *ngFor="let dot of [].constructor(3); let id = index"
+      [ngClass]="{active: id == activeSlide}"></span>
+  </div>
+  <swiper #swiper [slidesPerView]="1" [spaceBetween]="10">
+    <ng-template swiperSlide *ngFor="let item of benefitsData">
+      <div class="flex md:flex-row flex-col gap-2">
+        <div class="flex-1">
+          <div>
+            <h4 class="lg:text-3xl text-xl font-roboto-bold uppercase mb-3 mt-6">{{item.title | translate}}</h4>
+            <p class="font-roboto-regular lg:text-xl text-sm lg:leading-[30px] mb-5">{{item.description | translate}}
+            </p>
+
+            <ul class="flex flex-col gap-2">
+              <li *ngFor="let list of item.list" class="flex flex-row gap-2 items-center text-sm font-roboto-regular">
+                <span class="block"><span class="block rounded-full w-[8px] h-[8px] bg-primary pt-1"></span></span>
+                <span class="lg:text-xl text-sm font-roboto-regular lg:leading-[30px]">
+                  {{list | translate}}
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="flex-1 overflow-hidden">
+          <img class="w-full h-full object-cover" [src]="item.img" alt="img">
+        </div>
+      </div>
+    </ng-template>
+  </swiper>
+</div>
+
+<app-list-of-product [products]="products"></app-list-of-product>

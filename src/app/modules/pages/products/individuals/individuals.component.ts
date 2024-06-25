@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { ListOfProductComponent } from 'src/app/shared/components/list-of-product/list-of-product.component';
 
 export interface IndividualProductsData {
   title: string;
@@ -19,7 +20,7 @@ export interface IndividualProductsData {
   templateUrl: './individuals.component.html',
   styleUrls: ['./individuals.component.css'],
   standalone: true,
-  imports: [TranslateModule, NgFor, NgIf, NgClass, NzButtonModule, RouterLink]
+  imports: [TranslateModule, NgFor, NgIf, NgClass, NzButtonModule, RouterLink, ListOfProductComponent]
 })
 export class IndividualsComponent {
   advantages = [
