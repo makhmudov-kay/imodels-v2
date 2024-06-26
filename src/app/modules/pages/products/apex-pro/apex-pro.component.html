@@ -1,4 +1,4 @@
-<div class="bg-primary h-[500px] ">
+<div class="bg-primary h-[500px] mb-20">
   <div class="container mx-auto md:px-0 px-1.5 relative h-full">
     <div class="flex flex-col gap-3 h-full justify-center">
       <h3 class="text-white text-center text-[30px] md:text-[40px] lg:text-[55px] font-roboto-black uppercase z-10">Apex
@@ -8,5 +8,35 @@
         {{ "apexProBannerText" | translate }}</p>
     </div>
     <img class="absolute bottom-0 right-0 block h-[400px]" src="./assets/image/apex-pro-banner.png" alt="img">
+  </div>
+</div>
+
+<div class="container mx-auto md:px-0 px-1.5">
+  <div class="flex flex-col gap-16">
+    <div class="flex flex-col gap-8" *ngFor="let item of dataInformations; let id = index">
+      <div class="flex flex-row gap-5" [ngClass]="{'flex-row-reverse': id % 2 == 1}">
+        <div class="flex-1 h-[610px]"><img class="w-full h-full object-cover" [src]="item.img" alt="img">
+        </div>
+        <div class="flex-1">
+          <h3 class="font-roboto-bold text-3xl mb-4">{{item.title | translate}}</h3>
+          <p class="text-lg font-roboto-medium">{{item.text| translate}}</p>
+          <ul class="flex flex-col gap-2 pl-4 pt-3">
+            <li class="flex flex-row gap-2 items-center text-sm font-roboto-medium" *ngFor="let list of item.list">
+              <span class="block"><span class="block rounded-full w-[8px] h-[8px] bg-primary pt-1"></span></span>{{list
+              |
+              translate}}"
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="flex flex-row gap-6 justify-evenly">
+        <div class="flex flex-col gap-3 items-center" *ngFor="let item of item.imageList">
+          <div class="w-[130px] h-[130px]">
+            <img class="w-full h-full object-cover" [src]="item.img" alt="img">
+          </div>
+          <h4 class="text-sm font-roboto-medium text-center uppercase">{{item.title| translate}}</h4>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
