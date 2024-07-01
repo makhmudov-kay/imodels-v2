@@ -1,27 +1,59 @@
-<div class="flex flex-col gap-5 max-w-[378px] cursor-pointer">
-  <div class="h-[250px]">
+<div
+  class="flex gap-5 max-w-[378px] cursor-pointer"
+  [ngClass]="{
+    'max-w-full': isFirst || isBlogList || isSmCard,
+    'items-center': isSmCard,
+    'flex-row': isSmCard,
+    'flex-col': !isSmCard
+  }"
+>
+  <div
+    class="h-[250px] w-full"
+    [ngClass]="{
+      'h-[600px]': isFirst,
+      'h-[350px]': isBlogList && !isFirst,
+      'h-[200px]': isSmCard,
+      'flex-initial': isSmCard,
+      'w-[40%]': isSmCard
+    }"
+  >
     <img
-      class="h-full w-full object-cover"
-      src="./assets/image/about-section.jpg"
+      class="h-full w-full object-contain"
+      [src]="data.preview_image"
       alt="blog-card-img"
     />
   </div>
-  <div class="flex flex-col gap-2">
-    <h3 class="truncate max-w-[305px] text-2xl font-roboto-medium">
-      Lorem ipsum dolor sit amet consecter
+  <div
+    class="flex flex-col gap-2"
+    [ngClass]="{
+      'p-3': isBlogList || isSmCard,
+      'flex-initial': isSmCard,
+      'w-[60%]': isSmCard
+    }"
+  >
+    <h3
+      class="truncate max-w-[305px] text-2xl font-roboto-medium"
+      [ngClass]="{ 'max-w-full': isBlogList, 'line-clamp-1': !isSmCard, }"
+    >
+      {{ data.title | myTranslateSync }}
     </h3>
     <p class="text-base font-roboto-regular line-clamp-2">
-      Lorem ipsum dolor sit amet consectetur. Eget in vel tincidunt nibh
-      tincidunt tortor. Scelerisque risus feugiat aliquam etiam pulvinar egestas
-      imperdiet ultrices ac. Auctor eleifend nec ultrices nisi placerat euismod.
-      Blandit nunc sit varius placerat ante tellus.
+      {{ data.description | myTranslateSync }}
     </p>
-    <div class="flex flex-row gap-2.5 items-center">
-      <span class="text-grey text-xs font-roboto-regular">16 марта 17:17</span>
-      <span
-        class="text-grey flex flex-row text-xs font-roboto-regular items-center gap-[2px]"
-        ><svg-eye class="flex"></svg-eye> 10017</span
-      >
+    <div class="flex flex-row items-center">
+      <div class="flex flex-row gap-2.5 items-center justify-between w-full">
+        <span class="text-grey text-xs font-roboto-regular">{{
+          data.created_at | date : "dd.MM.yyyy HH:mm"
+        }}</span>
+        <!-- <span
+          class="text-grey flex flex-row text-xs font-roboto-regular items-center gap-[2px]"
+          ><svg-eye class="flex"></svg-eye> 10017</span
+        > -->
+
+        <button nz-button nzType="link" [routerLink]="['/blog', data.id]">
+          {{ "readMore" | translate }}
+        </button>
+      </div>
     </div>
   </div>
 </div>

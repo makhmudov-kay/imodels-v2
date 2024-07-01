@@ -1,3 +1,48 @@
-<p>
-  blog works!
-</p>
+<div class="container mx-auto md:px-0 px-1.5 py-10">
+  <div *ngIf="blog && blog.results.length; else empty">
+    <div class="flex flex-row gap-8">
+      <div class="flex-initial w-[70%]">
+        <h3 class="text-primary uppercase text-[45px] font-roboto-bold mb-6">
+          {{ "recent" | translate }}
+        </h3>
+
+        <div class="flex flex-row flex-wrap gap-7">
+          <div
+            [ngClass]="{ isFirst: isFirst }"
+            class="flex-initial lg:max-w-[50%] w-full inline-block shadow-card"
+            *ngFor="let blog of blog.results; let isFirst = first"
+          >
+            <app-blog-card
+              [data]="blog"
+              [isFirst]="isFirst"
+              [isBlogList]="true"
+            ></app-blog-card>
+          </div>
+        </div>
+
+        <div
+          class="text-center mt-5"
+          (click)="handlePageIndexChange(pageIndex + 1)"
+          *ngIf="blog.count > PAGE_SIZE * pageIndex"
+        >
+          <button nz-button nzType="default">
+            <span>{{ "morePosts" | translate }}</span>
+          </button>
+        </div>
+      </div>
+      <div class="flex-initial w-[30%]">
+        <h3 class="text-primary uppercase text-[30px] font-roboto-bold mb-6">
+          {{ "mostPopular" | translate }}
+        </h3>
+
+        <div *ngIf="popular$ | async as blog" class="flex flex-col gap-8">
+          <div class="inline-block shadow-card" *ngFor="let blog of blog">
+            <app-blog-card [data]="blog" [isSmCard]="true"></app-blog-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #empty></ng-template>
+</div>

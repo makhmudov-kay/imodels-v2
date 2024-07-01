@@ -1,0 +1,113 @@
+.analytic__work {
+  margin-top: 150px;
+
+  .work__wraper {
+    margin-top: 100px;
+
+    h2 {
+      font-size: 130px;
+      line-height: 100%;
+
+      @media (min-width: 992px) and (max-width: 1500px) {
+        font-size: 110px;
+      }
+
+      @media (min-width: 992px) and (max-width: 1400px) {
+        font-size: 80px;
+      }
+
+      @media (min-width: 992px) and (max-width: 1300px) {
+        font-size: 68px;
+      }
+
+      @media (min-width: 992px) and (max-width: 1200px) {
+        font-size: 58px;
+      }
+
+      @media (max-width: 992px) {
+        font-size: 48px;
+      }
+
+      @media (max-width: 567px) {
+        font-size: 38px;
+      }
+    }
+  }
+
+  .work__h5 {
+    margin-top: 80px;
+    margin-left: 50px;
+    width: 65%;
+
+    @media (max-width: 992px) {
+      margin-top: 50px;
+      margin-left: 0px;
+      width: 100%;
+    }
+
+    h5 {
+      font-weight: 600;
+      font-size: 22px;
+      line-height: 170%;
+
+      @media (min-width: 992px) and (max-width: 1500px) {
+        font-size: 18px;
+      }
+
+      @media (min-width: 992px) and (max-width: 1200px) {
+        font-size: 16px;
+      }
+
+      @media (max-width: 992px) {
+        font-size: 18px;
+      }
+    }
+  }
+
+  .works {
+    margin-top: 100px;
+
+    .work {
+      @media (max-width: 992px) {
+        margin-bottom: 40px;
+      }
+
+      .number {
+        font-weight: 900;
+        line-height: 100%;
+        -webkit-text-stroke: 1px #38b6c2;
+        color: transparent;
+        font-size: 96px;
+        font-family: Acherus-Bold;
+        position: relative;
+      }
+
+      .title {
+        font-size: 18px;
+        line-height: 100%;
+        color: #38b6c2;
+        font-family: Roboto-Bold;
+        margin-top: 25px;
+        margin-bottom: 30px;
+      }
+
+      .text {
+        font-size: 0.85rem;
+      }
+    }
+
+    &__img {
+      height: 45vw;
+      width: 100%;
+      background-size: contain;
+      background-position: center;
+      background-attachment: fixed;
+      margin-top: 100px;
+      background-repeat: no-repeat;
+
+      @media (max-width: 992px) {
+        background-attachment: unset !important;
+      }
+    }
+  }
+}

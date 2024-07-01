@@ -1,3 +1,28 @@
-<p>
-  training-station works!
-</p>
+<div class="container mx-auto md:px-0 px-1.5 lg:pt-16 md:pt-10 pt-6 pb-8">
+  <div class="grid grid-cols-12 md:gap-[30px] gap-5">
+    <div class="lg:col-span-6 col-span-12">
+      <app-product-detail-slider
+        [slides]="productInfo.slides"
+        [title]="productInfo.title"
+        [isStatic]="true"
+      >
+      </app-product-detail-slider>
+    </div>
+    <div class="lg:col-span-6 col-span-12">
+      <h3
+        class="text-2xl uppercase text-primary font-roboto-medium mb-3 lg:text-left text-center"
+      >
+        {{ productInfo.title | myTranslate | async }}
+      </h3>
+
+      <p class="font-roboto-medium">
+        {{ productInfo.contentTitle | translate }}
+      </p>
+      <p *ngFor="let item of productInfo.text" class="font-roboto-regular">
+        {{ item | translate }}
+      </p>
+    </div>
+  </div>
+</div>
+
+<app-contact-banner><app-contact-form></app-contact-form></app-contact-banner>

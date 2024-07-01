@@ -1,0 +1,29 @@
+<div class="container mx-auto md:px-0 px-1.5 py-10">
+  <div class="blog-detail__wrapper" *ngIf="blog$ | async as blog">
+    <!-- TODO: IMPLEMENT OR REMOVE -->
+    <!-- <app-categories [isDetail]="true"></app-categories> -->
+    <div class="blog-detail__info">
+      <div class="blog-detail__info__left">
+        <div class="date-view-style blog-detail__info__left__date">
+          {{ blog.created_at | date : "dd.MM.yyyy" }}
+        </div>
+        <h3 class="blog-detail__info__left__title">
+          {{ blog.title | myTranslate | async }}
+        </h3>
+        <div class="blog-detail__info__left__text">
+          <!-- {{ blog.description | myTranslate | async }} -->
+          <div
+            *ngIf="blog.description | myTranslate | async as desc"
+            [innerHTML]="desc"
+          ></div>
+        </div>
+      </div>
+      <div class="blog-detail__info__right">
+        <img [src]="blog.preview_image" alt="image" />
+      </div>
+    </div>
+    <div class="divider"></div>
+
+    <div [innerHTML]="blog.text | myTranslate | async"></div>
+  </div>
+</div>

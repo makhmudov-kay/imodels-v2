@@ -1,0 +1,35 @@
+<section class="analytic__feature analytic__apex-pro">
+  <div class="grid grid--md">
+    <div class="flex flex-wrap">
+      <div class="w-full lg:w-full">
+        <div class="feature" [ngClass]="imageInfo.type">
+          <div class="feature__img">
+            <img [src]="imageInfo.img" alt="apex" />
+
+            <div
+              class="pkt"
+              *ngFor="let info of imageInfo.info; let id = index"
+              [ngClass]="'pkt' + (id + 1)"
+              (click)="onSelectInfo(id)"
+            >
+              <span></span>
+              <div
+                class="info_pkt"
+                [ngClass]="'info_pkt' + (id + 1)"
+                [ngStyle]="{ display: selectedId === id ? 'block' : 'none' }"
+              >
+                <img [src]="info.img" />
+                <div class="title">
+                  {{ info.title | translate }}
+                </div>
+                <div class="text">
+                  {{ info.text | translate }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

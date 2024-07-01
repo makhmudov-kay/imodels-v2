@@ -1,48 +1,68 @@
 <div>
-  <h3 class="text-2xl uppercase text-primary font-roboto-medium mb-3 lg:text-left text-center">
-    {{product.title | myTranslate | async }}
+  <h3
+    class="text-2xl uppercase text-primary font-roboto-medium mb-3 lg:text-left text-center"
+  >
+    {{ product.title | myTranslate | async }}
   </h3>
 
-  <div class="lg:mb-16 mb-5 lg:h-[175px] lg:overflow-auto scroll"
-    [innerHTML]="product.information | myTranslate | async">
-  </div>
+  <div
+    class="lg:mb-16 mb-5 lg:h-[175px] lg:overflow-auto scroll"
+    [innerHTML]="product.information | myTranslate | async"
+  ></div>
 
   <!-- CONFIGURATOR -->
   <ng-container *ngIf="product.items; else single">
     <button
-      class="px-[40px] py-[15px] bg-orange text-white rounded-[100px] text-base font-roboto-bold
-      hover:bg-[#feb368] active:bg-[#d19151] focus:outline-none active:ring active:ring-[#feb369] transition-all mb-5 mx-auto lg:mx-0 lg:inline block"
-      (click)="toggleConfigurator()">
+      class="px-[40px] py-[15px] bg-orange text-white rounded-[100px] text-base font-roboto-bold hover:bg-[#feb368] active:bg-[#d19151] focus:outline-none active:ring active:ring-[#feb369] transition-all mb-5 mx-auto lg:mx-0 lg:inline block"
+      (click)="toggleConfigurator()"
+    >
       {{ "createYourOwnSet" | translate }}
     </button>
 
     <div *ngIf="configurator">
-      <app-product-detail-item [product]="product.main_item" (addOrDeleteProduct)="addOrDeleteProduct($event)"
-        [configuratorId]="product.is_configurator ? product.id : null" [isConfigurator]="product.is_configurator"
-        [mainItem]="true">
+      <app-product-detail-item
+        [product]="product.main_item"
+        (addOrDeleteProduct)="addOrDeleteProduct($event)"
+        [configuratorId]="product.is_configurator ? product.id : null"
+        [isConfigurator]="product.is_configurator"
+        [mainItem]="true"
+      >
       </app-product-detail-item>
 
       <div class="pt-5">
         <nz-collapse nzAccordion nzGhost>
-          <nz-collapse-panel *ngFor="let module of product.items" [nzHeader]="header" [nzActive]="false"
-            [nzExpandedIcon]="expandedIcon" #p>
+          <nz-collapse-panel
+            *ngFor="let module of product.items"
+            [nzHeader]="header"
+            [nzActive]="false"
+            [nzExpandedIcon]="expandedIcon"
+            #p
+          >
             <!-- MODULE ITEM -->
             <ng-container *ngFor="let product of module.product">
-              <app-product-detail-item [product]="product"
+              <app-product-detail-item
+                [product]="product"
                 [configuratorId]="product.is_configurator ? product.id : null"
-                (addOrDeleteProduct)="addOrDeleteProduct($event)" [isConfigurator]="product.is_configurator">
+                (addOrDeleteProduct)="addOrDeleteProduct($event)"
+                [isConfigurator]="product.is_configurator"
+              >
               </app-product-detail-item>
               <nz-divider class="my-2"></nz-divider>
             </ng-container>
 
             <ng-template #expandedIcon let-active>
               {{ active }}
-              <span nz-icon [nzType]="p.nzActive ? 'minus' : 'plus'"
-                class="flex flex-row items-center pr-1 select-none"></span>
+              <span
+                nz-icon
+                [nzType]="p.nzActive ? 'minus' : 'plus'"
+                class="flex flex-row items-center pr-1 select-none"
+              ></span>
             </ng-template>
             <ng-template #header>
-              <span class="select-none text-base font-roboto-bold leading-[18px]">{{ module.type | myTranslate | async
-                }}</span>
+              <span
+                class="select-none text-base font-roboto-bold leading-[18px]"
+                >{{ module.type | myTranslate | async }}</span
+              >
             </ng-template>
           </nz-collapse-panel>
         </nz-collapse>
@@ -57,8 +77,11 @@
 
   <!-- SINGLE PRODUCT -->
   <ng-template #single>
-    <app-product-detail-item [product]="singleProduct" (addOrDeleteProduct)="addOrDeleteProduct($event)"
-      [single]="true">
+    <app-product-detail-item
+      [product]="singleProduct"
+      (addOrDeleteProduct)="addOrDeleteProduct($event)"
+      [single]="true"
+    >
     </app-product-detail-item>
     <nz-divider></nz-divider>
     <div class="flex flex-col lg:items-end items-center mb-[30px]">
@@ -70,54 +93,62 @@
   <div class="flex flex-col lg:items-end items-center">
     <ng-container *ngIf="product.items; else singleBtn">
       <button
-        class="px-[40px] py-[15px] bg-primary text-white rounded-[100px] text-base font-roboto-bold
-      hover:bg-[#33CCCC] active:bg-[#009999] focus:outline-none active:ring active:ring-[#5CCCCC] transition-all flex flex-row items-center gap-2 disabled:bg-grey disabled:ring-0 w-full md:w-max md:justify-start justify-center"
-        *ngIf=" configurator" [disabled]="this.needToAddcart.length === 0 || !isConfiguratorAdded"
-        (click)="addToCart()">
+        class="px-[40px] py-[15px] bg-primary text-white rounded-[100px] text-base font-roboto-bold hover:bg-[#33CCCC] active:bg-[#009999] focus:outline-none active:ring active:ring-[#5CCCCC] transition-all flex flex-row items-center gap-2 disabled:bg-grey disabled:ring-0 w-full md:w-max md:justify-start justify-center"
+        *ngIf="configurator"
+        [disabled]="this.needToAddcart.length === 0 || !isConfiguratorAdded"
+        (click)="addToCart()"
+      >
         {{ "addToCart" | translate }} <svg-cart [color]="'#fff'"></svg-cart>
       </button>
     </ng-container>
     <ng-template #singleBtn>
       <button
-        class="px-[40px] py-[15px] bg-primary text-white rounded-[100px] text-base font-roboto-bold
-      hover:bg-[#33CCCC] active:bg-[#009999] focus:outline-none active:ring active:ring-[#5CCCCC] transition-all flex flex-row items-center gap-2 disabled:bg-grey disabled:ring-0 w-full md:w-max md:justify-start justify-center"
-        [disabled]="this.needToAddcart.length === 0" (click)="addToCart()">
+        class="px-[40px] py-[15px] bg-primary text-white rounded-[100px] text-base font-roboto-bold hover:bg-[#33CCCC] active:bg-[#009999] focus:outline-none active:ring active:ring-[#5CCCCC] transition-all flex flex-row items-center gap-2 disabled:bg-grey disabled:ring-0 w-full md:w-max md:justify-start justify-center"
+        [disabled]="this.needToAddcart.length === 0"
+        (click)="addToCart()"
+      >
         {{ "addToCart" | translate }} <svg-cart [color]="'#fff'"></svg-cart>
       </button>
     </ng-template>
   </div>
-
 </div>
 
-
 <div
-  class="flex flex-col gap-2 justify-between items-start bg-white border fixed bottom-0 left-0 right-0 z-20 p-2 sm:hidden"
-  *ngIf="!product.items">
+  class="flex flex-col gap-2 justify-between items-start bg-white shadow-price fixed bottom-0 left-0 right-0 z-20 p-2 sm:hidden"
+  *ngIf="!product.items"
+>
   <div class="flex flex-row justify-between w-full">
     <div class="font-roboto-medium">
-      {{'price' | translate}}:
+      {{ "price" | translate }}:
       {{
-      singleProduct.new_price
-      ? (singleProduct.new_price | myCurrency | async)
-      : (singleProduct.price | myCurrency | async)
+        singleProduct.new_price
+          ? (singleProduct.new_price | myCurrency | async)
+          : (singleProduct.price | myCurrency | async)
       }}
     </div>
     <div class="font-roboto-medium">
-      {{ "total" | translate }}:  {{ totalPrice ? (totalPrice | myCurrency | async) : 0 }}
+      {{ "total" | translate }}: 
+      {{ totalPrice ? (totalPrice | myCurrency | async) : 0 }}
     </div>
   </div>
 
   <div class="flex flex-row justify-between w-full">
     <div>
-      <app-product-detail-item [product]="singleProduct" [onlyCounter]="true" [single]="true" [mainItem]="true"
-        (addOrDeleteProduct)="addOrDeleteProduct($event)">
+      <app-product-detail-item
+        [product]="singleProduct"
+        [onlyCounter]="true"
+        [single]="true"
+        [mainItem]="true"
+        (addOrDeleteProduct)="addOrDeleteProduct($event)"
+      >
       </app-product-detail-item>
     </div>
     <div>
       <button
-        class="px-[40px] py-[15px] bg-primary text-white rounded-[100px] text-base font-roboto-bold
-            hover:bg-[#33CCCC] active:bg-[#009999] focus:outline-none active:ring active:ring-[#5CCCCC] transition-all flex flex-row items-center gap-2 disabled:bg-grey disabled:ring-0 w-full md:w-max md:justify-start justify-center"
-        [disabled]="this.needToAddcart.length === 0" (click)="addToCart()">
+        class="px-[40px] py-[15px] bg-primary text-white rounded-[100px] text-base font-roboto-bold hover:bg-[#33CCCC] active:bg-[#009999] focus:outline-none active:ring active:ring-[#5CCCCC] transition-all flex flex-row items-center gap-2 disabled:bg-grey disabled:ring-0 w-full md:w-max md:justify-start justify-center"
+        [disabled]="this.needToAddcart.length === 0"
+        (click)="addToCart()"
+      >
         {{ "addToCart" | translate }} <svg-cart [color]="'#fff'"></svg-cart>
       </button>
     </div>

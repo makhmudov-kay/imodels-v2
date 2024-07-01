@@ -5,6 +5,5 @@ import { Component } from '@angular/core';
   templateUrl: './contact-banner.component.html',
   styleUrls: ['./contact-banner.component.css'],
   standalone: true,
-  imports: [],
 })
 export class ContactBannerComponent {}

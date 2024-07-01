@@ -1,4 +1,4 @@
-import { AsyncPipe, NgFor } from '@angular/common';
+import { AsyncPipe, NgClass, NgFor } from '@angular/common';
 import { Component, Input, ViewChild } from '@angular/core';
 import { SwiperComponent, SwiperModule } from 'swiper/angular';
 import { SvgTopForSlideComponent } from 'src/app/shared/svg/svg-top-for-slide/svg-top-for-slide.component';
@@ -14,7 +14,15 @@ SwiperCore.use([FreeMode, Navigation, Thumbs]);
   templateUrl: './product-detail-slider.component.html',
   styleUrls: ['./product-detail-slider.component.css'],
   standalone: true,
-  imports: [SwiperModule, NgFor, SvgTopForSlideComponent, MyTranslatePipe, AsyncPipe, SvgRightComponent]
+  imports: [
+    SwiperModule,
+    NgFor,
+    SvgTopForSlideComponent,
+    MyTranslatePipe,
+    AsyncPipe,
+    SvgRightComponent,
+    NgClass,
+  ],
 })
 export class ProductDetailSliderComponent {
   /**
@@ -27,10 +35,15 @@ export class ProductDetailSliderComponent {
    */
   @Input()
   title!: LanguageModel;
+  /**
+   *
+   */
+  @Input()
+  isStatic!: boolean;
 
   /**
-  *
-  */
+   *
+   */
   thumbsSwiper: any;
 
   /**
@@ -44,7 +57,6 @@ export class ProductDetailSliderComponent {
    */
   @ViewChild('swiperView')
   swiperView!: SwiperComponent;
-
 
   /**
    *

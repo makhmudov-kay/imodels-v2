@@ -1,39 +1,64 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+  inject,
+} from '@angular/core';
 import { ProductDetailSliderComponent } from './components/product-detail-slider/product-detail-slider.component';
 import { ProductDetailInfoComponent } from './components/product-detail-info/product-detail-info.component';
-import { ItemsType, ProductDetail, ProductItem } from './models/product-detail.model';
+import {
+  ItemsType,
+  ProductDetail,
+  ProductItem,
+} from './models/product-detail.model';
 import { Observable, map, tap } from 'rxjs';
 import { ProductDetailService } from './service/product-detail.service';
-import { ActivatedRoute, } from '@angular/router';
-import { AsyncPipe, NgIf } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
+import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { MyTranslatePipe } from 'src/app/shared/pipes/my-translate.pipe';
+import { DomSanitizer } from '@angular/platform-browser';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.less'],
   standalone: true,
-  imports: [ProductDetailSliderComponent, ProductDetailInfoComponent, NgIf, AsyncPipe, NzSpinModule],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  imports: [
+    ProductDetailSliderComponent,
+    ProductDetailInfoComponent,
+    NgIf,
+    AsyncPipe,
+    NzSpinModule,
+    MyTranslatePipe,
+    NgFor,
+    TranslateModule,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductDetailComponent implements OnInit {
   /**
-  *
-  */
+   *
+   */
   id!: string | null;
   product$!: Observable<ProductDetail>;
   modules!: ProductItem[];
+  sanitizer!: DomSanitizer;
 
   /**
    */
-  private $product = inject(ProductDetailService)
-  private route = inject(ActivatedRoute)
-  private $cd = inject(ChangeDetectorRef)
+  private $product = inject(ProductDetailService);
+  private route = inject(ActivatedRoute);
+  private $cd = inject(ChangeDetectorRef);
+  private $sanitizer = inject(DomSanitizer);
 
   /**
-   * 
+   *
    */
   ngOnInit() {
+    this.sanitizer = this.$sanitizer;
     this.route.params.subscribe((e) => {
       this.id = e['id'];
       this.getProductById();
@@ -41,7 +66,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
   /**
-   * 
+   *
    */
   private getProductById() {
     if (this.id) {
@@ -56,9 +81,9 @@ export class ProductDetailComponent implements OnInit {
   }
 
   /**
-   * 
-   * @param items 
-   * @returns 
+   *
+   * @param items
+   * @returns
    */
   collectionModules(items: ItemsType[]): ProductItem[] {
     let filteredItems: ProductItem[] = [];
@@ -70,5 +95,17 @@ export class ProductDetailComponent implements OnInit {
       });
     }
     return filteredItems;
+  }
+
+  /**
+   *
+   * @param link
+   * @returns
+   */
+  setUrl(link: string) {
+    let id = link.split('=')[1];
+    return this.sanitizer.bypassSecurityTrustResourceUrl(
+      `https://www.youtube.com/embed/${id}`
+    );
   }
 }

@@ -1,0 +1,71 @@
+.analytic__specification {
+    margin-top: 150px;
+
+    h2 {
+        margin-top: 60px;
+        line-height: 100%;
+        font-size: 72px;
+
+        @media (min-width: 992px) and (max-width: 1500px) {
+            line-height: 120%;
+            font-size: 54px;
+        }
+
+        @media (min-width: 992px) and (max-width: 1400px) {
+            line-height: 120%;
+            font-size: 48px;
+        }
+
+        @media (min-width: 992px) and (max-width: 1200px) {
+            line-height: 120%;
+            font-size: 38px;
+        }
+
+        @media (max-width: 992px) {
+            font-size: 48px;
+        }
+
+        @media (max-width: 567px) {
+            font-size: 36px;
+        }
+
+        &.blue {
+            color: #00619d;
+        }
+    }
+
+    .specifications {
+        margin-top: 80px;
+
+        .specification {
+            margin-bottom: 70px;
+
+            .category {
+                font-size: 18px;
+                line-height: 100%;
+                border-bottom: 1px solid #000;
+                margin-bottom: 30px;
+                padding-bottom: 15px;
+            }
+
+            .option {
+                justify-content: space-between;
+                display: flex;
+                margin-bottom: 15px;
+
+                .title {
+                    font-size: 14px;
+                    line-height: 170%;
+                    min-width: 140px;
+                    margin-right: 20px;
+                }
+
+                .value {
+                    font-size: 14px;
+                    line-height: 170%;
+                    text-align: right;
+                }
+            }
+        }
+    }
+}

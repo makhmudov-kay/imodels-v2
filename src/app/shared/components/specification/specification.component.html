@@ -1,0 +1,33 @@
+<section class="analytic__specification">
+  <div class="grid grid--xl">
+    <h2 class="text-primary uppercase font-roboto-medium">
+      {{ specifications.title | translate }}
+    </h2>
+  </div>
+  <div class="grid grid--sm">
+    <div class="specifications">
+      <div class="flex flex-wrap lg:-mx-6">
+        <div
+          class="w-full lg:w-1/2 lg:px-6"
+          *ngFor="let list of specifications.list"
+        >
+          <div class="specification">
+            <div class="category text-primary font-roboto-regular">
+              {{ list.category | translate }}
+            </div>
+            <div class="options">
+              <div class="option" *ngFor="let option of list.options">
+                <div class="title font-roboto-regular">
+                  {{ option.title | translate }}
+                </div>
+                <div class="value font-roboto-regular">
+                  {{ option.value | translate }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

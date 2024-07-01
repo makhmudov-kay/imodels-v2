@@ -1,17 +1,29 @@
 <div class="w-full">
-  <h3 class="md:text-3xl text-xl font-roboto-bold uppercase pb-[30px] lg:text-left text-center">{{title | myTranslate |
-    async}}
+  <h3
+    class="md:text-3xl text-xl font-roboto-bold uppercase pb-[30px] lg:text-left text-center"
+  >
+    {{ title | myTranslate | async }}
   </h3>
 
   <div class="grid grid-cols-5 items-center md:h-[525px] h-[400px] gap-[30px]">
-
     <div class="h-full md:flex hidden flex-col justify-between">
-      <button (click)="pre()" class="py-4 cursor-pointer flex-row justify-center sm:flex hidden">
+      <button
+        (click)="pre()"
+        class="py-4 cursor-pointer flex-row justify-center sm:flex hidden"
+      >
         <svg-top-for-slide></svg-top-for-slide>
       </button>
       <div class="h-[390px] flex flex-col items-center">
-        <swiper (swiper)="thumbsSwiper = $event" [freeMode]="true" [watchSlidesProgress]="true" [spaceBetween]="20"
-          [slidesPerView]="3" [direction]="'vertical'" class="h-full" #swiper>
+        <swiper
+          (swiper)="thumbsSwiper = $event"
+          [freeMode]="true"
+          [watchSlidesProgress]="true"
+          [spaceBetween]="20"
+          [slidesPerView]="3"
+          [direction]="'vertical'"
+          class="h-full"
+          #swiper
+        >
           <ng-template swiperSlide *ngFor="let slide of slides">
             <div class="w-full h-full">
               <img class="w-full h-full object-cover" [src]="slide.image" />
@@ -19,19 +31,40 @@
           </ng-template>
         </swiper>
       </div>
-      <button (click)="next()" class="py-4 rotate-180 cursor-pointer sm:flex hidden flex-row justify-center">
+      <button
+        (click)="next()"
+        class="py-4 rotate-180 cursor-pointer sm:flex hidden flex-row justify-center"
+      >
         <svg-top-for-slide></svg-top-for-slide>
       </button>
     </div>
 
     <div class="md:col-span-4 col-span-5 lg:h-full h-[400px] relative">
-      <button class="rotate-180 absolute left-2.5 top-1/2 z-10 inline-block md:hidden">
+      <button
+        class="rotate-180 absolute left-2.5 top-1/2 z-10 inline-block md:hidden"
+      >
         <svg-right color="#38B6C2" width="40" height="39"></svg-right>
       </button>
-      <swiper [spaceBetween]="10" [thumbs]="{ swiper: thumbsSwiper }" class="h-full" #swiperSlide>
+      <swiper
+        [spaceBetween]="10"
+        [thumbs]="{ swiper: thumbsSwiper }"
+        class="h-full"
+        #swiperSlide
+      >
         <ng-template swiperSlide *ngFor="let slide of slides">
-          <div class="lg:h-full h-[400px] w-full">
-            <img class="w-full h-full object-cover" [src]="slide.image" alt="" />
+          <div
+            class="h-[400px] w-full"
+            [ngClass]="{ 'lg:h-full': !isStatic, 'lg:h-[525px]': isStatic }"
+          >
+            <img
+              class="w-full h-full"
+              [ngClass]="{
+                'object-cover': !isStatic,
+                'object-contain': isStatic
+              }"
+              [src]="slide.image"
+              alt=""
+            />
           </div>
         </ng-template>
       </swiper>

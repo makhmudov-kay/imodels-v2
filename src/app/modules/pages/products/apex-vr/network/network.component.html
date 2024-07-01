@@ -1,0 +1,31 @@
+<section class="analytic__work">
+  <div class="work__wraper">
+    <div class="grid grid--xl">
+      <h2 class="text-primary font-roboto-medium uppercase">
+        {{ data.title | translate }}
+      </h2>
+    </div>
+    <div class="grid grid--sm">
+      <div class="work__h5">
+        <h5 class="font-roboto-regular">
+          {{ data.description | translate }}
+        </h5>
+      </div>
+    </div>
+    <div class="works">
+      <div class="grid grid--md">
+        <div class="flex flex-wrap md:-mx-6">
+          <div class="w-full lg:w-1/3 md:px-6" *ngFor="let work of data.works">
+            <div class="work">
+              <div class="number">{{ work.value | translate }}</div>
+              <div class="title">{{ work.title | translate }}</div>
+              <div class="text text-sm font-roboto-regular">
+                {{ work.text | translate }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

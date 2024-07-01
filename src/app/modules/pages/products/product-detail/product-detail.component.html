@@ -1,11 +1,109 @@
 <div class="container mx-auto md:px-0 px-1.5 lg:pt-16 md:pt-10 pt-6 pb-8">
-  <div class="grid grid-cols-12 md:gap-[30px] gap-5" *ngIf="product$ | async as product; else loading">
-    <div class="lg:col-span-6 col-span-12">
-      <app-product-detail-slider [slides]="product.product_images" [title]="product.title">
-      </app-product-detail-slider>
+  <div *ngIf="product$ | async as product; else loading">
+    <div class="grid grid-cols-12 md:gap-[30px] gap-5">
+      <div class="lg:col-span-6 col-span-12">
+        <app-product-detail-slider
+          [slides]="product.product_images"
+          [title]="product.title"
+        >
+        </app-product-detail-slider>
+      </div>
+      <div class="lg:col-span-6 col-span-12">
+        <app-product-detail-info [product]="product"></app-product-detail-info>
+      </div>
     </div>
-    <div class="lg:col-span-6 col-span-12">
-      <app-product-detail-info [product]="product"></app-product-detail-info>
+
+    <div class="mt-36">
+      <div *ngIf="product.product_video" class="flex flex-col gap-5">
+        <p class="font-roboto-medium text-xl md:max-w-[1100px] w-full">
+          {{ product.product_video.title | myTranslate | async }}
+        </p>
+        <div class="md:max-w-[1100px] w-full md:ml-auto">
+          <iframe
+            width="100%"
+            height="499"
+            [src]="setUrl(product.product_video.video_link)"
+            title="LAPARO ADVANCE - series of professional laparoscopic simulators by Laparo Medical Simulators"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+
+      <div
+        *ngIf="product.product_video"
+        class="mt-20 h-[600px] flex flex-row items-center justify-end"
+      >
+        <div class="absolute left-0">
+          <img src="./assets/image/product-left-down.png" alt="img" />
+        </div>
+        <div class="flex justify-center items-center z-10">
+          <div
+            class="max-w-[800px]"
+            [innerHTML]="product.product_video.text | myTranslate | async"
+          ></div>
+        </div>
+      </div>
+
+      <div
+        class="flex flex-col gap-8 pb-9"
+        *ngIf="product.product_galleries && product.product_galleries.length"
+      >
+        <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
+          <div *ngFor="let img of product.product_galleries">
+            <img [src]="img.image" alt="img" />
+          </div>
+        </div>
+        <div class="flex flex-col gap-6 items-end">
+          <h5 class="text-4xl font-roboto-bold text-primary">
+            {{ product.product_description.title | myTranslate | async }}
+          </h5>
+          <div
+            class="grid md:grid-cols-2 grid-cols-1 gap-8 lg:max-w-[60%] w-full"
+          >
+            <div
+              *ngFor="
+                let point of product.product_description.description_points;
+                let id = index
+              "
+            >
+              <div class="flex flex-row items-start gap-5">
+                <div class="number">{{ id + 1 }}</div>
+                <div class="font-roboto-regular text-sm">
+                  {{ point.text | myTranslate | async }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        *ngIf="product.product_features"
+        class="flex md:flex-row flex-col items-center mt-7"
+      >
+        <div class="flex-1">
+          <h5 class="text-primary text-xl font-roboto-bold mb-4">
+            {{ "feature" | translate }}:
+          </h5>
+          <ul class="grid grid-cols-2 gap-4">
+            <li
+              *ngFor="let feature of product.product_features.features"
+              class="font-roboto-regular list-item"
+            >
+              {{ feature.feature | myTranslate | async }}
+            </li>
+          </ul>
+        </div>
+        <div class="flex-1">
+          <img
+            class="about-img"
+            [src]="product.product_features.image"
+            alt="img"
+          />
+        </div>
+      </div>
     </div>
   </div>
 
