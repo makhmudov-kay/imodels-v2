@@ -585,5 +585,6 @@
   "save": "Saqlash",
   "notification": "Bildirishma",
   "dataSuccessChanged": "Ma'lumotlar muvaffaqiyatli o'zgartirildi",
-  "congratulations": "Tabriklaymiz!"
+  "congratulations": "Tabriklaymiz!",
+  "orderNotFound": "Buyurtmalar topilmadi"
 }

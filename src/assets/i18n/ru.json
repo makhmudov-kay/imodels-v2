@@ -585,5 +585,6 @@
   "save": "Сохранить",
   "notification": "Уведомление",
   "dataSuccessChanged": "Данные успешно изменены",
-  "congratulations": "Поздравляем!"
+  "congratulations": "Поздравляем!",
+  "orderNotFound": "Список заказов пуст"
 }

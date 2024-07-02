@@ -9,7 +9,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
   templateUrl: './list-of-product.component.html',
   styleUrls: ['./list-of-product.component.css'],
   standalone: true,
-  imports: [TranslateModule, NgFor, NgClass, NgIf, RouterLink, NzButtonModule]
+  imports: [TranslateModule, NgFor, NgClass, NgIf, RouterLink, NzButtonModule, RouterLink]
 })
 export class ListOfProductComponent  {
   @Input() products!: any[];

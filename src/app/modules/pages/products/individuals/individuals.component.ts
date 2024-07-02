@@ -13,6 +13,7 @@ export interface IndividualProductsData {
   img: string;
   link: string;
   fade?: boolean;
+  category_id?: number;
 }
 
 @Component({
@@ -20,7 +21,15 @@ export interface IndividualProductsData {
   templateUrl: './individuals.component.html',
   styleUrls: ['./individuals.component.css'],
   standalone: true,
-  imports: [TranslateModule, NgFor, NgIf, NgClass, NzButtonModule, RouterLink, ListOfProductComponent]
+  imports: [
+    TranslateModule,
+    NgFor,
+    NgIf,
+    NgClass,
+    NzButtonModule,
+    RouterLink,
+    ListOfProductComponent,
+  ],
 })
 export class IndividualsComponent {
   advantages = [
@@ -49,6 +58,7 @@ export class IndividualsComponent {
       ],
       img: './assets/image/individula-1.png',
       link: '../products/list?page=1&category_id=6',
+      category_id: 9,
     },
     {
       title: 'advanceTitle',
@@ -68,6 +78,7 @@ export class IndividualsComponent {
       ],
       img: './assets/image/individula-2.png',
       link: '../products/list?page=1&category_id=2',
+      category_id: 2,
     },
     {
       title: 'adeptTitle',
@@ -85,6 +96,7 @@ export class IndividualsComponent {
       ],
       img: './assets/image/individula-3.png',
       link: '../products/list?page=1&category_id=7',
+      category_id: 7,
     },
   ];
 }

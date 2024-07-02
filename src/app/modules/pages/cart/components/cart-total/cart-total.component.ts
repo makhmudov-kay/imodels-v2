@@ -28,6 +28,13 @@ export class CartTotalComponent {
    */
   @Input()
   isLoading!: boolean;
+
+  /**
+   *
+   */
+  @Input()
+  isDisable!: boolean;
+  
   /**
    *
    */

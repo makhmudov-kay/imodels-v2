@@ -188,6 +188,7 @@ export class CartComponent implements OnInit {
           this.createNotification();
           this.$store.dispatch(new CartAction([]));
           localStorage.removeItem('cart');
+          this.router.navigate(['../cabinet']);
           this.$cd.markForCheck();
         }
       });

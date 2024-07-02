@@ -585,5 +585,6 @@
   "save": "Save",
   "notification": "Notification",
   "dataSuccessChanged": "The data has been successfully changed",
-  "congratulations": "Congratulations!"
+  "congratulations": "Congratulations!",
+  "orderNotFound": "Orders not found"
 }

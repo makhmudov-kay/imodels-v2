@@ -46,7 +46,7 @@ export class AuthService {
    * @returns
    */
   confirm(user: ConfirmUser) {
-    return this.$base.post('account/confirm/', user);
+    return this.$base.post('account/register/confirm/', user);
   }
 
   /**

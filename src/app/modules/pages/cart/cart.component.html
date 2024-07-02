@@ -14,6 +14,7 @@
     </div>
     <div class="lg:w-[378px]">
       <app-cart-total
+        [isDisable]="!!cartItems.length"
         (sendOrder)="sendOrder()"
         [isLoading]="isLoading"
         [totalPrice]="totalPrice"
