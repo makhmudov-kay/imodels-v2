@@ -8,6 +8,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TranslateModule } from '@ngx-translate/core';
 import { BlogCardComponent } from './components/blog-card/blog-card.component';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
 
 @Component({
   selector: 'app-blog',
@@ -22,6 +24,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
     NgClass,
     BlogCardComponent,
     NzButtonModule,
+    NzSpinModule,
   ],
 })
 export class BlogComponent {

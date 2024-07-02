@@ -167,8 +167,6 @@ export class SecureCodeComponent implements OnInit {
       secure_code: this.getActivationCode(),
       phone: this.phone,
     };
-    console.log(this.type);
-
     if (this.type == '1') {
       this.confirmRegister(request);
       return;

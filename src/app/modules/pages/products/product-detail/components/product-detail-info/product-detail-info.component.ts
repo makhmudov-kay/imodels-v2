@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  inject,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
@@ -12,7 +20,7 @@ import { ClearCountService } from '../../service/clear-count.service';
 import { DataState } from 'src/app/shared/store/data/data.state';
 import { CartAction } from 'src/app/shared/store/data/data.action';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { AsyncPipe, NgFor, NgIf } from '@angular/common';
+import { AsyncPipe, NgClass, NgFor, NgIf } from '@angular/common';
 import { MyTranslatePipe } from 'src/app/shared/pipes/my-translate.pipe';
 import { MyCurrencyPipe } from 'src/app/shared/pipes/my-currency.pipe';
 import { TotalPriceComponent } from 'src/app/shared/components/total-price/total-price.component';
@@ -25,12 +33,29 @@ import { NzMessageService } from 'ng-zorro-antd/message';
   templateUrl: './product-detail-info.component.html',
   styleUrls: ['./product-detail-info.component.css'],
   standalone: true,
-  imports: [NzInputNumberModule, FormsModule, NzDividerModule, NzButtonModule, SvgCartComponent, ProductDetailItemComponent, TranslateModule, NgIf, MyTranslatePipe, AsyncPipe, MyCurrencyPipe, TotalPriceComponent, NzCollapseModule, NgFor, NzIconModule],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  imports: [
+    NzInputNumberModule,
+    FormsModule,
+    NzDividerModule,
+    NzButtonModule,
+    SvgCartComponent,
+    ProductDetailItemComponent,
+    TranslateModule,
+    NgIf,
+    MyTranslatePipe,
+    AsyncPipe,
+    MyCurrencyPipe,
+    TotalPriceComponent,
+    NzCollapseModule,
+    NgFor,
+    NzIconModule,
+    NgClass,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductDetailInfoComponent {
   /**
-  */
+   */
   private _product!: ProductDetail;
   public get product(): ProductDetail {
     return this._product;
@@ -57,8 +82,8 @@ export class ProductDetailInfoComponent {
   }
 
   /**
-  *
-  */
+   *
+   */
   @Output()
   isAddedToCart = new EventEmitter<boolean>();
 
@@ -82,15 +107,15 @@ export class ProductDetailInfoComponent {
 
   /**
    */
-  private $store = inject(Store)
-  private $cd = inject(ChangeDetectorRef)
-  private $clearCount = inject(ClearCountService)
-  private $message = inject(NzMessageService)
-  private $translate = inject(TranslateService)
+  private $store = inject(Store);
+  private $cd = inject(ChangeDetectorRef);
+  private $clearCount = inject(ClearCountService);
+  private $message = inject(NzMessageService);
+  private $translate = inject(TranslateService);
 
   /**
-   * 
-   * @param product 
+   *
+   * @param product
    */
   addOrDeleteProduct(product: any) {
     this.list.push(product);
@@ -123,7 +148,7 @@ export class ProductDetailInfoComponent {
   }
 
   /**
-   * 
+   *
    */
   addToCart() {
     if (this.needToAddcart.length) {
@@ -174,13 +199,13 @@ export class ProductDetailInfoComponent {
 
     this.$clearCount.clearCount$.next(true);
     this.isAddedToCart.emit(true);
-    this.createMessage()
+    this.createMessage();
     this.$cd.markForCheck();
   }
 
   /**
-   * 
-   * @param type 
+   *
+   * @param type
    */
   toggleCollapse(type: string) {
     this.product.items = this.product.items.map((item: any) => {
@@ -194,7 +219,7 @@ export class ProductDetailInfoComponent {
   }
 
   /**
-   * 
+   *
    */
   toggleConfigurator() {
     this.configurator = !this.configurator;

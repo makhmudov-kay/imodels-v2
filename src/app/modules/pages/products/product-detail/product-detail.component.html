@@ -48,7 +48,11 @@
 
       <div
         class="flex flex-col gap-8 pb-9"
-        *ngIf="product.product_galleries && product.product_galleries.length"
+        *ngIf="
+          product.product_galleries &&
+          product.product_galleries.length &&
+          product.product_description
+        "
       >
         <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
           <div *ngFor="let img of product.product_galleries">

@@ -5,13 +5,24 @@ import { BlogDetails } from '../blog/models/blog-details.model';
 import { Observable } from 'rxjs';
 import { AsyncPipe, DatePipe, NgIf } from '@angular/common';
 import { MyTranslatePipe } from 'src/app/shared/pipes/my-translate.pipe';
+import { QuillModule } from 'ngx-quill';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
 
 @Component({
   selector: 'app-blog-details',
   templateUrl: './blog-details.component.html',
   styleUrls: ['./blog-details.component.css'],
   standalone: true,
-  imports: [NgIf, AsyncPipe, DatePipe, MyTranslatePipe],
+  imports: [
+    NgIf,
+    AsyncPipe,
+    DatePipe,
+    MyTranslatePipe,
+    QuillModule,
+    NzDividerModule,
+    NzSpinModule,
+  ],
 })
 export class BlogDetailsComponent {
   route = inject(ActivatedRoute);

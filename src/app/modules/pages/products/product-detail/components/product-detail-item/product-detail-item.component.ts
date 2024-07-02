@@ -1,4 +1,13 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  inject,
+} from '@angular/core';
 import { CalcComponent } from 'src/app/shared/components/calc/calc.component';
 import { ProductItem } from '../../models/product-detail.model';
 import { ClearCountService } from '../../service/clear-count.service';
@@ -12,8 +21,15 @@ import { MyCurrencyPipe } from 'src/app/shared/pipes/my-currency.pipe';
   templateUrl: './product-detail-item.component.html',
   styleUrls: ['./product-detail-item.component.css'],
   standalone: true,
-  imports: [CalcComponent, MyTranslatePipe, AsyncPipe, MyCurrencyPipe, NgIf, NgClass],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  imports: [
+    CalcComponent,
+    MyTranslatePipe,
+    AsyncPipe,
+    MyCurrencyPipe,
+    NgIf,
+    NgClass,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductDetailItemComponent implements OnInit {
   /**
@@ -73,7 +89,7 @@ export class ProductDetailItemComponent implements OnInit {
   count = 0;
 
   /**
-   * 
+   *
    */
   private clearCountListener() {
     this.$clearCount.clearCount$.subscribe((w) => {
@@ -122,8 +138,6 @@ export class ProductDetailItemComponent implements OnInit {
         }
       }
     }
-    console.log(this.product.count);
-    console.log(this.product);
 
     this.addOrDeleteProduct.emit(this.product);
     this.$cd.markForCheck();

@@ -1,29 +1,40 @@
 <div class="container mx-auto md:px-0 px-1.5 py-10">
-  <div class="blog-detail__wrapper" *ngIf="blog$ | async as blog">
-    <!-- TODO: IMPLEMENT OR REMOVE -->
-    <!-- <app-categories [isDetail]="true"></app-categories> -->
-    <div class="blog-detail__info">
-      <div class="blog-detail__info__left">
-        <div class="date-view-style blog-detail__info__left__date">
+  <div class="blog-detail__wrapper" *ngIf="blog$ | async as blog; else loading">
+    <div class="flex md:flex-row flex-col items-center gap-7">
+      <div class="flex-initial md:w-[65%] w-full">
+        <div class="text-primary text-[25px] font-roboto-bold">
           {{ blog.created_at | date : "dd.MM.yyyy" }}
         </div>
-        <h3 class="blog-detail__info__left__title">
+        <h3
+          class="text-primary uppercase md:text-[45px] text-[24px] font-roboto-bold"
+        >
           {{ blog.title | myTranslate | async }}
         </h3>
-        <div class="blog-detail__info__left__text">
+        <div class="font-roboto-medium md:text-xl text-sm">
           <!-- {{ blog.description | myTranslate | async }} -->
-          <div
-            *ngIf="blog.description | myTranslate | async as desc"
-            [innerHTML]="desc"
-          ></div>
+          <div *ngIf="blog.description | myTranslate | async as desc">
+            <p>{{ desc }}</p>
+          </div>
         </div>
       </div>
-      <div class="blog-detail__info__right">
-        <img [src]="blog.preview_image" alt="image" />
+      <div class="flex-initial md:w-[35%] w-full md:h-[500px] h-[300px]">
+        <img
+          class="w-full h-full object-contain"
+          [src]="blog.preview_image"
+          alt="image"
+        />
       </div>
     </div>
-    <div class="divider"></div>
+    <nz-divider></nz-divider>
 
-    <div [innerHTML]="blog.text | myTranslate | async"></div>
+    <div>
+      <quill-view [content]="blog.text | myTranslate | async"></quill-view>
+    </div>
   </div>
+
+  <ng-template #loading>
+    <nz-spin nzTip="Loading...">
+      <div class="h-dvh"></div>
+    </nz-spin>
+  </ng-template>
 </div>

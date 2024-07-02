@@ -68,10 +68,12 @@ export const routes: Routes = [
       {
         path: 'orders',
         component: OrdersComponent,
+        data: { title: 'iModelsorders' },
       },
       {
         path: 'profile',
         component: ProfileComponent,
+        data: { title: 'iModelsdetails' },
       },
     ],
   },

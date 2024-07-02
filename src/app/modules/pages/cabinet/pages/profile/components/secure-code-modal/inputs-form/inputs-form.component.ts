@@ -34,7 +34,6 @@ export class InputsFormComponent {
       const elem = this.elementRef.nativeElement.querySelector(
         `input[id=activationCode${index + 1}]`
       );
-      console.log(this.elementRef.nativeElement);
       if (elem) {
         elem.focus();
       }

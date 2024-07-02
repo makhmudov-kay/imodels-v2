@@ -5,7 +5,11 @@ import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { ru_RU } from 'ng-zorro-antd/i18n';
 import { DecimalPipe, registerLocaleData } from '@angular/common';
 import ru from '@angular/common/locales/ru';
-import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  HttpClient,
+  HttpClientModule,
+} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -18,6 +22,7 @@ import { HandleErrorInterceptor } from './core/interceptors/handle.error.interce
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { environment } from 'src/environments/environment';
+import { QuillModule } from 'ngx-quill';
 
 registerLocaleData(ru);
 export function createTranslateLoader(http: HttpClient) {
@@ -25,9 +30,7 @@ export function createTranslateLoader(http: HttpClient) {
 }
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -41,7 +44,7 @@ export function createTranslateLoader(http: HttpClient) {
       },
     }),
     NgxsModule.forRoot([DataState], {}),
-
+    QuillModule.forRoot(),
     HeaderComponent,
     FooterComponent,
   ],
@@ -64,6 +67,6 @@ export function createTranslateLoader(http: HttpClient) {
     },
     DecimalPipe,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

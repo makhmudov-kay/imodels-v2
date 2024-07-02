@@ -1,4 +1,4 @@
-<div class="relative">
+<div class="relative" *ngIf="blog && blog.results">
   <button
     (click)="pre()"
     class="absolute top-[50%] z-10 left-16 lg:block hidden"
@@ -47,8 +47,8 @@
       [slidesPerView]="1"
       [spaceBetween]="10"
     >
-      <ng-template swiperSlide *ngFor="let blog of [].constructor(10)">
-        <app-blog-card></app-blog-card>
+      <ng-template swiperSlide *ngFor="let blog of blog.results">
+        <app-blog-card [data]="blog"></app-blog-card>
       </ng-template>
     </swiper>
   </div>

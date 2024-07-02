@@ -1,7 +1,7 @@
 <div class="container mx-auto md:px-0 px-1.5 py-10">
   <div *ngIf="blog && blog.results.length; else empty">
-    <div class="flex flex-row gap-8">
-      <div class="flex-initial w-[70%]">
+    <div class="flex xl:flex-row gap-8 flex-col">
+      <div class="flex-initial xl:w-[70%]">
         <h3 class="text-primary uppercase text-[45px] font-roboto-bold mb-6">
           {{ "recent" | translate }}
         </h3>
@@ -30,7 +30,7 @@
           </button>
         </div>
       </div>
-      <div class="flex-initial w-[30%]">
+      <div class="flex-initial xl:w-[30%]">
         <h3 class="text-primary uppercase text-[30px] font-roboto-bold mb-6">
           {{ "mostPopular" | translate }}
         </h3>
@@ -44,5 +44,9 @@
     </div>
   </div>
 
-  <ng-template #empty></ng-template>
+  <ng-template #empty>
+    <nz-spin nzTip="Loading...">
+      <div class="w-full h-[600px]"></div>
+    </nz-spin>
+  </ng-template>
 </div>

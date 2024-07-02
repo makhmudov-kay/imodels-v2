@@ -6,7 +6,8 @@
   </h3>
 
   <div
-    class="lg:mb-16 mb-5 lg:h-[175px] lg:overflow-auto scroll"
+    class="lg:mb-16 mb-5 lg:h-[300px] lg:overflow-auto scroll"
+    [ngClass]="{ 'lg:h-[180px]': product.is_configurator }"
     [innerHTML]="product.information | myTranslate | async"
   ></div>
 

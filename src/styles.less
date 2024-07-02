@@ -1,6 +1,8 @@
 @import "swiper/less";
 @import "swiper/less/navigation";
 @import "swiper/less/pagination";
+@import "~quill/dist/quill.core.css";
+@import "~quill/dist/quill.bubble.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -51,7 +53,6 @@ body {
   .scroll();
 }
 
-
 .ant-menu-item {
   @media (max-width: 767px) {
     white-space: initial;
@@ -98,13 +99,21 @@ body {
   .scroll();
 }
 
-.ant-input-affix-wrapper-status-error:not(.ant-input-affix-wrapper-disabled):not(.ant-input-affix-wrapper-borderless).ant-input-affix-wrapper,
-.ant-input-affix-wrapper-status-error:not(.ant-input-affix-wrapper-disabled):not(.ant-input-affix-wrapper-borderless).ant-input-affix-wrapper:hover {
+.ant-input-affix-wrapper-status-error:not(
+    .ant-input-affix-wrapper-disabled
+  ):not(.ant-input-affix-wrapper-borderless).ant-input-affix-wrapper,
+.ant-input-affix-wrapper-status-error:not(
+    .ant-input-affix-wrapper-disabled
+  ):not(.ant-input-affix-wrapper-borderless).ant-input-affix-wrapper:hover {
   background: transparent;
 }
 
-.ant-input-status-error:not(.ant-input-disabled):not(.ant-input-borderless).ant-input,
-.ant-input-status-error:not(.ant-input-disabled):not(.ant-input-borderless).ant-input:hover {
+.ant-input-status-error:not(.ant-input-disabled):not(
+    .ant-input-borderless
+  ).ant-input,
+.ant-input-status-error:not(.ant-input-disabled):not(
+    .ant-input-borderless
+  ).ant-input:hover {
   background: transparent;
 }
 
@@ -119,4 +128,26 @@ body {
 
 .ant-alert {
   border-radius: 10px;
+}
+
+.ql-editor {
+  img {
+    display: block;
+    margin: auto;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: #38b6c2;
+    font-family: Roboto-Bold;
+  }
+
+  p {
+    font-family: Roboto-Medium;
+    font-family: 16px;
+  }
 }
