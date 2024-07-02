@@ -1,5 +1,5 @@
 import { NgClass, NgFor, NgIf } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
@@ -29,6 +29,12 @@ export class MenuComponent {
    */
   @Input()
   isDrawer!: boolean;
+
+  /**
+   *
+   */
+  @Output()
+  closeDrawerMenu = new EventEmitter();
 
   /**
    */

@@ -17,6 +17,7 @@
             normal: !menuItem.isHeader
           }"
           class="font-roboto-medium min-[1024px]:text-lg max-[1023px]:text-sm sub-menu"
+          (click)="closeDrawerMenu.emit()"
         >
           <span>{{ menuItem.label | translate }}</span>
 
@@ -29,6 +30,7 @@
     nz-menu-item
     class="text-primary font-roboto-medium text-lg"
     routerLink="../about-us"
+    (click)="closeDrawerMenu.emit()"
   >
     {{ "aboutUs" | translate }}
   </li>
@@ -36,6 +38,7 @@
     nz-menu-item
     class="text-primary font-roboto-medium text-lg"
     routerLink="../blog"
+    (click)="closeDrawerMenu.emit()"
   >
     {{ "blog" | translate }}
   </li>
@@ -43,6 +46,7 @@
     nz-menu-item
     class="text-primary font-roboto-medium text-lg"
     routerLink="../contacts"
+    (click)="closeDrawerMenu.emit()"
   >
     {{ "contact.contact" | translate }}
   </li>
