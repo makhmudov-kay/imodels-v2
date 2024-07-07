@@ -1,21 +1,13 @@
 <div class="relative" *ngIf="blog && blog.results">
-  <button
-    (click)="pre()"
-    class="absolute top-[50%] z-10 left-16 lg:block hidden"
-  >
+  <button (click)="pre()" class="absolute top-[50%] z-10 left-16 lg:block hidden">
     <svg-circle-arrow [color]="'#38B6C2'"></svg-circle-arrow>
   </button>
   <div class="container mx-auto md:px-0 px-1.5 md:py-[100px] py-[50px]">
     <app-section-title [section]="'news'" [title]="'wGoin'"></app-section-title>
 
-    <swiper
-      [breakpoints]="{
-        '360': {
+    <swiper [breakpoints]="{
+        '550': {
           slidesPerView: 1,
-          spaceBetween: 10
-        },
-        '410': {
-          slidesPerView: 1.5,
           spaceBetween: 10
         },
         '576': {
@@ -23,40 +15,33 @@
           spaceBetween: 10
         },
         '767': {
-          slidesPerView: 2.1,
+          slidesPerView: 2,
           spaceBetween: 10
         },
         '991': {
-          slidesPerView: 2.5,
+          slidesPerView: 2.4,
           spaceBetween: 20
         },
         '1170': {
-          slidesPerView: 3.5,
+          slidesPerView: 2.8,
           spaceBetween: 10
         },
         '1200': {
-          slidesPerView: 3.6,
+          slidesPerView: 3.2,
           spaceBetween: 10
         },
         '1300': {
           slidesPerView: 3.9,
           spaceBetween: 20
         }
-      }"
-      #swiper
-      [slidesPerView]="1"
-      [spaceBetween]="10"
-    >
+      }" #swiper [slidesPerView]="1" [spaceBetween]="10">
       <ng-template swiperSlide *ngFor="let blog of blog.results">
-        <app-blog-card [data]="blog"></app-blog-card>
+        <app-blog-card [data]="blog" [formHome]="true"></app-blog-card>
       </ng-template>
     </swiper>
   </div>
 
-  <button
-    (click)="next()"
-    class="rotate-180 absolute top-[50%] z-10 right-16 lg:block hidden"
-  >
+  <button (click)="next()" class="rotate-180 absolute top-[50%] z-10 right-16 lg:block hidden">
     <svg-circle-arrow [color]="'#38B6C2'"></svg-circle-arrow>
   </button>
 </div>

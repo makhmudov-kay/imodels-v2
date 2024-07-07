@@ -6,6 +6,7 @@ import { MyTranslateSyncPipe } from 'src/app/shared/pipes/my-translate-sync.pipe
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterLink } from '@angular/router';
+import { NzTypographyModule } from 'ng-zorro-antd/typography';
 
 @Component({
   selector: 'app-blog-card',
@@ -20,6 +21,7 @@ import { RouterLink } from '@angular/router';
     NzButtonModule,
     TranslateModule,
     RouterLink,
+    NzTypographyModule
   ],
 })
 export class BlogCardComponent {
@@ -31,6 +33,9 @@ export class BlogCardComponent {
 
   @Input()
   isSmCard = false;
+
+  @Input()
+  formHome = false;
 
   @Input()
   data: Blog = {
