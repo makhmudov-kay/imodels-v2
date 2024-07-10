@@ -1,6 +1,6 @@
 <div class="bg-primary h-[500px] mb-24">
   <div
-    class="container mx-auto md:px-0 px-1.5 flex flex-col justify-center items-center md:items-start h-full relative">
+    class="container mx-auto md:px-0 px-3 flex flex-col justify-center items-center md:items-start h-full relative">
     <img class="absolute top-14 left-12" src="./assets/image/Union.png" alt="img">
     <h2
       class="text-white md:text-left text-center text-[30px] md:text-[40px] lg:text-[55px] font-roboto-black uppercase z-10">
@@ -15,11 +15,11 @@
 </div>
 
 
-<div class="lg:mb-20 md:mb-10 mb-5 container mx-auto md:px-0 px-1.5">
+<div class="lg:mb-20 md:mb-10 mb-5 container mx-auto md:px-0 px-3">
   <app-section-main-title>{{ 'whatBenefit' | translate }}</app-section-main-title>
 </div>
 
-<div class="relative container mx-auto md:px-0 px-1.5">
+<div class="relative container mx-auto md:px-0 px-3">
   <div class="hidden md:flex flex-row gap-4 items-center mb-3 absolute top-0 left-0">
     <span class="block w-[100px] h-[2px] bg-[#D9D9D9]" *ngFor="let dot of [].constructor(3); let id = index"
       [ngClass]="{active: id == activeSlide}"></span>
