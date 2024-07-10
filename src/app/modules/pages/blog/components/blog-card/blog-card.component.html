@@ -1,40 +1,25 @@
-<div
-  class="flex gap-5 max-w-[378px] cursor-pointer"
-  [ngClass]="{
+<div class="flex gap-5 max-w-[378px] w-full cursor-pointer" [ngClass]="{
     'max-w-full': isFirst || isBlogList || isSmCard,
     'items-center': isSmCard,
     'flex-row': isSmCard,
     'flex-col': !isSmCard
-  }"
->
-  <div
-    class="h-[250px] w-full"
-    [ngClass]="{
+  }">
+  <div class="h-[250px] w-full" [ngClass]="{
       'sm:h-[600px]': isFirst,
       'sm:h-[350px]': isBlogList && !isFirst,
       'h-[200px]': isSmCard,
       'flex-initial': isSmCard,
       'w-[40%]': isSmCard
-    }"
-  >
-    <img
-      class="h-full w-full object-contain"
-      [src]="data.preview_image"
-      alt="blog-card-img"
-    />
+    }">
+    <img class="h-full w-full object-contain" [src]="data.preview_image" alt="blog-card-img" />
   </div>
-  <div
-    class="flex flex-col gap-2"
-    [ngClass]="{
+  <div class="flex flex-col gap-2" [ngClass]="{
       'p-3': isBlogList || isSmCard,
       'flex-initial': isSmCard,
       'w-[60%]': isSmCard
-    }"
-  >
-    <h3
-      class="truncate max-w-[305px] text-2xl font-roboto-medium"
-      [ngClass]="{ 'max-w-full': isBlogList, 'line-clamp-1': !isSmCard, }"
-    >
+    }">
+    <h3 class="truncate max-w-[305px] text-2xl font-roboto-medium overflow-hidden"
+      [ngClass]="{ 'max-w-full': isBlogList, 'line-clamp-1': !isSmCard, 'w-full': formHome, 'max-w-[200px]': formHome }">
       {{ data.title | myTranslateSync }}
     </h3>
     <p class="text-base font-roboto-regular line-clamp-2">
@@ -44,7 +29,7 @@
       <div class="flex flex-row gap-2.5 items-center justify-between w-full">
         <span class="text-grey text-xs font-roboto-regular">{{
           data.created_at | date : "dd.MM.yyyy HH:mm"
-        }}</span>
+          }}</span>
         <!-- <span
           class="text-grey flex flex-row text-xs font-roboto-regular items-center gap-[2px]"
           ><svg-eye class="flex"></svg-eye> 10017</span
