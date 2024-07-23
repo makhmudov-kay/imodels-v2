@@ -15,6 +15,8 @@ import { Price } from 'src/app/shared/models/price.model';
 import { MyTranslatePipe } from 'src/app/shared/pipes/my-translate.pipe';
 import { AsyncPipe, NgClass, NgIf } from '@angular/common';
 import { MyCurrencyPipe } from 'src/app/shared/pipes/my-currency.pipe';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NzImageModule } from 'ng-zorro-antd/image';
 
 @Component({
   selector: 'app-product-detail-item',
@@ -28,6 +30,7 @@ import { MyCurrencyPipe } from 'src/app/shared/pipes/my-currency.pipe';
     MyCurrencyPipe,
     NgIf,
     NgClass,
+    NzImageModule,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -53,6 +56,9 @@ export class ProductDetailItemComponent implements OnInit {
    */
   @Input()
   configuratorId!: null | number;
+
+  @Input()
+  isConfiguratorItem!: boolean;
 
   @Input()
   mainItem!: boolean;
@@ -82,6 +88,8 @@ export class ProductDetailItemComponent implements OnInit {
    */
   private $cd = inject(ChangeDetectorRef);
   private $clearCount = inject(ClearCountService);
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
 
   /**
    *
@@ -156,6 +164,14 @@ export class ProductDetailItemComponent implements OnInit {
   decrease() {
     if (this.count > 0) {
       this.handleCounter();
+    }
+  }
+
+  navigateToItem(id: number) {
+    if (this.isConfiguratorItem) {
+      this.router.navigate(['../', id], {
+        relativeTo: this.route,
+      });
     }
   }
 }

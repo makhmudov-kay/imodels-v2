@@ -1,13 +1,20 @@
-<div class="bg-orange h-[575px]">
-  <div class="container mx-auto h-full md:px-0 px-1.5">
+<div
+  class="bg-orange md:h-[500px]"
+  [ngClass]="{ 'h-[500px]': !height, 'h-[300px]': height }"
+>
+  <div class="container mx-auto h-full md:px-0 px-3 overflow-hidden">
     <div
-      class="flex lg:flex-row flex-col justify-center lg:justify-between h-full"
+      class="flex lg:flex-row flex-col justify-center lg:justify-between h-full relative"
     >
-      <div class="w-max-[745px] w-full flex flex-col justify-center flex-1">
+      <div class="w-max-[745px] w-full flex flex-col justify-center flex-1 relative z-10">
         <ng-content></ng-content>
       </div>
-      <div class="flex-1 self-end lg:block hidden max-w-[787px] w-ful">
-        <img class="w-full h-full object-cover" src="./assets/image/contact-banner.png" alt="banner" />
+      <div class="flex-1 self-end max-w-[787px] w-ful lg:relative absolute bottom-0 left-0" >
+        <img
+          class="w-full h-full object-cover"
+          src="./assets/image/contact-banner.png"
+          alt="banner"
+        />
       </div>
     </div>
   </div>

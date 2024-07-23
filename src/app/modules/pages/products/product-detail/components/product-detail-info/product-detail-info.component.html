@@ -46,6 +46,7 @@
                 [configuratorId]="product.is_configurator ? product.id : null"
                 (addOrDeleteProduct)="addOrDeleteProduct($event)"
                 [isConfigurator]="product.is_configurator"
+                [isConfiguratorItem]="true"
               >
               </app-product-detail-item>
               <nz-divider class="my-2"></nz-divider>

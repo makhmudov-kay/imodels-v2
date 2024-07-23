@@ -10,7 +10,6 @@ import { TranslateModule } from '@ngx-translate/core';
 import { SvgCallComponent } from 'src/app/shared/svg/svg-call/svg-call.component';
 import { SvgLocationComponent } from 'src/app/shared/svg/svg-location/svg-location.component';
 import { SvgMailComponent } from 'src/app/shared/svg/svg-mail/svg-mail.component';
-import { SvgUserComponent } from 'src/app/shared/svg/svg-user/svg-user.component';
 
 @Component({
   selector: 'app-contacts-info',

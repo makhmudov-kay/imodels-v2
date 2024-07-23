@@ -1,5 +1,5 @@
 <div>
-  <app-contact-banner>
+  <app-contact-banner [height]="true">
     <h3
       class="text-white uppercase text-[55px] font-roboto-black text-center lg:text-left"
     >
@@ -22,7 +22,7 @@
   </div>
 
   <div
-    class="container flex flex-col items-center mx-auto md:px-0 px-1.5 md:py-[100px] py-[50px]"
+    class="container flex flex-col items-center mx-auto md:px-0 px-3 md:py-[100px] py-[50px]"
   >
     <app-contact-form [isContactsPage]="true"></app-contact-form>
   </div>
